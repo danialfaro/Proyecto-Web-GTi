@@ -1,0 +1,1 @@
+HTML, CSS especificos y JS de las paginas de la App
