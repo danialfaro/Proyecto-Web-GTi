@@ -58,3 +58,14 @@ button {
 button:focus {
     outline: none;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@700&display=swap');
+
+.textos-landing-page{
+    font-family: 'Poppins';
+    font-size: 1.4em;
+    font-weight:bolder;
+    padding: 8px 0;
+    text-align: center;
+    
+}
