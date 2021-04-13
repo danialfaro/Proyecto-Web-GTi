@@ -11,22 +11,22 @@
     display: flex;
 }
 .logo{
-    width: 150px;
+    width: 130px;
     height: 62px;
     background-color: white;
 
 }
 .icono-log-in{   
-    margin: 10px 0px 10px 0px;
+    margin: 16px 0px 16px 0px;
     width: 40px;
-    height: 42px;
+    height: 30px;
     filter: invert(100%);
     /*filter: invert(20%) sepia(100%) saturate(4000%);*/
     }
 .menu{
-    margin: 15px 10px 15px 10px;
+    margin: 17px 10px 17px 10px;
     width: 30px;
-    height: 32px;
+    height: 28px;
     filter: invert(100%);
 }
 .end{
@@ -61,11 +61,23 @@ button:focus {
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@700&display=swap');
 
-.textos-landing-page{
-    font-family: 'Poppins';
-    font-size: 1.4em;
-    font-weight:bolder;
-    padding: 8px 0;
+.texto-reclamo-principal{
+    font-family: 'Poppins', sans-serif;
+    line-height: 48px;
+    font-size: 37px;
+    font-weight: 369px;
+    color:rgb(48, 48, 48);
     text-align: center;
-    
+    margin: 50px 28px 15px 28px;
 }
+
+.texto-reclamo-secundario{
+    font-family: 'Poppins', sans-serif;
+    font-size: 19px;
+    font-weight:initial;
+    text-align: center;
+    color: rgb(67, 70, 73);
+    margin: 16px 65px 15px 65px;
+    line-height: 27px;
+}
+
