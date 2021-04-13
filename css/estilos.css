@@ -55,3 +55,6 @@ button {
      -moz-user-select: none;
       -ms-user-select: none;
 }
+button:focus {
+    outline: none;
+}
