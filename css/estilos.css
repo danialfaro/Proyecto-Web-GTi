@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 .barra-nav{
     width: 100%;
     height: 62px;
@@ -70,14 +69,66 @@ button:focus {
     text-align: center;
     margin: 50px 28px 15px 28px;
 }
-
 .texto-reclamo-secundario{
     font-family: 'Poppins', sans-serif;
     font-size: 19px;
     font-weight:initial;
     text-align: center;
     color: rgb(67, 70, 73);
-    margin: 16px 65px 15px 65px;
+    margin: 16px 70px 50px 70px;
     line-height: 27px;
 }
+.botones{
+    display: flex;
+    width: 100%;
+    height: 100px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.morado {
+    width: 325px;
+    height: 50px;
+    background: linear-gradient(60deg,#AB0769,#820053);
+    border-radius: 24px;
+    border: none;
+    text-align: center;
+    padding: 8px;
+    margin: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .1s;
+}
+.morado:hover {
+    transform: translate(0, -1px);
+    background: linear-gradient(60deg,#e70b8f,#b80175);
+}
+.morado:active {
+    transform: translate(0, -1px) scale(.99);
+    box-shadow: 0 6px 18px rgba(8, 199, 247, 0.3);
+} 
 
+.blanco {
+    width: 325px;
+    height: 50px;
+    background: white;
+    border-radius: 24px;
+    border: 3px solid #820053;
+    text-align: center;
+    padding: 8px;
+    margin: 8px;
+    color: #820053;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .1s;
+}
+.blanco:hover {
+    transform: translate(0, -1px);
+    color: #e70b8f;
+    border: 3px solid #e70b8f;
+}
+.blanco:active {
+    transform: translate(0, -1px) scale(.99);
+    box-shadow: 0 6px 18px rgba(8, 199, 247, 0.3);
+} 
