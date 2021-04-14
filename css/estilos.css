@@ -1,32 +1,8 @@
+/* Ajustes generales (reseteo de formatos, fuentes...) */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-.barra-nav{
-    width: 100%;
-    height: 62px;
-    background: linear-gradient(to right,#AB0769,#820053);
-    display: flex;
-}
-.logo{
-    width: 130px;
-    height: 62px;
-    background-color: white;
-
-}
-.icono-log-in{   
-    margin: 16px 0px 16px 0px;
-    width: 40px;
-    height: 30px;
-    filter: invert(100%);
-    /*filter: invert(20%) sepia(100%) saturate(4000%);*/
-    }
-.menu{
-    margin: 17px 10px 17px 10px;
-    width: 30px;
-    height: 28px;
-    filter: invert(100%);
 }
 .end{
     justify-content: flex-end;
@@ -44,21 +20,45 @@ button {
   background: none;
   border: 0;
   color: inherit;
-  /* cursor: default; */
   font: inherit;
   line-height: normal;
   overflow: visible;
   padding: 0;
-  -webkit-user-select: none; /* for button */
-   -webkit-appearance: button; /* for input */
-     -moz-user-select: none;
-      -ms-user-select: none;
+  -webkit-appearance: button;
 }
 button:focus {
     outline: none;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@700&display=swap');
+
+/* Barra de navegación e iconos correspondientes - Landing Page */
+
+.barra-nav{
+    width: 100%;
+    height: 62px;
+    background: linear-gradient(to right,#AB0769,#820053);
+    display: flex;
+}
+.logo{
+    width: 130px;
+    height: 62px;
+    background-color: white;
+}
+.icono-log-in{   
+    margin: 16px 0px 16px 0px;
+    width: 40px;
+    height: 30px;
+    filter: invert(100%);
+}
+.menu{
+    margin: 17px 10px 17px 10px;
+    width: 30px;
+    height: 28px;
+    filter: invert(100%);
+}
+
+/* Textos de reclamo - Landing Page */
 
 .texto-reclamo-principal{
     font-family: 'Poppins', sans-serif;
@@ -78,6 +78,9 @@ button:focus {
     margin: 16px 70px 50px 70px;
     line-height: 27px;
 }
+
+/* Formato de botones - Landing Page */
+
 .botones{
     display: flex;
     width: 100%;
