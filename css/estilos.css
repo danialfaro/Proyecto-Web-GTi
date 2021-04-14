@@ -29,7 +29,11 @@ button {
 button:focus {
     outline: none;
 }
-
+.wave{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@700&display=swap');
 
 /* Barra de navegación e iconos correspondientes - Landing Page */
@@ -50,12 +54,14 @@ button:focus {
     width: 40px;
     height: 30px;
     filter: invert(100%);
+    cursor: pointer;
 }
 .menu{
     margin: 17px 10px 17px 10px;
     width: 30px;
     height: 28px;
     filter: invert(100%);
+    cursor: pointer;
 }
 
 /* Textos de reclamo - Landing Page */
