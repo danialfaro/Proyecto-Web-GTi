@@ -70,7 +70,7 @@ button:focus {
     font-family: 'Poppins', sans-serif;
     line-height: 48px;
     font-size: 37px;
-    font-weight: 369px;
+    font-weight: bold;
     color:rgb(48, 48, 48);
     text-align: center;
     margin: 50px 28px 15px 28px;
