@@ -115,7 +115,6 @@ button:focus {
 }
 .morado:active {
     transform: translate(0, -1px) scale(.99);
-    box-shadow: 0 6px 18px rgba(8, 199, 247, 0.3);
 } 
 
 .blanco {
@@ -139,5 +138,4 @@ button:focus {
 }
 .blanco:active {
     transform: translate(0, -1px) scale(.99);
-    box-shadow: 0 6px 18px rgba(8, 199, 247, 0.3);
 } 
