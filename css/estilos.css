@@ -4,15 +4,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-.end{
-    justify-content: flex-end;
-}
-.start{
-    justify-content: flex-start;
-}
-.between{
-    justify-content: space-between;
-}
 input[type="submit"],
 input[type="reset"],
 input[type="button"],
@@ -30,7 +21,6 @@ button:focus {
     outline: none;
 }
 .wave{
-    position: absolute;
     bottom: 0;
     width: 100%;
 }
@@ -38,30 +28,37 @@ button:focus {
 
 /* Barra de navegación e iconos correspondientes - Landing Page */
 
-.barra-nav{
+.contenedor-barra-superior{
+    display: flex;
     width: 100%;
     height: 62px;
-    background: linear-gradient(to right,#AB0769,#820053);
+}
+.barra-nav{
     display: flex;
+    width: 100%;
+    height: 62px;
+    background: linear-gradient(to right,#AB0769,#820053); 
 }
 .logo{
     width: 130px;
     height: 62px;
-    background-color: white;
+    justify-content: flex-start;
 }
 .icono-log-in{   
-    margin: 16px 0px 16px 0px;
+    margin: 16px auto;
     width: 40px;
     height: 30px;
     filter: invert(100%);
     cursor: pointer;
+    justify-content: flex-end;
 }
 .menu{
-    margin: 17px 10px 17px 10px;
+    margin: 17px auto;
     width: 30px;
     height: 28px;
     filter: invert(100%);
     cursor: pointer;
+    justify-content: flex-end;
 }
 
 /* Textos de reclamo - Landing Page */
@@ -73,7 +70,8 @@ button:focus {
     font-weight: bold;
     color:rgb(48, 48, 48);
     text-align: center;
-    margin: 50px 28px 15px 28px;
+    width: 80%;
+    margin: 15px auto;
 }
 .texto-reclamo-secundario{
     font-family: 'Poppins', sans-serif;
@@ -81,7 +79,8 @@ button:focus {
     font-weight:initial;
     text-align: center;
     color: rgb(67, 70, 73);
-    margin: 16px 70px 50px 70px;
+    margin: 15px auto 20px;
+    width: 65%;
     line-height: 27px;
 }
 
@@ -96,7 +95,7 @@ button:focus {
     text-align: center;
 }
 .morado {
-    width: 325px;
+    width: 80%;
     height: 50px;
     background: linear-gradient(60deg,#AB0769,#820053);
     border-radius: 24px;
@@ -118,7 +117,7 @@ button:focus {
 } 
 
 .blanco {
-    width: 325px;
+    width: 80%;
     height: 50px;
     background: white;
     border-radius: 24px;
