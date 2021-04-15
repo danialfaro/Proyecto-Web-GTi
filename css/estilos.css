@@ -352,3 +352,107 @@ footer {
     color: lightgrey;
     text-align: center;
 }
+
+
+
+    .color-seccion{
+        width: 100%;
+        padding:  20px 0;
+        background-color: #dcdcdc;
+    <!--border-top: 20px;border-top-color: #dcdcdc;-->
+    }
+.texto-QS-principal{
+    font-family: 'Poppins',sans-serif;
+    font-size:37px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px auto 20px;
+    width: 85%;
+    line-height: 48px;
+}
+.texto-QS-secundario{
+    font-family: 'Poppins',sans-serif;
+    font-size:19px;
+    font-weight: initial;
+    text-align: initial;
+    margin: 10px auto 20px;
+    width: 85%;
+    line-height: 27px;
+}
+.ofertas{
+    font-family: 'Poppins',sans-serif;
+    font-size:19px;
+    font-weight: bold;
+    text-align: initial;
+    margin: 10px auto 20px;
+    width: 85%;
+    line-height: 27px;
+}
+
+#videoGTI{
+    width: 95%;
+    margin: 2.5%;
+}
+.hojas{
+    width: 35px;
+    margin: 5px 48%;
+}
+.ofertaV{
+    border-left: solid #88D904;
+    border-left-width: 4px;
+}
+#ofertas div:nth-child(2n){
+    background-color: #dcdcdc;
+    border-left: solid #AB0769;
+    border-left-width: 4px;
+    margin-top: 10px;
+}
+
+.texto-esp-principal{
+    font-family: 'Poppins',sans-serif;
+    font-size:37px;
+    font-weight: bold;
+    text-align: center;
+    margin: 70px auto 40px;
+    width: 85%;
+    line-height: 48px;
+}
+.esp-titulo{
+    font-family: 'Poppins',sans-serif;
+    font-size:20px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0px auto;
+    width: 85%;
+    line-height: 27px;
+}
+.esp-text{
+    font-family: 'Poppins',sans-serif;
+    font-size:18px;
+    font-weight: initial;
+    text-align: center;
+    margin: 0 auto;
+    width: 90%;
+    line-height: 27px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.especificaciones{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.especificaciones div{
+    width: 225px;
+    height: 250px;
+    text-align: center;
+}
+.esp-icono{
+    width: 60px;
+}
