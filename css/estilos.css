@@ -1,85 +1,53 @@
 /* Ajustes generales (reseteo de formatos, fuentes...) */
-
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@400;700&display=swap');
+
+:root {
+    --main_gradient: linear-gradient(160deg, #AB0769, #820053);
+}
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-button {
-  background: none;
-  border: 0;
-  color: inherit;
-  font: inherit;
-  line-height: normal;
-  overflow: visible;
-  padding: 0;
-  -webkit-appearance: button;
-}
-button:focus {
-    outline: none;
+
+    font-family: 'Poppins', sans-serif;
 }
 
-/* Barra de navegación e iconos correspondientes - Landing Page */
+ul {
+    list-style: none;
+}
 
-.contenedor-superior{
-    display: flex;
-    width: 100%;
-    height: 62px;
-}
-.contenedor-logo{
-    display: flex;
-    width: 130px;
-    height: 100%;
-    justify-content: flex-start;
-}
-.contenedor-botones-nav{
-    display: flex;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right,#AB0769,#820053);
-    padding-right: 5px;
-    justify-content: flex-end;
-}
-.conf-logo{
-    width: 130px;
-    height: 100%;
-}
-.conf-iconos-barra-superior{
-    margin: 16px auto;
-    width: 40px;
-    height: 30px;
-    filter: invert(100%);
-    cursor: pointer;
+a {
+    text-decoration: none;
 }
 
 /* Textos de reclamo - Landing Page */
 
-.texto-reclamo-principal{
+.texto-reclamo-principal {
     font-family: 'Poppins', sans-serif;
     line-height: 48px;
     font-size: 32px;
     font-weight: bold;
-    color:rgb(48, 48, 48);
+    color: rgb(48, 48, 48);
     text-align: center;
     width: 95%;
     margin: 15px auto;
 }
-.texto-reclamo-secundario{
+
+.texto-reclamo-secundario {
     font-family: 'Poppins', sans-serif;
     font-size: 18px;
     text-align: center;
     color: rgb(67, 70, 73);
     margin: 15px auto 20px;
     width: 80%;
-    line-height: 27px;
-    font-weight:400;
+    line-height: 28px;
+    font-weight: 400;
 }
 
 /* Formato de botones - Landing Page */
 
-.botones{
+.botones {
     display: flex;
     width: 100%;
     height: 100px;
@@ -87,46 +55,257 @@ button:focus {
     justify-content: center;
     text-align: center;
 }
-.morado {
-    width: 80%;
-    height: 50px;
-    background: linear-gradient(60deg,#AB0769,#820053);
-    border-radius: 24px;
-    border: none;
-    text-align: center;
+
+.blanco, .morado {
     padding: 8px;
     margin: 8px;
-    color: white;
-    font-weight: bold;
+    border-radius: 24px;
     cursor: pointer;
     transition: .1s;
 }
+
+.morado {
+    background: var(--main_gradient);       
+    color: white;
+    border: none; 
+    padding: 10px;   
+}
+
 .morado:hover {
     transform: translate(0, -1px);
-    background: linear-gradient(60deg,#e70b8f,#b80175);
+    background: linear-gradient(60deg, #e70b8f, #b80175);
 }
+
 .morado:active {
     transform: translate(0, -1px) scale(.99);
-} 
-.blanco {
-    width: 80%;
-    height: 50px;
-    background: white;
-    border-radius: 24px;
-    border: 3px solid #820053;
-    text-align: center;
-    padding: 8px;
-    margin: 8px;
-    color: #820053;
-    font-weight: bold;
-    cursor: pointer;
-    transition: .1s;
 }
+
+.blanco {
+    background: white;    
+    border: 3px solid #820053;
+    color: #820053;
+}
+
 .blanco:hover {
     transform: translate(0, -1px);
     color: #e70b8f;
     border: 3px solid #e70b8f;
 }
+
 .blanco:active {
     transform: translate(0, -1px) scale(.99);
-} 
+}
+
+main {
+    padding-top: 58px;
+}
+
+section {
+    padding: 12px;
+   
+}
+
+.anchor a {
+    position: absolute;
+    left: 0px;
+    top: -58px;
+}
+
+.anchor {
+    position: relative;
+}
+
+#headerbar {
+    position: fixed;
+    width: 100%;
+    z-index: 90;
+}
+
+.navbar {
+    width: 100%;
+    height: 58px;
+    display: flex;
+}
+
+.logo {
+    width: auto;
+    height: auto;
+    background: white;
+}
+
+.nav-container {
+    background: var(--main_gradient);
+    ;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-menu {
+    display: flex;
+    color: white;
+}
+
+.nav-menu i {
+    font-size: 28px;
+}
+
+.nav-menu ul {
+    display: flex;
+}
+
+.nav-menu ul li {
+    padding: 12px;
+}
+
+/* Global form */
+
+input,
+textarea {
+    font-family: 'Poppins';
+    width: 100%;
+    border: none;
+    margin-bottom: 12px;
+    padding: 12px;
+    background: rgb(243, 243, 243);
+}
+
+input::placeholder {
+    color: lightgray;
+}
+
+input[type=submit] {
+    background: var(--main_gradient);
+    border-radius: 20px;
+    color: white;
+    padding: 12px;
+    margin: 12px 0;
+    border: none;
+}
+
+textarea {
+    resize: none;
+}
+
+textarea::placeholder {
+    color: lightgray;
+}
+
+/* Login form */
+
+#login-form-wrapper {
+    overflow: hidden;
+    background: white;
+    z-index: 10;
+    transition: max-height .5s;
+    box-shadow: 0 6px 12px rgba(128, 128, 128, 0.453);
+}
+
+.login-open {
+    max-height: 100vh;
+    opacity: 1;
+}
+
+.login-closed {
+    max-height: 0px;
+}
+
+#overlay {
+    background: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -10;
+}
+
+.login-open #overlay {
+    opacity: 1;
+}
+
+.login-closed #overlay {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.login-form {
+    width: 100%;
+    display: block;
+    padding: 24px;
+
+}
+
+.login-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form h2 {
+    display: inline-block;
+    margin-bottom: 16px;
+}
+
+.login-form label {
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.login-form p {
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Menu emergente */
+
+#menu-emergente {
+    position: absolute;
+    top: 0;
+    right: -100vw;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    transition: .2s;
+}
+
+#menu-emergente.menu-open {
+    right: 0;
+}
+
+#menu-emergente.menu-closed {
+    right: -100vw;
+}
+
+#menu-emergente h2 {
+    margin: 12px 32px;
+}
+
+#menu-emergente ul {
+    margin-top: 12px;
+}
+
+#menu-emergente ul li:nth-child(2n) {
+    background: rgba(231, 231, 231, 0.3);
+}
+
+#menu-emergente ul li {
+    padding: 18px;
+    border-left: 3px #820053 solid;
+}
+
+#menu-emergente ul li i {
+    color: #820053;
+    margin: 12px;
+    margin-right: 24px;
+}
+
+#menu-emergente ul li a {
+    color: #820053;
+}
+
+#menu-emergente .close-button {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    font-size: 24px;
+}
