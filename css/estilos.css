@@ -1,12 +1,12 @@
 /* Ajustes generales (reseteo de formatos, fuentes...) */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-input[type="submit"],
-input[type="reset"],
-input[type="button"],
 button {
   background: none;
   border: 0;
@@ -20,45 +20,38 @@ button {
 button:focus {
     outline: none;
 }
-.wave{
-    bottom: 0;
-    width: 100%;
-}
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@700&display=swap');
 
 /* Barra de navegación e iconos correspondientes - Landing Page */
 
-.contenedor-barra-superior{
+.contenedor-superior{
     display: flex;
     width: 100%;
     height: 62px;
 }
-.barra-nav{
+.contenedor-logo{
     display: flex;
-    width: 100%;
-    height: 62px;
-    background: linear-gradient(to right,#AB0769,#820053); 
-}
-.logo{
     width: 130px;
-    height: 62px;
+    height: 100%;
     justify-content: flex-start;
 }
-.icono-log-in{   
+.contenedor-botones-nav{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right,#AB0769,#820053);
+    padding-right: 5px;
+    justify-content: flex-end;
+}
+.conf-logo{
+    width: 130px;
+    height: 100%;
+}
+.conf-iconos-barra-superior{
     margin: 16px auto;
     width: 40px;
     height: 30px;
     filter: invert(100%);
     cursor: pointer;
-    justify-content: flex-end;
-}
-.menu{
-    margin: 17px auto;
-    width: 30px;
-    height: 28px;
-    filter: invert(100%);
-    cursor: pointer;
-    justify-content: flex-end;
 }
 
 /* Textos de reclamo - Landing Page */
@@ -115,7 +108,6 @@ button:focus {
 .morado:active {
     transform: translate(0, -1px) scale(.99);
 } 
-
 .blanco {
     width: 80%;
     height: 50px;
