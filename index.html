@@ -29,12 +29,12 @@
         <div id="login-form-wrapper">
             <div class="login-form">
                 <h2>Iniciar sesión</h2>
-                <form action="">
+                <form action="#" id="formLogin">
                     <input name="username" type="text" placeholder="Nombre de usuario">
                     <input name="password" type="password" placeholder="Contraseña">                      
-                    <input type="submit" value="Entrar">
+                    <input type="submit" value="Entrar" class="button_primary">
                 </form>
-                <p>Necesitas ayuda? <a href="#contactanos">Contáctanos</a>.</p>
+                <p>Necesitas ayuda? <a href="#seccion_contactanos">Contáctanos</a>.</p>
             </div>     
             <div id="overlay">
             </div>   
@@ -44,10 +44,9 @@
             <h2>Menu</h2>
             <nav>
                 <ul>
-                    <li><a href=""><i class="fa fa-users"></i>Quiénes somos</a></li>                
-                    <li><a href=""><i class="fa fa-tools"></i>Link 3</a></li>
-                    <li><a href=""><i class="fa fa-tools"></i>Link 4</a></li>
-                    <li><a href="#contactanos"><i class="fa fa-hands-helping"></i>Contáctanos</a></li>
+                    <li><a href=""><i class="fa fa-users"></i>Quiénes somos</a></li>
+                    <li><a href=""><i class="fa fa-question-circle"></i>Preguntas frecuentes</a></li>
+                    <li><a href="#seccion_contactanos"><i class="fa fa-hands-helping"></i>Contáctanos</a></li>
                 </ul>
             </nav>        
         </div>    
@@ -55,36 +54,64 @@
 
     <main>
         
-        <section id="reclamo">   
+        <section id="seccion_reclamo">
             <!-- Textos de reclamo -->
             <div><h1 class="texto-reclamo-principal">La mejor aplicación para tus cultivos</h1></div>
-            <div><h3 class="texto-reclamo-secundario" >Gestiona de forma eficiente tu negocio agrícola</h3></div>
+            <div><h3 class="texto-reclamo-secundario" >Gestiona de forma eficiente tu negocio agrícola.</h3></div>
 
             <!-- Botones principales -->
             <div class="botones">
-                <a type="button" href="#contactanos" class="morado">Contáctanos</a>
-                <a type="button" href="#" class="blanco">Quiénes somos</a>
+                <a type="button" href="#seccion_contactanos" class="button_primary">Contáctanos</a>                
+                <a type="button" href="#seccion_quienessomos" class="button_secondary">Quiénes somos</a>
             </div>
+
+            <!-- Imagen reclamo -->
+            <div class="img_reclamo">
+                <img src="img/undraw_rebov.svg" alt="imagen_reclamo">
+            </div>   
+
         </section>
 
         <section class="anchor">
-            <a name="contactanos"></a>
+            <a name="seccion_faq"></a>
+            
+            <!-- TODO: Seccion FAQ -->
+
+        </section>
+
+        <section class="anchor">
+            <a name="seccion_contactanos"></a>
             <h2>Contáctanos</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, nisi. Maxime, magni nobis. 
-                Porro maxime pariatur, totam necessitatibus optio voluptas? 
-                Inventore sequi nam illum accusantium eligendi obcaecati modi impedit vitae.</p>
-            <form action="">    
+            <p>¿Aun tienes dudas? ¡Dejanos ayudarte!</p>
+            <form action="" id="formContactanos">
                 <input type="text" placeholder="Nombre">
                 <input type="email" placeholder="Correo electrónico">
                 <input type="text" placeholder="Asunto">
                 <textarea name="mensaje" id="mensaje" cols="30" rows="10" placeholder="Mensaje"></textarea>               
-                <input type="submit" value="Enviar">
-            </form>
+                <input type="submit" value="Enviar consulta" class="button_primary">
+            </form>           
+            
         </section>
+
+        <section class="social_media">
+            <h2>Nuestras redes sociales: </h2>
+            <div class="social_icons">
+                <i class="fab fa-facebook" title="facebook"></i>
+                <i class="fab fa-twitter" title="twitter"></i>
+                <i class="fab fa-instagram" title="instagram"></i>
+            </div>
+        </section>
+
+        <footer>
+            <section>
+                <p>GTi - Equipo 05</p>
+            </section>            
+        </footer>
 
     </main>
 
     <script>
+
         
         window.onload = () => {            
             
@@ -112,7 +139,7 @@
             });    
             
             var contactLink = loginWrapper.querySelectorAll('.login-form a')[0];
-            contactLink.addEventListener('click', closeLoginMenu);
+            contactLink.addEventListener('click', closeLoginMenu);  
 
             /* End Login Form Toggle Behaviour */
 
@@ -140,7 +167,10 @@
             
             var menuLinks = menu.querySelectorAll('#menu-emergente ul li a');
             menuLinks.forEach((link) => {
-                link.addEventListener('click', closeMenu);
+                link.addEventListener('click', () => {
+                    closeLoginMenu();
+                    closeMenu();
+                });
             })
 
             /* End Menu Toggle Behaviour */
@@ -149,7 +179,13 @@
             closeMenu();
 
         }      
-    
+        
+        /* Login */
+
+        // TODO: Login
+        
+        /* End Login */
+
     </script>    
 
 </body> 

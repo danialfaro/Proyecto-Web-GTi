@@ -2,14 +2,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@400;700&display=swap');
 
 :root {
-    --main_gradient: linear-gradient(160deg, #AB0769, #820053);
+    --primary: #820053;
+    --primary_light: #cc1884;
+    --main_gradient: linear-gradient(160deg, var(--primary_light), var(--primary));
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
     font-family: 'Poppins', sans-serif;
 }
 
@@ -23,25 +24,39 @@ a {
 
 /* Textos de reclamo - Landing Page */
 
+#seccion_reclamo {
+    height: 100vh;
+    padding-top: 38px;
+}
+
+.img_reclamo {
+    padding: 20px;
+    margin-top: 38px;  
+}
+
+.img_reclamo img {
+    max-height: 400px;
+    width: 100%;
+    opacity: .9;
+}
+
 .texto-reclamo-principal {
-    font-family: 'Poppins', sans-serif;
-    line-height: 48px;
+    line-height: 42px;
     font-size: 32px;
     font-weight: bold;
     color: rgb(48, 48, 48);
     text-align: center;
-    width: 95%;
     margin: 15px auto;
 }
 
 .texto-reclamo-secundario {
-    font-family: 'Poppins', sans-serif;
     font-size: 18px;
     text-align: center;
     color: rgb(67, 70, 73);
-    margin: 15px auto 20px;
-    width: 80%;
-    line-height: 28px;
+    margin: 16px auto;
+    margin-bottom: 35px;
+    width: 65%;
+    line-height: 26px;
     font-weight: 400;
 }
 
@@ -56,7 +71,7 @@ a {
     text-align: center;
 }
 
-.blanco, .morado {
+.button_primary, .button_secondary {
     padding: 8px;
     margin: 8px;
     border-radius: 24px;
@@ -64,35 +79,35 @@ a {
     transition: .1s;
 }
 
-.morado {
+.button_primary {
     background: var(--main_gradient);       
     color: white;
     border: none; 
     padding: 10px;   
 }
 
-.morado:hover {
+.button_primary:hover{
     transform: translate(0, -1px);
-    background: linear-gradient(60deg, #e70b8f, #b80175);
+    background: linear-gradient(60deg, var(--primary_light), #b80175);
 }
 
-.morado:active {
+.button_primary:active {
     transform: translate(0, -1px) scale(.99);
 }
 
-.blanco {
+.button_secondary {
     background: white;    
-    border: 3px solid #820053;
-    color: #820053;
+    border: 3px solid var(--primary);
+    color: var(--primary);
 }
 
-.blanco:hover {
+.button_secondary:hover {
     transform: translate(0, -1px);
-    color: #e70b8f;
-    border: 3px solid #e70b8f;
+    color: var(--primary_light);
+    border: 3px solid var(--primary_light);
 }
 
-.blanco:active {
+.button_secondary:active {
     transform: translate(0, -1px) scale(.99);
 }
 
@@ -175,12 +190,8 @@ input::placeholder {
 }
 
 input[type=submit] {
-    background: var(--main_gradient);
-    border-radius: 20px;
-    color: white;
     padding: 12px;
     margin: 12px 0;
-    border: none;
 }
 
 textarea {
@@ -290,17 +301,17 @@ textarea::placeholder {
 
 #menu-emergente ul li {
     padding: 18px;
-    border-left: 3px #820053 solid;
+    border-left: 3px var(--primary) solid;
 }
 
 #menu-emergente ul li i {
-    color: #820053;
+    color: var(--primary);
     margin: 12px;
     margin-right: 24px;
 }
 
 #menu-emergente ul li a {
-    color: #820053;
+    color: var(--primary);
 }
 
 #menu-emergente .close-button {
@@ -308,4 +319,36 @@ textarea::placeholder {
     right: 16px;
     top: 16px;
     font-size: 24px;
+}
+
+/* Social media */
+
+#formContactanos {
+    margin-top: 16px;
+}
+
+.social_media {
+    background: rgba(231, 231, 231, 0.3);   
+}
+
+.social_icons {
+    display: flex;
+    justify-content: space-around;
+    padding: 24px;
+}
+
+.social_icons i {
+    font-size: 32px;
+    margin: 12px;
+    color: lightgrey;
+}
+
+.social_icons i:hover {
+    color: gray;
+}
+
+footer {
+    background-color: rgb(243, 243, 243);
+    color: lightgrey;
+    text-align: center;
 }
