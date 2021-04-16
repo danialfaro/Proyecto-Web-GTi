@@ -149,7 +149,7 @@ section {
 .logo {
     width: auto;
     height: auto;
-    max-width: 120px;
+	max-width: 120px;
     background: white;
 }
 
@@ -353,17 +353,29 @@ textarea::placeholder {
 }
 
 footer {
-    background-color: rgb(243, 243, 243);
+    background: rgb(243, 243, 243);
     color: lightgrey;
     text-align: center;
 }
 
 
+#sectionFaq {
+    text-align: center;
+    background: rgb(243, 243, 243);
+    padding: 12px;
+}
+
+.pregunta_faq {
+    margin-top: 12px;
+    padding: 12px;
+    background: white;
+}
+    
 
 .color-seccion{
     width: 100%;
     padding:  20px 0;
-    background-color: #dcdcdc;
+    background: rgb(243, 243, 243);
 }
 .texto-QS-principal{
     font-family: 'Poppins',sans-serif;
@@ -391,8 +403,9 @@ footer {
 }
 
 #videoGTI{
-    width: 95%;
+    width: 100%;
 }
+
 .hojas{
     width: 35px;
     margin: 5px 48%;
@@ -402,7 +415,7 @@ footer {
     border-left-width: 4px;
 }
 #ofertas div:nth-child(2n){
-    background-color: #dcdcdc;
+    background: rgb(243, 243, 243);
     border-left: solid #AB0769;
     border-left-width: 4px;
     margin-top: 10px;
