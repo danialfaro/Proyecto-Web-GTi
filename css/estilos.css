@@ -362,7 +362,6 @@ footer {
 }
 .texto-QS-principal{
     font-family: 'Poppins',sans-serif;
-<!--font-size:37px;-->
     font-weight: bold;
     text-align: center;
     margin: 10px auto 20px;
@@ -371,7 +370,6 @@ footer {
 }
 .texto-QS-secundario{
     font-family: 'Poppins',sans-serif;
-<!--font-size:19px;-->
     font-weight: initial;
     text-align: initial;
     margin: 10px auto 20px;
@@ -380,7 +378,6 @@ footer {
 }
 .ofertas{
     font-family: 'Poppins',sans-serif;
-<!--font-size:19px;-->
     font-weight: bold;
     text-align: initial;
     margin: 10px auto 20px;
@@ -409,7 +406,6 @@ footer {
 
 .texto-esp-principal{
     font-family: 'Poppins',sans-serif;
-<!--font-size:37px;-->
     font-weight: bold;
     text-align: center;
     margin: 70px auto 40px;
@@ -418,7 +414,6 @@ footer {
 }
 .esp-titulo{
     font-family: 'Poppins',sans-serif;
-<!--font-size:20px;-->
     font-weight: bold;
     text-align: center;
     margin: 0px auto;
@@ -427,7 +422,6 @@ footer {
 }
 .esp-text{
     font-family: 'Poppins',sans-serif;
-    <!--font-size:18px;-->
     font-weight: initial;
     text-align: center;
     margin: 0 auto;
