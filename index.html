@@ -31,8 +31,8 @@
         <div class="login-form">
             <h2>Iniciar sesión</h2>
             <form action="#" id="formLogin">
-                <input name="username" type="text" placeholder="Nombre de usuario">
-                <input name="password" type="password" placeholder="Contraseña">
+                <input name="username" type="text" placeholder="Nombre de usuario" required>
+                <input name="password" type="password" placeholder="Contraseña" required>
                 <input type="submit" value="Entrar" class="button_primary">
             </form>
             <p>Necesitas ayuda? <a href="#seccion_contactanos">Contáctanos</a>.</p>
@@ -45,8 +45,8 @@
         <h2>Menu</h2>
         <nav>
             <ul>
-                <li><a href=""><i class="fa fa-users"></i>Quiénes somos</a></li>
-                <li><a href=""><i class="fa fa-question-circle"></i>Preguntas frecuentes</a></li>
+                <li><a href="#seccion_quienessomos"><i class="fa fa-users"></i>Quiénes somos</a></li>
+                <li><a href="#seccion_faq"><i class="fa fa-question-circle"></i>Preguntas frecuentes</a></li>
                 <li><a href="#seccion_contactanos"><i class="fa fa-hands-helping"></i>Contáctanos</a></li>
             </ul>
         </nav>
@@ -73,7 +73,8 @@
 
     </section>
 
-    <section id="quienesSomos">
+    <section id="quienesSomos" class="anchor">
+        <a name="seccion_quienessomos"></a>
 
         <h2 class="texto-QS-principal">¿Qué es GTI?</h2>
         <div class="color-seccion">
@@ -181,6 +182,10 @@
 
         <!-- TODO: Seccion FAQ -->
 
+        <h2>Preguntas frecuentes</h2>
+        
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro nemo fuga, non iusto, culpa animi nisi impedit earum voluptates quae sed doloribus repellendus sunt ducimus deserunt consequatur dicta perferendis distinctio.</p>
+
     </section>
 
     <section class="anchor">
@@ -188,10 +193,10 @@
         <h2>Contáctanos</h2>
         <p>¿Aun tienes dudas? ¡Dejanos ayudarte!</p>
         <form action="" id="formContactanos">
-            <input type="text" placeholder="Nombre">
-            <input type="email" placeholder="Correo electrónico">
-            <input type="text" placeholder="Asunto">
-            <textarea name="mensaje" id="mensaje" cols="30" rows="10" placeholder="Mensaje"></textarea>
+            <input type="text" placeholder="Nombre" required>
+            <input type="email" placeholder="Correo electrónico" required>
+            <input type="text" placeholder="Asunto" required>
+            <textarea name="mensaje" id="mensaje" cols="30" rows="10" placeholder="Mensaje" required></textarea>
             <input type="submit" value="Enviar consulta" class="button_primary">
         </form>
 
@@ -291,6 +296,6 @@
     /* End Login */
 
 </script>
-
+<script src="src/js/login.js"></script>
 </body>
 </html>
