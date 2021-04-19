@@ -190,8 +190,8 @@ textarea {
     background: rgb(243, 243, 243);
 }
 
-input::placeholder {
-    color: lightgray;
+input::placeholder, textarea::placeholder {
+    color: gray;
 }
 
 input[type=submit] {
@@ -201,10 +201,6 @@ input[type=submit] {
 
 textarea {
     resize: none;
-}
-
-textarea::placeholder {
-    color: lightgray;
 }
 
 /* Login form */
