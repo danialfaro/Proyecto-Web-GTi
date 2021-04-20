@@ -4,6 +4,7 @@
 :root {
     --primary: #820053;
     --primary_light: #cc1884;
+    --black: rgb(48, 48, 48);
     --main_gradient: linear-gradient(160deg, var(--primary_light), var(--primary));
 }
 
@@ -11,11 +12,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
 }
 
-body, html { 
-    overflow-x:hidden;
+body,
+html {    
+    font-family: 'Poppins', sans-serif;
+    color: rgb(48, 48, 48);
+    overflow-x: hidden;
+        
 }
 
 ul {
@@ -35,7 +40,7 @@ a {
 
 .img_reclamo {
     padding: 20px;
-    margin-top: 38px;  
+    margin-top: 38px;
 }
 
 .img_reclamo img {
@@ -48,21 +53,22 @@ a {
     line-height: 42px;
     font-size: 32px;
     font-weight: bold;
-    color: rgb(48, 48, 48);
+    color: var(--black);
     text-align: center;
     margin: 15px auto;
 }
 
 .texto-reclamo-secundario {
-    font-size: 18px;
+    font-size: 16px;
     text-align: center;
-    color: rgb(67, 70, 73);
+    color: var(--black);
     margin: 16px auto;
     margin-bottom: 35px;
-    width: 65%;
+    width: 75%;
     line-height: 26px;
     font-weight: 400;
 }
+
 
 /* Formato de botones - Landing Page */
 
@@ -75,7 +81,8 @@ a {
     text-align: center;
 }
 
-.button_primary, .button_secondary {
+.button_primary,
+.button_secondary {
     padding: 8px;
     margin: 8px;
     border-radius: 24px;
@@ -84,13 +91,13 @@ a {
 }
 
 .button_primary {
-    background: var(--main_gradient);       
+    background: var(--main_gradient);
     color: white;
-    border: none; 
-    padding: 10px;   
+    border: none;
+    padding: 10px;
 }
 
-.button_primary:hover{
+.button_primary:hover {
     transform: translate(0, -1px);
     background: linear-gradient(60deg, var(--primary_light), #b80175);
 }
@@ -100,10 +107,16 @@ a {
 }
 
 .button_secondary {
-    background: white;    
-    border: 3px solid var(--primary);
+    background: white;
+    border: 2px solid var(--primary);
     color: var(--primary);
 }
+
+/*.button_secondary {
+    background: rgb(243, 243, 243);
+    border: 3px rgb(243, 243, 243) solid;
+    color: rgb(196, 196, 196);
+}*/
 
 .button_secondary:hover {
     transform: translate(0, -1px);
@@ -121,7 +134,7 @@ main {
 
 section {
     padding: 12px;
-   
+
 }
 
 .anchor a {
@@ -149,13 +162,12 @@ section {
 .logo {
     width: auto;
     height: auto;
-	max-width: 120px;
+    max-width: 120px;
     background: white;
 }
 
 .nav-container {
     background: var(--main_gradient);
-    ;
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -180,8 +192,26 @@ section {
 
 /* Global form */
 
+.form-group {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.form-group input[required] ~ label::after, .form-group textarea[required] ~ label::after {
+    content: " *";
+    color: red;
+}
+
+label {
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--black);
+}
+
 input,
-textarea {
+textarea,
+select,
+option {
     font-family: 'Poppins';
     width: 100%;
     border: none;
@@ -190,8 +220,30 @@ textarea {
     background: rgb(243, 243, 243);
 }
 
-input::placeholder, textarea::placeholder {
-    color: gray;
+input::placeholder,
+textarea::placeholder,
+select::placeholder {
+    color: rgb(196, 196, 196);
+    transition: .2s;
+}
+
+input:focus,
+textarea:focus {
+    background: rgb(248, 248, 248);
+    border-bottom: 2px var(--primary_light) solid;
+    outline: none;
+}
+
+select:focus {
+    background: rgb(248, 248, 248);
+    outline: none;
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+    transform: translate(0px, -6px);
+    font-size: 10px;
+    color: lightgray;
 }
 
 input[type=submit] {
@@ -232,11 +284,11 @@ textarea {
     z-index: -10;
 }
 
-.login-open #overlay {
+#overlay.open {
     opacity: 1;
 }
 
-.login-closed #overlay {
+#overlay.closed {
     opacity: 0;
     visibility: hidden;
 }
@@ -274,9 +326,9 @@ textarea {
     position: absolute;
     top: 0;
     right: -100vw;
-    width: 100vw;
+    width: calc(100vw - 118px);
     height: 100vh;
-    background: white;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, .9));
     transition: .2s;
 }
 
@@ -300,18 +352,19 @@ textarea {
     background: rgba(231, 231, 231, 0.3);
 }
 
-#menu-emergente ul li {
-    padding: 18px;
-    border-left: 3px var(--primary) solid;
+#menu-emergente ul li {    
+    border-left: 1px var(--primary) solid;
 }
 
 #menu-emergente ul li i {
     color: var(--primary);
-    margin: 12px;
+    margin: 18px;
     margin-right: 24px;
 }
 
 #menu-emergente ul li a {
+    display: block;
+    padding: 8px;
     color: var(--primary);
 }
 
@@ -320,27 +373,28 @@ textarea {
     right: 16px;
     top: 16px;
     font-size: 24px;
+    color: var(--black);
 }
 
-/* Social media */
+/* Contact - Social media */
 
 #formContactanos {
     margin-top: 16px;
 }
 
 .social_media {
-    background: rgba(231, 231, 231, 0.3);   
+    background: rgba(231, 231, 231, 0.3);
 }
 
 .social_icons {
     display: flex;
     justify-content: space-around;
-    padding: 24px;  
+    padding: 24px;
 }
 
 .social_icons i {
     font-size: 32px;
-    margin: 12px;
+    margin: 8px;
     color: lightgrey;
 }
 
@@ -358,39 +412,70 @@ footer {
 #sectionFaq {
     text-align: center;
     background: rgb(243, 243, 243);
-    padding: 12px;
 }
 
-.pregunta_faq {
+.faq_item {
     margin-top: 12px;
-    padding: 12px;
     background: white;
+    transition: .2s;
 }
-    
 
-.color-seccion{
+.faq_trigger {
+    padding: 12px;
+    border-left: 2px var(--primary) solid;
+}
+
+.faq_content {
+    max-height: 0;
+    padding: 0;
+    overflow: hidden;
+    border-left: 2px var(--primary_light) solid;
+    transition: .2s;
+}
+
+.faq_content p {
+    padding: 12px;
+}
+
+.faq_item.faq_open .faq_content {
+    max-height: 500px;      
+}
+
+.faq_item.faq_open .faq_trigger i {
+    transform: rotate(180deg);
+}
+
+.faq_item.faq_open .faq_trigger, .faq_trigger:hover {
+    text-decoration: underline;
+}
+
+
+.color-seccion {
     width: 100%;
-    padding:  20px 0;
+    padding: 20px 0;
     background: rgb(243, 243, 243);
 }
-.texto-QS-principal{
-    font-family: 'Poppins',sans-serif;
+
+.texto-QS-principal {
+    font-family: 'Poppins', sans-serif;
     font-weight: bold;
     text-align: center;
     margin: 10px auto 20px;
     width: 85%;
     line-height: 48px;
 }
-.texto-QS-secundario{
-    font-family: 'Poppins',sans-serif;
+
+.texto-QS-secundario {
+    font-family: 'Poppins', sans-serif;
     font-weight: initial;
     text-align: initial;
     margin: 10px auto 20px;
     width: 85%;
     line-height: 27px;
 }
-.ofertas{
-    font-family: 'Poppins',sans-serif;
+
+.ofertas {
+    font-family: 'Poppins', sans-serif;
     font-weight: bold;
     text-align: initial;
     margin: 10px auto 20px;
@@ -398,43 +483,47 @@ footer {
     line-height: 27px;
 }
 
-#videoGTI{
+#videoGTI {
     width: 100%;
 }
 
-.hojas{
+.hojas {
     width: 35px;
     margin: 5px 48%;
 }
-.ofertaV{
+
+.ofertaV {
     border-left: solid #88D904;
     border-left-width: 4px;
 }
-#ofertas div:nth-child(2n){
+
+#ofertas div:nth-child(2n) {
     background: rgb(243, 243, 243);
     border-left: solid #AB0769;
     border-left-width: 4px;
     margin-top: 10px;
 }
 
-.texto-esp-principal{
-    font-family: 'Poppins',sans-serif;
+.texto-esp-principal {
+    font-family: 'Poppins', sans-serif;
     font-weight: bold;
     text-align: center;
     margin: 70px auto 40px;
     width: 85%;
     line-height: 48px;
 }
-.esp-titulo{
-    font-family: 'Poppins',sans-serif;
+
+.esp-titulo {
+    font-family: 'Poppins', sans-serif;
     font-weight: bold;
     text-align: center;
     margin: 0px auto;
     width: 85%;
     line-height: 27px;
 }
-.esp-text{
-    font-family: 'Poppins',sans-serif;
+
+.esp-text {
+    font-family: 'Poppins', sans-serif;
     font-weight: initial;
     text-align: center;
     margin: 0 auto;
@@ -447,18 +536,21 @@ footer {
     padding: 0;
     box-sizing: border-box;
 }
-.especificaciones{
+
+.especificaciones {
     display: flex;
     width: 100%;
     height: 100%;
     flex-wrap: wrap;
     justify-content: center;
 }
-.especificaciones div{
+
+.especificaciones div {
     width: 225px;
     height: 250px;
     text-align: center;
 }
-.esp-icono{
+
+.esp-icono {
     width: 60px;
 }

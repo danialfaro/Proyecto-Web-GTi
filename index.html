@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GTi | Gestion de cultivos sondas inteligentes</title>
     <link rel="icon" type="image/svg+xml" href="img/logoGTI.svg" sizes="any">
@@ -31,26 +31,29 @@
         <div class="login-form">
             <h2>Iniciar sesión</h2>
             <form action="#" id="formLogin">
+                <label for="username">Nombre de usuario</label>
                 <input name="username" type="text" placeholder="Nombre de usuario" required>
+                <label for="password">Contraseña</label>
                 <input name="password" type="password" placeholder="Contraseña" required>
                 <input type="submit" value="Entrar" class="button_primary">
             </form>
             <p><a href="#">¿Has olvidado tu contraseña?</a></p>
             <!-- <p>Necesitas ayuda? <a href="#seccion_contactanos"></a>.</p> -->
         </div>
-        <div id="overlay">
-        </div>
+        
     </div>
     <div id="menu-emergente">
         <i id="menuCloseButton" class="fa fa-times close-button"></i>
-        <h2>Menu</h2>
+        <h2>Menú</h2>
         <nav>
             <ul>
                 <li><a href="#seccion_quienessomos"><i class="fa fa-users"></i>Quiénes somos</a></li>
-                <li><a href="#seccion_faq"><i class="fa fa-question-circle"></i>Preguntas frecuentes</a></li>
                 <li><a href="#seccion_contactanos"><i class="fa fa-hands-helping"></i>Contáctanos</a></li>
+                <li><a href="#seccion_faq"><i class="fa fa-question-circle"></i>Preguntas frecuentes</a></li>
             </ul>
         </nav>
+    </div>
+    <div id="overlay">
     </div>
 </header>
 
@@ -77,7 +80,7 @@
     <section id="quienesSomos" class="anchor">
         <a name="seccion_quienessomos"></a>
 
-        <h2 class="texto-QS-principal">¿Qué es GTI?</h2>
+        <h2 class="texto-QS-principal">¿Qué es GTi?</h2>
         <div class="color-seccion">
             <p class="texto-QS-secundario">GTI es una empresa que proporciona la monitorización y el análisis de parámetros agronómicos y medioambientales con el fin de optimizar la producción, la calidad y la sostenibilidad medioambiental, así como el mantenimiento de dicho servicio</p>
         </div><br>
@@ -118,13 +121,13 @@
             </div>
 
             <div class="ofertaV">
-                <h3 class="ofertas">REPRESENTACION DE DATOS</h3>
+                <h3 class="ofertas">REPRESENTACIÓN DE DATOS</h3>
                 <p class="texto-QS-secundario">Se proporciona una cuenta para la aplicacion web de GTI donde se representarán los datos de los distintos sensores de forma gráfica y organizada.</p>
                 <img class="hojas" src="img/hoja.svg">
             </div>
         </div>
 
-        <h2 class="texto-esp-principal" >Especificaciones de nuestros sensores</h2>
+        <h2 class="texto-esp-principal">Especificaciones de nuestros sensores</h2>
         <div class="especificaciones">
             <div>
                 <img class="esp-icono" src="img/ubi.png">
@@ -178,16 +181,35 @@
         </div>
     </section>
 
-    <section class="anchor">
+    <section id="seccionContactanos" class="anchor">
         <a name="seccion_contactanos"></a>
         <h2>Contáctanos</h2>
         <p>¿Aun tienes dudas? ¡Dejanos ayudarte!</p>
         <form action="" id="formContactanos">
-            <input type="text" placeholder="Nombre *" required>
-            <input type="email" placeholder="Correo electrónico *" required>
-            <input type="text" placeholder="Asunto *" required>
-            <textarea name="mensaje" id="mensaje" cols="30" rows="10" placeholder="Mensaje *" required></textarea>
-            <input type="submit" value="Enviar consulta" class="button_primary">
+            <div class="form-group">               
+                <input type="text" placeholder="Nombre" required  >
+                <label>Nombre</label>
+            </div>            
+            
+            <div class="form-group">
+                <input type="email" placeholder="Correo electrónico" required>
+                <label>Correo electrónico</label>
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="Asunto" name="asunto" list="asuntos_datlist" required>
+                <datalist id="asuntos_datlist">
+                    <option>MÁS INFORMACIÓN</option>
+                    <option>CONTRATAR SERVICIO</option>                    
+                </datalist>
+                <label>Asunto</label>
+            </div>
+            
+            <div class="form-group">
+                <textarea name="mensaje" id="mensaje" cols="30" rows="10" placeholder="Mensaje" required></textarea>
+                <label>Mensaje</label>
+            </div>
+
+            <input type="submit" value="Enviar consulta" class="button_primary">            
         </form>
 
     </section>
@@ -199,14 +221,24 @@
 
         <h2>Preguntas frecuentes</h2>
         
-        <div class="pregunta_faq">
-            <strong>¿Qué tengo que hacer para contratar el servicio?</strong>
-            <p>Para contratar el servicio puedes contactar con nosotros mediante el formulario de contacto y hablamos personalmente.</p>
+        <div class="faq_item">
+            <div class="faq_trigger">
+                <strong>¿Qué tengo que hacer para contratar el servicio?</strong>
+                <i class="fa fa-caret-down"></i>
+            </div>
+            <div class="faq_content">
+                <p>Para contratar el servicio puedes contactar con nosotros mediante el formulario de contacto y hablamos personalmente.</p>
+            </div>
         </div>
 
-        <div class="pregunta_faq">
-            <strong>¿Ofreceis mantenimiento?</strong>
-            <p>El mantenimiento es continuo.</p>
+        <div class="faq_item">
+            <div class="faq_trigger">
+                <strong>¿Ofreceis mantenimiento?</strong>
+                <i class="fa fa-caret-down"></i>
+            </div>
+            <div class="faq_content">
+                <p>El mantenimiento es continuo.</p>
+            </div>
         </div>
 
     </section>
@@ -230,8 +262,19 @@
 
 <script>
 
-
     window.onload = () => {
+
+        
+        var overlay = document.getElementById("overlay");
+        var activeOverlay = (active) => {
+            if (active) {
+                overlay.classList.remove('closed');
+                overlay.classList.add('open');
+            } else {
+                overlay.classList.remove('open');
+                overlay.classList.add('closed');                
+            }
+        }
 
         /* Login Form Toggle Behaviour */
 
@@ -243,12 +286,14 @@
             isLoginOpen = true;
             loginWrapper.classList.add("login-open");
             loginWrapper.classList.remove("login-closed");
+            activeOverlay(true);
         }
 
         var closeLoginMenu = () => {
             isLoginOpen = false;
             loginWrapper.classList.remove("login-open");
             loginWrapper.classList.add("login-closed");
+            activeOverlay(false);
         }
 
         loginToggleButton.addEventListener('click', () => {
@@ -272,12 +317,15 @@
             isMenuOpen = true;
             menu.classList.add("menu-open");
             menu.classList.remove("menu-closed");
+            closeLoginMenu();
+            activeOverlay(true);
         }
 
         var closeMenu = () => {
             isMenuOpen = false;
             menu.classList.remove("menu-open");
             menu.classList.add("menu-closed");
+            activeOverlay(false);
         }
 
         menuOpenButton.addEventListener('click', openMenu);
@@ -295,14 +343,38 @@
 
         closeLoginMenu();
         closeMenu();
+        
+        overlay.addEventListener('click', () => {
+            if (isLoginOpen) closeLoginMenu();
+            if (isMenuOpen) closeMenu();
+        });
+
+        /* FAQ Toggle Behaviour */
+
+        var faqSection = document.getElementById("sectionFaq");
+        var faqItems = faqSection.querySelectorAll(".faq_item");
+        faqItems.forEach((faqItem) => {
+
+            var trigger = faqItem.getElementsByClassName("faq_trigger")[0];
+
+            trigger?.addEventListener('click', () => {
+                if(!faqItem.classList.contains("faq_open")) {
+                    faqItems.forEach((fi) => {
+                        fi.classList.remove("faq_open");
+                    });
+                    faqItem.classList.add("faq_open");
+                } else {                    
+                    faqItem.classList.remove("faq_open");
+                }
+            });           
+            
+        })
+
+        /* End FAQ Toggle Behaviour */
+
 
     }
 
-    /* Login */
-
-    // TODO: Login
-
-    /* End Login */
 
 </script>
 <script src="src/js/login.js"></script>
