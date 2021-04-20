@@ -137,7 +137,7 @@ section {
 
 }
 
-.anchor a {
+.anchor > a {
     position: absolute;
     left: 0px;
     top: -58px;
