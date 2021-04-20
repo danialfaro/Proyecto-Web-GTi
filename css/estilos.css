@@ -414,15 +414,23 @@ footer {
     background: rgb(243, 243, 243);
 }
 
+.faq_title {
+    text-transform: uppercase;
+    font-size: 12px;
+    text-align: left;
+    padding-left: 1px;
+    margin-bottom: 6px;
+}
+
 .faq_item {
-    margin-top: 12px;
+    margin-bottom: 12px;
     background: white;
-    transition: .2s;
 }
 
 .faq_trigger {
     padding: 12px;
     border-left: 2px var(--primary) solid;
+    cursor: pointer;
 }
 
 .faq_content {
@@ -430,7 +438,6 @@ footer {
     padding: 0;
     overflow: hidden;
     border-left: 2px var(--primary_light) solid;
-    transition: .2s;
 }
 
 .faq_content p {
@@ -438,7 +445,12 @@ footer {
 }
 
 .faq_item.faq_open .faq_content {
-    max-height: 500px;      
+    max-height: 500px;
+}
+
+.faq_item .faq_trigger i {    
+    transform: rotate(0deg);
+    transition: .2s;
 }
 
 .faq_item.faq_open .faq_trigger i {
