@@ -326,7 +326,7 @@ textarea {
     position: absolute;
     top: 0;
     right: -100vw;
-    width: calc(100vw - 118px);
+    width: 100vw;
     height: 100vh;
     background: linear-gradient(180deg, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, .9));
     transition: .2s;
