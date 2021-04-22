@@ -18,9 +18,22 @@
 body,
 html {    
     font-family: 'Poppins', sans-serif;
-    color: rgb(48, 48, 48);
-    overflow-x: hidden;
-        
+    color: var(--black);
+    overflow-x: hidden; 
+    font-size: 100%;
+    transition: .2s;
+}
+
+@media(max-width:380px) {
+    html {
+        font-size: 85%;
+    }
+}
+
+@media(max-width:350px) {
+    html {
+        font-size: 75%;
+    }
 }
 
 ul {
@@ -33,9 +46,12 @@ a {
 
 /* Textos de reclamo - Landing Page */
 
-#seccion_reclamo {
-    height: 100vh;
-    padding-top: 38px;
+#seccionReclamo {
+    height: calc(100vh - 3.625rem);
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 .img_reclamo {
@@ -50,23 +66,79 @@ a {
 }
 
 .texto-reclamo-principal {
-    line-height: 42px;
-    font-size: 32px;
-    font-weight: bold;
+    line-height: 2.4rem;
+    font-size: 2rem;
+    font-weight: bold;  
     color: var(--black);
     text-align: center;
     margin: 15px auto;
 }
 
 .texto-reclamo-secundario {
-    font-size: 16px;
+    font-size: 1rem;
     text-align: center;
     color: var(--black);
-    margin: 16px auto;
-    margin-bottom: 35px;
+    margin: 1rem auto;
+    margin-bottom: 1.8rem;
     width: 75%;
-    line-height: 26px;
+    line-height: 1.5rem;
     font-weight: 400;
+}
+
+.fondo_reclamo {
+    width: 100%;
+    height: 100%;
+    background: url("../img/farm-field.jpg");
+    background-position: top;
+    z-index: -10;  
+}
+
+.flecha_ver_mas {
+    position: absolute;
+    left: 50%;
+    bottom: 75px;
+    transform: translateX(-50%);
+    font-size: 2.6rem;
+    color: rgba(255, 255, 255, 0.8);
+    animation: motionDown 2s  cubic-bezier(0.85, 0, 0.15, 1) .5s infinite;
+    z-index: 20;
+}
+
+.flecha_ver_mas a {
+    position: absolute;
+    left: -45vw;
+    bottom: -150%;
+    width: 100vw;
+    height: 200px;
+    color: white;
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+}
+
+.flecha_ver_mas::after {
+    content: "+ información";
+    position: absolute;
+    left: 50%;
+    bottom: -50%;
+    width: 120px;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    font-size: 0.8rem;
+}
+
+@keyframes motionDown {
+    0% {
+        transform: translate(-50%, -45%) scale(.9);
+        opacity: .2;
+    }
+    50% {
+        transform: translate(-50%, 0%) scale(1);
+        opacity: .9;
+    }
+    100% {
+        transform: translate(-50%, -45%) scale(.9);
+        opacity: .2;
+    }
+    
 }
 
 
@@ -74,18 +146,17 @@ a {
 
 .botones {
     display: flex;
-    width: 100%;
-    height: 100px;
     flex-direction: column;
     justify-content: center;
-    text-align: center;
-}
+}   
 
 .button_primary,
 .button_secondary {
-    padding: 8px;
-    margin: 8px;
-    border-radius: 24px;
+    padding: .5rem 2rem;
+    margin: .5rem;
+    text-align: center;
+    border-radius: 120px;
+    font-size: 1rem;
     cursor: pointer;
     transition: .1s;
 }
@@ -94,7 +165,7 @@ a {
     background: var(--main_gradient);
     color: white;
     border: none;
-    padding: 10px;
+    padding: .7rem 2rem;
 }
 
 .button_primary:hover {
@@ -129,18 +200,17 @@ a {
 }
 
 main {
-    padding-top: 58px;
+    padding-top: 3.625rem;
 }
 
-section {
-    padding: 12px;
-
+.padding-container {
+    padding: .8rem;
 }
 
 .anchor > a {
     position: absolute;
     left: 0px;
-    top: -58px;
+    top: -3.625rem;
 }
 
 .anchor {
@@ -150,12 +220,12 @@ section {
 #headerbar {
     position: fixed;
     width: 100%;
-    z-index: 90;
+    z-index: 50;
 }
 
 .navbar {
     width: 100%;
-    height: 58px;
+    height: 3.625rem;
     display: flex;
 }
 
@@ -179,7 +249,7 @@ section {
 }
 
 .nav-menu i {
-    font-size: 28px;
+    font-size: 1.8rem;
 }
 
 .nav-menu ul {
@@ -187,7 +257,7 @@ section {
 }
 
 .nav-menu ul li {
-    padding: 12px;
+    padding: .8rem;
 }
 
 /* Global form */
@@ -203,7 +273,7 @@ section {
 }
 
 label {
-    font-size: 12px;
+    font-size: .8rem;
     font-weight: bold;
     color: var(--black);
 }
@@ -215,8 +285,8 @@ option {
     font-family: 'Poppins';
     width: 100%;
     border: none;
-    margin-bottom: 12px;
-    padding: 12px;
+    margin-bottom: .8rem;
+    padding: .8rem;
     background: rgb(243, 243, 243);
 }
 
@@ -225,6 +295,7 @@ textarea::placeholder,
 select::placeholder {
     color: rgb(196, 196, 196);
     transition: .2s;
+    font-size: .7rem;
 }
 
 input:focus,
@@ -242,13 +313,13 @@ select:focus {
 input:focus::placeholder,
 textarea:focus::placeholder {
     transform: translate(0px, -6px);
-    font-size: 10px;
-    color: lightgray;
+    font-size: .6rem;
+    color: lightgray;  
 }
 
 input[type=submit] {
-    padding: 12px;
-    margin: 12px 0;
+    padding: .8rem;
+    margin: .8rem 0;
 }
 
 textarea {
@@ -260,18 +331,24 @@ textarea {
 #login-form-wrapper {
     overflow: hidden;
     background: white;
-    z-index: 10;
-    transition: max-height .5s;
-    box-shadow: 0 6px 12px rgba(128, 128, 128, 0.453);
+    position: absolute;
+    left: 0%;
+    width: 100vw;
+    max-height: 100vh;
+    z-index: -1;    
+    transition: .3s ease-out;
+    box-shadow: 0 6px 12px rgba(128, 128, 128, 0.48);
 }
 
 .login-open {
     max-height: 100vh;
+    top: 3.65rem;
     opacity: 1;
 }
 
 .login-closed {
     max-height: 0px;
+    top: -25rem;
 }
 
 #overlay {
@@ -281,22 +358,39 @@ textarea {
     top: 0;
     width: 100%;
     height: 100vh;
-    z-index: -10;
-}
-
-#overlay.open {
-    opacity: 1;
+    z-index: -10; 
+    animation: appear .2s forwards;
 }
 
 #overlay.closed {
-    opacity: 0;
-    visibility: hidden;
+    animation: disappear .2s forwards;
+}
+
+@keyframes disappear {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        visibility: visible;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .login-form {
     width: 100%;
     display: block;
-    padding: 24px;
+    padding: 1.5rem;
 
 }
 
@@ -307,12 +401,12 @@ textarea {
 
 .login-form h2 {
     display: inline-block;
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
 }
 
 .login-form label {
     display: inline-block;
-    margin-bottom: 8px;
+    margin-bottom: .5rem;
 }
 
 .login-form p {
@@ -337,15 +431,15 @@ textarea {
 }
 
 #menu-emergente.menu-closed {
-    right: -100vw;
+    right: -110vw;
 }
 
 #menu-emergente h2 {
-    margin: 12px 32px;
+    margin: .8rem 2rem;
 }
 
 #menu-emergente ul {
-    margin-top: 12px;
+    margin-top: .8rem;
 }
 
 #menu-emergente ul li:nth-child(2n) {
@@ -359,42 +453,42 @@ textarea {
 #menu-emergente ul li i {
     color: var(--primary);
     margin: 18px;
-    margin-right: 24px;
+    margin-right: 1.5rem;
 }
 
 #menu-emergente ul li a {
     display: block;
-    padding: 8px;
+    padding: .5rem;
     color: var(--primary);
 }
 
 #menu-emergente .close-button {
     position: absolute;
-    right: 16px;
-    top: 16px;
-    font-size: 24px;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1.5rem;
     color: var(--black);
 }
 
-/* Contact - Social media */
+/* Seccion Contact - Social media */
 
 #formContactanos {
-    margin-top: 16px;
+    margin-top: 1rem;
 }
 
-.social_media {
+#seccionSocialMedia {
     background: rgba(231, 231, 231, 0.3);
 }
 
 .social_icons {
     display: flex;
     justify-content: space-around;
-    padding: 24px;
+    padding: 1.5rem;
 }
 
 .social_icons i {
-    font-size: 32px;
-    margin: 8px;
+    font-size: 2rem;
+    margin: .5rem;
     color: lightgrey;
 }
 
@@ -406,8 +500,10 @@ footer {
     background: rgb(243, 243, 243);
     color: lightgrey;
     text-align: center;
+    padding: .8rem;
 }
 
+/* Seccion Faq */
 
 #sectionFaq {
     text-align: center;
@@ -416,19 +512,19 @@ footer {
 
 .faq_title {
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: .8rem;
     text-align: left;
     padding-left: 1px;
     margin-bottom: 6px;
 }
 
 .faq_item {
-    margin-bottom: 12px;
+    margin-bottom: .8rem;
     background: white;
 }
 
 .faq_trigger {
-    padding: 12px;
+    padding: .8rem;
     border-left: 2px var(--primary) solid;
     cursor: pointer;
 }
@@ -441,7 +537,7 @@ footer {
 }
 
 .faq_content p {
-    padding: 12px;
+    padding: .8rem;
 }
 
 .faq_item.faq_open .faq_content {
@@ -461,92 +557,80 @@ footer {
     text-decoration: underline;
 }
 
+/**/
 
-.color-seccion {
-    width: 100%;
-    padding: 20px 0;
+.background-grey {
     background: rgb(243, 243, 243);
 }
 
-.texto-QS-principal {
-    font-family: 'Poppins', sans-serif;
+.text-center {
+    text-align: center;
+}
+
+/*.texto-QS-principal {
+    
     font-weight: bold;
     text-align: center;
     margin: 10px auto 20px;
-    width: 85%;
-    line-height: 48px;
-}
+    line-height: 2.4rem;
+}*/
 
-.texto-QS-secundario {
-    font-family: 'Poppins', sans-serif;
+/*.texto-QS-secundario {
+    
     font-weight: initial;
     text-align: initial;
     margin: 10px auto 20px;
     width: 85%;
-    line-height: 27px;
-}
+    line-height: 1.6rem;
+}*/
 
 .ofertas {
-    font-family: 'Poppins', sans-serif;
+    /**/
     font-weight: bold;
-    text-align: initial;
-    margin: 10px auto 20px;
-    width: 85%;
-    line-height: 27px;
+    margin-bottom: .8rem;
 }
 
 #videoGTI {
     width: 100%;
 }
 
-.hojas {
-    width: 35px;
-    margin: 5px 48%;
-}
-
 .ofertaV {
     border-left: solid #88D904;
     border-left-width: 4px;
+    margin-top: 10px;
+    box-shadow: 0 6px .8rem rgba(128, 128, 128, 0.453);
 }
 
-#ofertas div:nth-child(2n) {
+#ofertas .ofertaV:nth-child(2n) {
     background: rgb(243, 243, 243);
-    border-left: solid #AB0769;
-    border-left-width: 4px;
-    margin-top: 10px;
+    border-left: solid var(--primary_light);    
 }
 
 .texto-esp-principal {
-    font-family: 'Poppins', sans-serif;
+    /**/
     font-weight: bold;
     text-align: center;
     margin: 70px auto 40px;
     width: 85%;
-    line-height: 48px;
+    line-height: 2.4rem;
 }
 
 .esp-titulo {
-    font-family: 'Poppins', sans-serif;
+    /**/
     font-weight: bold;
     text-align: center;
     margin: 0px auto;
     width: 85%;
-    line-height: 27px;
+    line-height: 1.6rem;
 }
 
 .esp-text {
-    font-family: 'Poppins', sans-serif;
+    /**/
     font-weight: initial;
     text-align: center;
     margin: 0 auto;
     width: 90%;
-    line-height: 27px;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    line-height: 1.6rem;
 }
 
 .especificaciones {
@@ -564,5 +648,5 @@ footer {
 }
 
 .esp-icono {
-    width: 60px;
+    width: 3.75rem;
 }

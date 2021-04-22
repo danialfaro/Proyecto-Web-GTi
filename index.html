@@ -59,73 +59,80 @@
 
 <main>
 
-    <section id="seccion_reclamo">
-        <!-- Textos de reclamo -->
-        <div><h1 class="texto-reclamo-principal">La mejor aplicación para tus cultivos</h1></div>
-        <div><h3 class="texto-reclamo-secundario" >Gestiona de forma eficiente tu negocio agrícola.</h3></div>
+    <section id="seccionReclamo">
 
-        <!-- Botones principales -->
-        <div class="botones">
-            <a type="button" href="#seccion_quienessomos" class="button_primary">Quiénes somos</a>
-            <a type="button" href="#seccion_contactanos" class="button_secondary">Contáctanos</a>
-        </div>
+        <div class="padding-container">
+            <!-- Textos de reclamo -->
+            <div><h1 class="texto-reclamo-principal">La mejor aplicación para tus cultivos</h1></div>
+            <div><h3 class="texto-reclamo-secundario" >Gestiona de forma eficiente tu negocio agrícola.</h3></div>
+
+            <!-- Botones principales -->
+            <div class="botones">
+                <a type="button" href="#seccion_quienessomos" class="button_primary">Quiénes somos</a>
+                <a type="button" href="#seccion_contactanos" class="button_secondary">Contáctanos</a>
+            </div>
+        </div>        
 
         <!-- Imagen reclamo -->
-        <div class="img_reclamo">
+        <!--<div class="img_reclamo">
             <img src="img/undraw_rebov.svg" alt="imagen_reclamo">
+        </div>-->
+
+        <div class="fondo_reclamo"></div>
+
+        <div class="flecha_ver_mas fa fa-chevron-down">
+            <a href="#seccion_quienessomos"></a>
         </div>
 
     </section>
 
-    <section id="quienesSomos" class="anchor">
+    <section id="seccionQuienesSomos" class="anchor">
         <a name="seccion_quienessomos"></a>
 
-        <h2 class="texto-QS-principal">¿Qué es GTi?</h2>
-        <div class="color-seccion">
-            <p class="texto-QS-secundario">GTI es una empresa que proporciona la monitorización y el análisis de parámetros agronómicos y medioambientales con el fin de optimizar la producción, la calidad y la sostenibilidad medioambiental, así como el mantenimiento de dicho servicio</p>
+        <h2 class="text-center padding-container">¿Quiénes somos?</h2>
+        <div class="background-grey">
+            <p class="padding-container">GTi es una empresa que proporciona la monitorización y el análisis de parámetros agronómicos y medioambientales con el fin de optimizar la producción, la calidad y la sostenibilidad medioambiental, así como el mantenimiento de dicho servicio</p>
         </div><br>
 
         <div>
             <img id="videoGTI" src="img/video.png">
         </div>
 
-        <h2 class="texto-QS-principal">Qué ofrecemos</h2>
+        <div class="padding-container">
+            <h2 class="text-center padding-container">Qué ofrecemos</h2>
         <div id="ofertas">
 
-            <div class="ofertaV">
+            <div class="ofertaV padding-container">
                 <h3 class="ofertas">SENSORES</h3>
-                <p class="texto-QS-secundario">Amplia gama de sensores para agricultura que miden parámetros de humedad, salinidad en agua, temperatura e iluminación.</p>
-                <img class="hojas" src="img/hoja.svg">
+                <p>Amplia gama de sensores para agricultura que miden parámetros de humedad, salinidad en agua, temperatura e iluminación.</p>
             </div>
 
-            <div class="color-seccion">
+            <div class="ofertaV padding-container">
 
                 <h3 class="ofertas">SEGURIDAD ANTIROBO</h3>
-                <p class="texto-QS-secundario">Sistema de detección de movimiento y alerta en caso de intento de robo del sensor. Incluye posibilidad de seguimiento del sensor a través geolocalización.</p>
-                <img class="hojas" src="img/hoja.svg">
+                <p>Sistema de detección de movimiento y alerta en caso de intento de robo del sensor. Incluye posibilidad de seguimiento del sensor a través geolocalización.</p>
 
             </div>
 
-            <div class="ofertaV">
+            <div class="ofertaV padding-container">
                 <h3 class="ofertas">INSTALACIÓN Y MANTENIMIENTO</h3>
-                <p class="texto-QS-secundario">Instalación y mantenimiento incluidos en el paquete. Ademas los sensores constan de alimentación autónoma a través de panel solar integrado y una bateria.</p>
-                <img class="hojas" src="img/hoja.svg">
+                <p>Instalación y mantenimiento incluidos en el paquete. Ademas los sensores constan de alimentación autónoma a través de panel solar integrado y una bateria.</p>
             </div>
 
-            <div class="color-seccion">
+            <div class="ofertaV padding-container">
 
                 <h3 class="ofertas">ENVIO DE DATOS A LA WEB</h3>
-                <p class="texto-QS-secundario">Dispositivos conectados a los sensores, estos obtienen los datos y los envian inalámbricamente a la plataforma web donde se muestran los valores recogidos.</p>
-                <img class="hojas" src="img/hoja.svg">
+                <p>Dispositivos conectados a los sensores, estos obtienen los datos y los envian inalámbricamente a la plataforma web donde se muestran los valores recogidos.</p>
 
             </div>
 
-            <div class="ofertaV">
+            <div class="ofertaV padding-container">
                 <h3 class="ofertas">REPRESENTACIÓN DE DATOS</h3>
-                <p class="texto-QS-secundario">Se proporciona una cuenta para la aplicacion web de GTI donde se representarán los datos de los distintos sensores de forma gráfica y organizada.</p>
-                <img class="hojas" src="img/hoja.svg">
+                <p>Se proporciona una cuenta para la aplicacion web de GTI donde se representarán los datos de los distintos sensores de forma gráfica y organizada.</p>
             </div>
         </div>
+        </div>
+        
 
         <h2 class="texto-esp-principal">Especificaciones de nuestros sensores</h2>
         <div class="especificaciones">
@@ -181,7 +188,7 @@
         </div>
     </section>
 
-    <section id="seccionContactanos" class="anchor">
+    <section id="seccionContactanos" class="anchor padding-container">
         <a name="seccion_contactanos"></a>
         <h2>Contáctanos</h2>
         <p>¿Ya te has decidido o aún tienes dudas? ¡Dejanos ayudarte!</p>
@@ -214,7 +221,7 @@
 
     </section>
 
-    <section id="sectionFaq" class="anchor">
+    <section id="sectionFaq" class="anchor padding-container">
         <a name="seccion_faq"></a>
 
         <h2>Preguntas frecuentes</h2>
@@ -268,22 +275,22 @@
 
     </section>
 
-    <section class="social_media">
+    <section id="seccionSocialMedia" class="padding-container">
         <h2>Nuestras redes sociales: </h2>
         <div class="social_icons">
             <i class="fab fa-facebook" title="facebook"></i>
             <i class="fab fa-twitter" title="twitter"></i>
             <i class="fab fa-instagram" title="instagram"></i>
         </div>
-    </section>
-
-    <footer>
-        <section>
-            <p>GTi - Equipo 05</p>
-        </section>
-    </footer>
+    </section>    
 
 </main>
+
+<footer>
+    <section>
+        <p>GTi - Equipo 05</p>
+    </section>
+</footer>
 
 <script>
 
@@ -294,9 +301,7 @@
         var activeOverlay = (active) => {
             if (active) {
                 overlay.classList.remove('closed');
-                overlay.classList.add('open');
             } else {
-                overlay.classList.remove('open');
                 overlay.classList.add('closed');                
             }
         }
