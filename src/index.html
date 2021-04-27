@@ -135,57 +135,76 @@
         
 
         <h2 class="texto-esp-principal">Especificaciones de nuestros sensores</h2>
-        <div class="especificaciones">
-            <div>
-                <img class="esp-icono" src="img/ubi.png">
-                <h3 class="esp-titulo">Ubicación</h3>
-                <p class="esp-text">Los sensores indican su posición permitiendo su geolocalización</p>
+        <div class="container-slider">
+            <div class="slider" id="slider">
+                <div class="slider__section">
+                    <div style="text-align: center">
+                        <img class="esp-icono" src="img/ubi.png">
+                        <h3 class="esp-titulo">Ubicación</h3>
+                        <p class="esp-text">Los sensores indican su posición permitiendo su geolocalización</p>
+                    </div>
+                </div>
+
+                <div class="slider__section">
+                    <div style="text-align: center">
+                        <img class="esp-icono" src="img/vibr.png">
+                        <h3 class="esp-titulo">Vibraciones</h3>
+                        <p class="esp-text">En caso de detectar vibraciones fuertes, el sensor activa una alerta antirrobo</p>
+                    </div>
+                </div>
+
+                <div class="slider__section">
+                    <div style="text-align: center">
+                        <img class="esp-icono" src="img/humedad.png">
+                        <h3 class="esp-titulo">Humedad</h3>
+                        <p class="esp-text">Los sensores calculan el nivel de humedad en el ambiente</p>
+                    </div>
+                </div>
+
+                <div class="slider__section">
+                    <div style="text-align: center">
+                        <img class="esp-icono" src="img/sal.png">
+                        <h3 class="esp-titulo">Salinidad</h3>
+                        <p class="esp-text">Los sensores calculan el nivel de sal en agua</p>
+                    </div>
+                </div>
+
+                <div class="slider__section">
+                    <div style="text-align: center">
+                        <img class="esp-icono" src="img/temp.png">
+                        <h3 class="esp-titulo">Temperatura</h3>
+                        <p class="esp-text">Los sensores calculan el valor de la temperatura ambiente</p>
+                    </div>
+                </div>
+
+                <div class="slider__section">
+                    <div style="text-align: center">
+                        <img class="esp-icono" src="img/luz.png">
+                        <h3 class="esp-titulo">Iluminanción</h3>
+                        <p class="esp-text">Los sensores calculan el valor de iluminancia del terreno</p>
+                    </div>
+                </div>
+
+                <div class="slider__section">
+                    <div style="text-align: center">
+                        <img class="esp-icono" src="img/bat.png">
+                        <h3 class="esp-titulo">Alimentación</h3>
+                        <p class="esp-text">Los sensores cuentan con una batería y un panel solar que permiten su alimentación autónoma</p>
+                    </div>
+                </div>
+
+                <div class="slider__section">
+                    <div style="text-align: center">
+                        <img class="esp-icono" src="img/datos.png">
+                        <h3 class="esp-titulo">Datos WEB</h3>
+                        <p class="esp-text">Los sensores son capaces de conectarse a internet para enviar los datos recogidos a la WEB apk</p>
+                    </div>
+                </div>
             </div>
-
-            <div>
-                <img class="esp-icono" src="img/vibr.png">
-                <h3 class="esp-titulo">Vibraciones</h3>
-                <p class="esp-text">En caso de detectar vibraciones fuertes, el sensor activa una alerta antirrobo</p>
-            </div>
-
-            <div>
-                <img class="esp-icono" src="img/humedad.png">
-                <h3 class="esp-titulo">Humedad</h3>
-                <p class="esp-text">Los sensores calculan el nivel de humedad en el ambiente</p>
-            </div>
-
-            <div>
-                <img class="esp-icono" src="img/sal.png">
-                <h3 class="esp-titulo">Salinidad</h3>
-                <p class="esp-text">Los sensores calculan el nivel de sal en agua</p>
-            </div>
-
-            <div>
-                <img class="esp-icono" src="img/temp.png">
-                <h3 class="esp-titulo">Temperatura</h3>
-                <p class="esp-text">Los sensores calculan el valor de la temperatura ambiente</p>
-            </div>
-
-            <div>
-                <img class="esp-icono" src="img/luz.png">
-                <h3 class="esp-titulo">Iluminanción</h3>
-                <p class="esp-text">Los sensores calculan el valor de iluminancia del terreno</p>
-            </div>
-
-            <div>
-                <img class="esp-icono" src="img/bat.png">
-                <h3 class="esp-titulo">Alimentación</h3>
-                <p class="esp-text">Los sensores cuentan con una batería y un panel solar que permiten su alimentación autónoma</p>
-            </div>
-
-            <div>
-                <img class="esp-icono" src="img/datos.png">
-                <h3 class="esp-titulo">Datos WEB</h3>
-                <p class="esp-text">Los sensores son capaces de conectarse a internet para enviar los datos recogidos a la WEB apk</p>
-            </div>
-
-
+            <div class="slider__btn slider__btn--right" id="btn-right">&#62;</div>
+            <div class="slider__btn slider__btn--left" id="btn-left">&#60;</div>
         </div>
+        <script src="js/slider.js"></script>
     </section>
 
     <section id="seccionContactanos" class="anchor padding-container">
@@ -406,6 +425,6 @@
     }
 
 </script>
-<script src="src/js/login.js"></script>
+<script src="js/login.js"></script>
 </body>
 </html>
