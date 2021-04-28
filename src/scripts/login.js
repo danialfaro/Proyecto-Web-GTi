@@ -18,7 +18,7 @@ loginForm.addEventListener("submit",(event) => {
         console.log(data);
         if(data.resultado == "OK") {
             //TODO: Redirigir a la aplicacion
-            alert("Bienvenido, " + data.nombre + "!");           
+            alert("Bienvenido, " + data.nombre + "!");
         }
     }).catch(err => {
         alert("El usuario no existe.");

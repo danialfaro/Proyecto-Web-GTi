@@ -5,20 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=9" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GTi | Gestion de cultivos sondas inteligentes</title>
-    <link rel="icon" type="image/svg+xml" href="img/logoGTI.svg" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="images/logoGTI.svg" sizes="any">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="styles/estilos.css">
 </head>
 <body>
 
 <header id="headerbar">
     <div class="navbar">
-        <img src="img/logoGTI.svg" alt="logoGTI" class="logo">
+        <img src="images/logos/logoGTI.svg" alt="logoGTI" class="logo">
         <div class="nav-container">
             <nav class="nav-menu">
                 <ul>
-                    <li id="loginToggleButton">
-                        <i class="fa fa-user-circle"></i>
+                    <li>
+                        <a id="loginToggleButton"><i class="fa fa-user-circle"></i></a>
                     </li>
                     <li id="menuOpenButton">
                         <i class="fa fa-bars"></i>
@@ -75,7 +75,7 @@
 
         <!-- Imagen reclamo -->
         <!--<div class="img_reclamo">
-            <img src="img/undraw_rebov.svg" alt="imagen_reclamo">
+            <img src="images/undraw_rebov.svg" alt="imagen_reclamo">
         </div>-->
 
         <div class="fondo_reclamo"></div>
@@ -95,7 +95,7 @@
         </div><br>
 
         <div style="text-align: center">
-            <img id="videoGTI" src="img/video.png">
+            <img id="videoGTI" src="images/video.png">
         </div>
 
         <div class="padding-container">
@@ -139,7 +139,7 @@
             <div class="slider" id="slider">
                 <div class="slider__section">
                     <div style="text-align: center">
-                        <img class="esp-icono" src="img/ubi.png">
+                        <img class="esp-icono" src="images/icons/ubi.png">
                         <h3 class="esp-titulo">Ubicación</h3>
                         <p class="esp-text">Los sensores indican su posición permitiendo su geolocalización</p>
                     </div>
@@ -147,7 +147,7 @@
 
                 <div class="slider__section">
                     <div style="text-align: center">
-                        <img class="esp-icono" src="img/vibr.png">
+                        <img class="esp-icono" src="images/icons/vibr.png">
                         <h3 class="esp-titulo">Vibraciones</h3>
                         <p class="esp-text">En caso de detectar vibraciones fuertes, el sensor activa una alerta antirrobo</p>
                     </div>
@@ -155,7 +155,7 @@
 
                 <div class="slider__section">
                     <div style="text-align: center">
-                        <img class="esp-icono" src="img/humedad.png">
+                        <img class="esp-icono" src="images/icons/humedad.png">
                         <h3 class="esp-titulo">Humedad</h3>
                         <p class="esp-text">Los sensores calculan el nivel de humedad en el ambiente</p>
                     </div>
@@ -163,7 +163,7 @@
 
                 <div class="slider__section">
                     <div style="text-align: center">
-                        <img class="esp-icono" src="img/sal.png">
+                        <img class="esp-icono" src="images/icons/sal.png">
                         <h3 class="esp-titulo">Salinidad</h3>
                         <p class="esp-text">Los sensores calculan el nivel de sal en agua</p>
                     </div>
@@ -171,7 +171,7 @@
 
                 <div class="slider__section">
                     <div style="text-align: center">
-                        <img class="esp-icono" src="img/temp.png">
+                        <img class="esp-icono" src="images/icons/temp.png">
                         <h3 class="esp-titulo">Temperatura</h3>
                         <p class="esp-text">Los sensores calculan el valor de la temperatura ambiente</p>
                     </div>
@@ -179,7 +179,7 @@
 
                 <div class="slider__section">
                     <div style="text-align: center">
-                        <img class="esp-icono" src="img/luz.png">
+                        <img class="esp-icono" src="images/icons/luz.png">
                         <h3 class="esp-titulo">Iluminanción</h3>
                         <p class="esp-text">Los sensores calculan el valor de iluminancia del terreno</p>
                     </div>
@@ -187,7 +187,7 @@
 
                 <div class="slider__section">
                     <div style="text-align: center">
-                        <img class="esp-icono" src="img/bat.png">
+                        <img class="esp-icono" src="images/icons/bat.png">
                         <h3 class="esp-titulo">Alimentación</h3>
                         <p class="esp-text">Los sensores cuentan con una batería y un panel solar que permiten su alimentación autónoma</p>
                     </div>
@@ -195,7 +195,7 @@
 
                 <div class="slider__section">
                     <div style="text-align: center">
-                        <img class="esp-icono" src="img/datos.png">
+                        <img class="esp-icono" src="images/icons/datos.png">
                         <h3 class="esp-titulo">Datos WEB</h3>
                         <p class="esp-text">Los sensores son capaces de conectarse a internet para enviar los datos recogidos a la WEB apk</p>
                     </div>
@@ -204,7 +204,7 @@
             <div class="slider__btn slider__btn--right" id="btn-right">&#62;</div>
             <div class="slider__btn slider__btn--left" id="btn-left">&#60;</div>
         </div>
-        <script src="js/slider.js"></script>
+
     </section>
 
     <section id="seccionContactanos" class="anchor padding-container">
@@ -311,120 +311,8 @@
     </section>
 </footer>
 
-<script>
-
-    window.onload = () => {
-
-        
-        var overlay = document.getElementById("overlay");
-        var activeOverlay = (active) => {
-            if (active) {
-                overlay.classList.remove('closed');
-            } else {
-                overlay.classList.add('closed');                
-            }
-        }
-
-        /* Login Form Toggle Behaviour */
-
-        var isLoginOpen = false;
-        var loginToggleButton = document.getElementById("loginToggleButton");
-        var loginWrapper = document.getElementById("login-form-wrapper");
-
-        var openLoginMenu = () => {
-            isLoginOpen = true;
-            loginWrapper.classList.add("login-open");
-            loginWrapper.classList.remove("login-closed");
-            activeOverlay(true);
-        }
-
-        var closeLoginMenu = () => {
-            isLoginOpen = false;
-            loginWrapper.classList.remove("login-open");
-            loginWrapper.classList.add("login-closed");
-            activeOverlay(false);
-        }
-
-        loginToggleButton.addEventListener('click', () => {
-            isLoginOpen = !isLoginOpen;
-            isLoginOpen ? openLoginMenu() : closeLoginMenu();
-        });
-
-        var contactLink = loginWrapper.querySelectorAll('.login-form a')[0];
-        contactLink.addEventListener('click', closeLoginMenu);
-
-        /* End Login Form Toggle Behaviour */
-
-        /* Menu Toggle Behaviour */
-
-        var isMenuOpen = false;
-        var menuOpenButton = document.getElementById("menuOpenButton");
-        var menuCloseButton = document.getElementById("menuCloseButton");
-        var menu = document.getElementById("menu-emergente");
-
-        var openMenu = () => {
-            isMenuOpen = true;
-            menu.classList.add("menu-open");
-            menu.classList.remove("menu-closed");
-            closeLoginMenu();
-            activeOverlay(true);
-        }
-
-        var closeMenu = () => {
-            isMenuOpen = false;
-            menu.classList.remove("menu-open");
-            menu.classList.add("menu-closed");
-            activeOverlay(false);
-        }
-
-        menuOpenButton.addEventListener('click', openMenu);
-        menuCloseButton.addEventListener('click', closeMenu);
-
-        var menuLinks = menu.querySelectorAll('#menu-emergente ul li a');
-        menuLinks.forEach((link) => {
-            link.addEventListener('click', () => {
-                closeLoginMenu();
-                closeMenu();
-            });
-        })
-
-        /* End Menu Toggle Behaviour */
-
-        closeLoginMenu();
-        closeMenu();
-        
-        overlay.addEventListener('click', () => {
-            if (isLoginOpen) closeLoginMenu();
-            if (isMenuOpen) closeMenu();
-        });
-
-        /* FAQ Toggle Behaviour */
-
-        var faqSection = document.getElementById("sectionFaq");
-        var faqItems = faqSection.querySelectorAll(".faq_item");
-        faqItems.forEach((faqItem) => {
-
-            var trigger = faqItem.getElementsByClassName("faq_trigger")[0];
-
-            trigger?.addEventListener('click', () => {
-                if(!faqItem.classList.contains("faq_open")) {
-                    faqItems.forEach((fi) => {
-                        fi.classList.remove("faq_open");
-                    });
-                    faqItem.classList.add("faq_open");
-                } else {                    
-                    faqItem.classList.remove("faq_open");
-                }
-            });           
-            
-        })
-
-        /* End FAQ Toggle Behaviour */
-
-
-    }
-
-</script>
-<script src="js/login.js"></script>
+<script src="scripts/main.js"></script>
+<script src="scripts/login.js"></script>
+<script src="scripts/slider.js"></script>
 </body>
 </html>
