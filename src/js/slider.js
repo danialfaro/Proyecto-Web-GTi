@@ -11,12 +11,26 @@ slider.insertAdjacentElement('afterbegin', sliderSectionLast);
 
 function Next(){
     let sliderSectionFirst = document.querySelectorAll(".slider__section")[0];
-    slider.style.marginLeft = "-100%";
+    slider.style.marginLeft = "-200%";
     slider.style.transition = "all 0.5s";
     setTimeout(function (){
         slider.style.transition = "none";
         slider.insertAdjacentElement('beforeend', sliderSectionFirst);
-        slider.style.marginLeft = "-50%";
+        sliderSectionFirst = document.querySelectorAll(".slider__section")[0];
+        slider.insertAdjacentElement('beforeend', sliderSectionFirst);
+        slider.style.marginLeft = "-100%";
+    }, 500);
+}
+function Auto(){
+    let sliderSectionFirst = document.querySelectorAll(".slider__section")[0];
+    slider.style.marginLeft = "-200%";
+    slider.style.transition = "all 0.5s";
+    setTimeout(function (){
+        slider.style.transition = "none";
+        slider.insertAdjacentElement('beforeend', sliderSectionFirst);
+        sliderSectionFirst = document.querySelectorAll(".slider__section")[0];
+        slider.insertAdjacentElement('beforeend', sliderSectionFirst);
+        slider.style.marginLeft = "-100%";
     }, 500);
 }
 
@@ -28,7 +42,10 @@ function Prev(){
     setTimeout(function (){
         slider.style.transition = "none";
         slider.insertAdjacentElement('afterbegin', sliderSectionLast);
-        slider.style.marginLeft = "-50%";
+        sliderSectionFirst = document.querySelectorAll(".slider__section");
+        sliderSectionLast= sliderSection[sliderSection.length -1];
+        slider.insertAdjacentElement('afterbegin', sliderSectionLast);
+        slider.style.marginLeft = "-100%";
     }, 500);
 }
 
@@ -40,5 +57,5 @@ btnLeft.addEventListener('click', function (){
 });
 
 setInterval(function (){
-    Next();
-}, 6000);
+   Auto();
+}, 10000);

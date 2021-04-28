@@ -509,11 +509,10 @@ textarea {
     color: gray;
 }
 
-footer {
+footer {    
+    display: flex;
     background: rgb(243, 243, 243);
     color: lightgrey;
-    text-align: center;
-    padding: .8rem;
 }
 
 /* Seccion Faq */
@@ -652,6 +651,8 @@ footer {
 }
 
 .container-slider{
+    padding-top: 20px;
+    background-color: rgb(243, 243, 243);
     width: 90%;
     max-width: 900px;
     margin: auto;
@@ -663,7 +664,7 @@ footer {
     display: flex;
     width: 400%;
     height: 290px;
-    margin-left: -50%;
+    margin-left: -100%;
 }
 .slider__section{
     width: 100%;
@@ -673,7 +674,7 @@ footer {
     width: 40px;
     height: 40px;
     background: #838181;
-    top: 92%;
+    top: 80%;
     transform: translateY(-50%);
     font-size: 30px;
     font-weight: bold;
@@ -691,3 +692,8 @@ footer {
 .slider__btn--right{
     right:35%;
 }
+
+.esp-icono {
+    width: 60px;
+}
+
