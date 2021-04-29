@@ -42,7 +42,7 @@
             <nav>
                 <ul>
                     <li><a href="#seccion_quienessomos"><i class="fa fa-users"></i>Ver campos</a></li>
-                    <li class="cerrar-sesion"><a href="#"><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
+                    <li class="logout_button"><a href="#"><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
                 </ul>
             </nav>
         </div>
@@ -65,7 +65,41 @@
                 </div>
         </section>
     </main>
-    
+    <script>
+
+        var sesionPath = "../../api/v1.0/sesion";
+
+        fetch(sesionPath).then((res) => {
+            if(res.ok) {
+                return res.json();
+            } else {
+                redirectLogin();
+            }
+        }).then(data => {
+            if(data.rol != 'admin') {
+                redirectLogin();
+            } else {
+                var username = document.getElementById("usernameDisplay");
+                username.textContent = data.nombre;
+            }
+        });
+
+        function logout(){
+            fetch(sesionPath, {
+                method: 'DELETE'
+            }).then(res => {
+                redirectLogin();
+            })
+        }
+
+        function redirectLogin() {
+            window.location.href = '../../index.html';
+        }
+
+        var logoutButton = document.getElementsByClassName("logout_button")[0];
+        logoutButton.addEventListener('click', logout);
+
+    </script>
     <script src="../../scripts/navbar.js"></script>
 </body>
 </html>

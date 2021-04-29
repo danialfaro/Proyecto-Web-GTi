@@ -182,11 +182,11 @@
     color: var(--black);
 }
 
-#menu-emergente ul li.cerrar-sesion i {
+#menu-emergente ul li.logout_button i {
     color: #818181;
 }
 
-#menu-emergente ul li.cerrar-sesion a {
+#menu-emergente ul li.logout_button a {
     position: absolute;
     bottom: 0;
     left: 0;
