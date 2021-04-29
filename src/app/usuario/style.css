@@ -1,3 +1,35 @@
+#seccionUsuario {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.main-container {
+    padding: .8rem;
+}
+.texto-principal {
+    line-height: 2.4rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--black);
+    text-align: left;
+    margin: 15px auto;
+    max-width: 90%;
+}
+.texto-secundario {
+    font-size: 1rem;
+    text-align: center;
+    color: var(--black);
+    margin: 1rem auto;
+    margin-bottom: 1.8rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    padding: 10px;
+    border-left: 2px var(--primary) solid;
+    max-width: 90%;
+}
+
+/* map */
+
 
 .texto-enunciadoCampo{
     width: 90%;

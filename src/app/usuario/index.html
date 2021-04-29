@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="../../styles/estilos.css">
     <link rel="stylesheet" href="../../styles/navbar-app.css">
-<<<<<<< Updated upstream
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -20,11 +20,11 @@
                 <nav class="nav-menu">
                     <ul>
                         <li id="loginToggleButton">
-                            <i class="fa fa-user-circle"></i>
-                            <span id="usernameDisplay">Username</span>
+                            <i class="fa fa-fw fa-user-circle"></i>
+                            <span id="usernameDisplay"></span>
                         </li>
                         <li id="menuOpenButton">
-                            <i class="fa fa-bars"></i>
+                            <i class="fa fa-fw fa-bars"></i>
                         </li>
                     </ul>
                 </nav>
@@ -32,64 +32,115 @@
         </div>
         <div id="login-form-wrapper">
             <ul>
-                <li><i class="fa fa-edit"></i>Editar perfil</li>
+                <li><i class="fa fa-fw fa-edit"></i>Editar perfil</li>
             </ul>
         </div>
         <div id="menu-emergente">
-            <i id="menuCloseButton" class="fa fa-times close-button"></i>
+            <i id="menuCloseButton" class="fa fa-fw fa-times close-button"></i>
             <h2>Menú</h2>
             <nav>
                 <ul>
-                    <li><a href="#seccion_quienessomos"><i class="fa fa-users"></i>Ver campos</a></li>
-                    <li class="cerrar-sesion"><a href="#"><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
+                    <li class="isadmin"><a href="../admin"><i class="fas fa-fw fa-user-shield"></i>Panel de control</a></li>
+                    <li><a href="#misCampos"><i class="fab fa-fw fa-pagelines"></i>Mis campos</a></li>
+                    <li class="logout_button"><a href="#"><i class="fas fa-fw fa-sign-out-alt"></i>Cerrar sesión</a></li>
                 </ul>
             </nav>
         </div>
         <div id="overlay">
         </div>
     </header>
-=======
-    <link rel="stylesheet" href="../style.css">
-
-</head>
-<body>
-
-    <section id="misCampos">
-        <div class="texto-enunciadoCampo">
-        <h2>Mis campos</h2>
-        <p>Selecciona el campo y sonda que quieras ver</p>
-        </div>
-
-        <div id="sobreMapa">
-            <input name="username" id="username" type="text" placeholder="Buscar" required>
-            <button onclick=""><i class="fas fa-search"></i></button>
-            <button onclick=""><i class="fas fa-list-ul"></i></button>
-        </div>
-
-        <div id="map"></div>
-
-        <script src="map.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
-        <div class="texto-comentarioCampo">
-        <h3>Campo 2 - Melbourne</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aut delectus distinctio dolor dolore
-            doloremque magnam maiores maxime natus nulla numquam quisquam quod, quos rem repellat vel voluptate!
-            Eveniet, omnis.
-        </p>
-        </div>
-        <div class="mapaBotonVer">
-            <input type="submit" value="Ver" class="button_primary">
-        </div>
-
-    </section>
->>>>>>> Stashed changes
 
     <main>
 
-        <!-- TODO: seccion principal user -->
+        <section id="seccionUsuario">
+            <div class="main-container">
+                <!-- Texto principal -->
+                <div><h1 class="texto-principal">Dashboard<!--, <span id="usernameDisplayTitle"></span> --></h1></div>
+                <div><h3 class="texto-secundario">Gestiona desde un panel centralizado</h3></div>
+            </div>
+        </section>
+
+        <section id="misCampos">
+            <div class="main-container">
+                <div class="texto-enunciadoCampo">
+                    <h2>Mis campos</h2>
+                    <p>Selecciona el campo y sonda que quieras ver</p>
+                </div>
+
+                <div id="sobreMapa">
+                    <input name="username" id="username" type="text" placeholder="Buscar" required>
+                    <button onclick=""><i class="fas fa-fw fa-search"></i></button>
+                    <button onclick=""><i class="fas fa-fw fa-list-ul"></i></button>
+                </div>
+
+                <div id="map"></div>
+
+                <div class="texto-comentarioCampo">
+                    <h3>Campo 2 - Melbourne</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aut delectus distinctio dolor dolore.
+                    </p>
+                </div>
+                <div class="mapaBotonVer">
+                    <input type="submit" value="Ver" class="button_primary">
+                </div>
+            </div>
+        </section>
 
     </main>
 
+    <script>
+
+        var sesionPath = "../../api/v1.0/sesion";
+
+        fetch(sesionPath).then((res) => {
+            if(res.ok) {
+                return res.json();
+            } else {
+                redirectLogin();
+            }
+        }).then(data => {
+            if(data.rol !== 'admin' && data.rol !== 'user') {
+                redirectLogin();
+            } else {
+                var username = document.getElementById("usernameDisplay");
+                username.textContent = data.nombre;
+
+                var usernameTitle = document.getElementById("usernameDisplayTitle");
+                //usernameTitle.textContent = data.nombre;
+
+
+                var adminOptions = document.getElementsByClassName("isadmin");
+                for (let i = 0; i < adminOptions.length; i++){
+                    if(data.rol === 'admin') {
+                        adminOptions[i].style.display = 'block';
+                        console.log("block")
+                    } else {
+                        adminOptions[i].style.display = 'none';
+                        console.log("none")
+                    }
+                }
+
+            }
+        });
+
+        function logout(){
+            fetch(sesionPath, {
+                method: 'DELETE'
+            }).then(res => {
+                redirectLogin();
+            })
+        }
+
+        function redirectLogin() {
+            window.location.href = '../../index.html';
+        }
+
+        var logoutButton = document.getElementsByClassName("logout_button")[0];
+        logoutButton.addEventListener('click', logout);
+
+    </script>
     <script src="../../scripts/navbar.js"></script>
+    <script src="map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDScccCQFgTFoHXtxkj611ZtR_frUJwvhM&callback=initMap" async defer></script>
 </body>
 </html>
