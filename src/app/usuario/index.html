@@ -12,47 +12,48 @@
 </head>
 <body>
 
-<header id="headerbar">
-    <div class="navbar">
-        <img src="../../images/logos/logoGTI.svg" alt="logoGTI" class="logo">
-        <div class="nav-container">
-            <nav class="nav-menu">
+    <header id="headerbar">
+        <div class="navbar">
+            <img src="../../images/logos/logoGTI.svg" alt="logoGTI" class="logo">
+            <div class="nav-container">
+                <nav class="nav-menu">
+                    <ul>
+                        <li id="loginToggleButton">
+                            <i class="fa fa-user-circle"></i>
+                            <span id="usernameDisplay">Username</span>
+                        </li>
+                        <li id="menuOpenButton">
+                            <i class="fa fa-bars"></i>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div id="login-form-wrapper">
+            <ul>
+                <li><i class="fa fa-edit"></i>Editar perfil</li>
+            </ul>
+        </div>
+        <div id="menu-emergente">
+            <i id="menuCloseButton" class="fa fa-times close-button"></i>
+            <h2>Menú</h2>
+            <nav>
                 <ul>
-                    <li id="loginToggleButton">
-                        <i class="fa fa-user-circle"></i>
-                        <span id="usernameDisplay">Username</span>
-                    </li>
-                    <li id="menuOpenButton">
-                        <i class="fa fa-bars"></i>
-                    </li>
+                    <li><a href="#seccion_quienessomos"><i class="fa fa-users"></i>Ver campos</a></li>
+                    <li class="cerrar-sesion"><a href="#"><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
                 </ul>
             </nav>
         </div>
-    </div>
-    <div id="login-form-wrapper">
-        <ul>
-            <li><i class="fa fa-edit"></i>Editar perfil</li>
-        </ul>
-    </div>
-    <div id="menu-emergente">
-        <i id="menuCloseButton" class="fa fa-times close-button"></i>
-        <h2>Menú</h2>
-        <nav>
-            <ul>
-                <li><a href="#seccion_quienessomos"><i class="fa fa-users"></i>Ver campos</a></li>
-                <li class="cerrar-sesion"><a href="#"><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
-            </ul>
-        </nav>
-    </div>
-    <div id="overlay">
-    </div>
-</header>
+        <div id="overlay">
+        </div>
+    </header>
 
-<main>
+    <main>
 
-    <!-- TODO: seccion principal user -->
+        <!-- TODO: seccion principal user -->
 
-</main>
+    </main>
 
+    <script src="../../scripts/navbar.js"></script>
 </body>
 </html>
