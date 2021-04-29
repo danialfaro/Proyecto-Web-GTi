@@ -41,4 +41,7 @@
     max-width: 90%;
     align-self: center;
     margin: 15px auto;
-} 
+}
+#empresas::placeholder{
+    color: rgb(77, 77, 77);
+}
