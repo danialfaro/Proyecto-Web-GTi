@@ -1,4 +1,4 @@
-const loginForm = document.getElementById("login-form");
+const loginForm = document.getElementById("formLogin");
 
 loginForm.addEventListener("submit", (event) => {
 
@@ -27,8 +27,7 @@ loginForm.addEventListener("submit", (event) => {
         }
         
     }).catch(err => {
-        let output = document.getElementById("output");        
-        output.textContent = "El usuario no existe." + "\n" + err;
+        alert("El usuario no existe.");
     })
 
 })
