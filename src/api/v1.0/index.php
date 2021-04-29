@@ -1,6 +1,6 @@
 <?php
 
-//include 'includes/bd_conexion.php';
+include 'includes/bd_conexion.php';
 
 // Metodo de la peticion (GET | POST | PUT | DELETE)
 $metodo = $_SERVER['REQUEST_METHOD'];
@@ -12,8 +12,6 @@ $uri = $_SERVER['REQUEST_URI'];
 $path = explode('v1.0/', parse_url($uri, PHP_URL_PATH))[1];
 $paramPath = explode('/', $path);
 $recurso = array_shift($paramPath);
-
-echo $recurso;
 
 // Path donde se encuentra el recurso
 $recursoPath = 'modelos/' . $recurso . '/' . strtolower($metodo) . '-' . $recurso . '.php';
