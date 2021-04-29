@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="../../styles/estilos.css">
     <link rel="stylesheet" href="../../styles/navbar-app.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../styles/landing.css">
+
 </head>
 <body>
 
@@ -20,7 +23,7 @@
                     <ul>
                         <li id="loginToggleButton">
                             <i class="fa fa-user-circle"></i>
-                            <span id="usernameDisplay">Username</span>
+                            <span id="usernameDisplay">Admin</span>
                         </li>
                         <li id="menuOpenButton">
                             <i class="fa fa-bars"></i>
@@ -50,8 +53,20 @@
 
     <main>
 
-        <!-- TODO: seccion principal admin -->
-
+        <section id="seccionAdmin">
+            <div class="main-container">
+                <!-- Texto principal -->
+                <div><h1 class="texto-principal">Panel de control</h1></div>
+                <div><h3 class="texto-secundario">Gestiona desde un panel centralizado</h3></div>
+                <div><h2 class="texto-empresa">Empresas</h2></div>
+                <div>
+                    <input name="empresas" id="empresas" type="text" placeholder="Buscar empresa" required>
+                    <input type="submit" value="Dar de alta empresa" class="button_primary">
+                </div>
+                </div>
+            
+            
+        </section>
     </main>
     
     <script src="../../scripts/navbar.js"></script>
