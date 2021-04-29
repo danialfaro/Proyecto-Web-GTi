@@ -1,0 +1,160 @@
+#headerbar {
+    position: fixed;
+    width: 100%;
+    z-index: 50;
+}
+
+.navbar {
+    width: 100%;
+    height: 3.625rem;
+    display: flex;
+}
+
+.logo {
+    width: auto;
+    height: auto;
+    max-width: 120px;
+    background: white;
+}
+
+.nav-container {
+    background: var(--main_gradient);
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-menu {
+    display: flex;
+    color: white;
+}
+
+.nav-menu i {
+    font-size: 1.8rem;
+}
+
+.nav-menu ul {
+    display: flex;
+}
+
+.nav-menu ul li {
+    padding: .8rem;
+}
+
+
+/* Login panel  */
+
+#login-form-wrapper {
+    overflow: hidden;
+    background: white;
+    position: absolute;
+    left: 0%;
+    width: 100vw;
+    max-height: 100vh;
+    z-index: -1;
+    transition: .2s ease-out;
+    box-shadow: 0 6px 12px rgba(128, 128, 128, 0.48);
+}
+
+.login-open {
+    max-height: 100vh;
+    top: 3.65rem;
+    opacity: 1;
+}
+
+.login-closed {
+    max-height: 0px;
+    top: -25rem;
+}
+
+#overlay {
+    background: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -10;
+    animation: appear .2s forwards;
+}
+
+#overlay.closed {
+    animation: disappear .2s forwards;
+}
+
+@keyframes disappear {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        visibility: visible;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Menu emergente */
+
+#menu-emergente {
+    position: absolute;
+    top: 0;
+    right: -100vw;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, .9));
+    transition: .2s;
+}
+
+#menu-emergente.menu-open {
+    right: 0;
+}
+
+#menu-emergente.menu-closed {
+    right: -110vw;
+}
+
+#menu-emergente h2 {
+    margin: .8rem 2rem;
+}
+
+#menu-emergente ul {
+    margin-top: .8rem;
+}
+
+#menu-emergente ul li:nth-child(2n) {
+    background: rgba(231, 231, 231, 0.3);
+}
+
+#menu-emergente ul li {
+    border-left: 1px var(--primary) solid;
+}
+
+#menu-emergente ul li i {
+    color: var(--primary);
+    margin: 18px;
+    margin-right: 1.5rem;
+}
+
+#menu-emergente ul li a {
+    display: block;
+    padding: .5rem;
+    color: var(--primary);
+}
+
+#menu-emergente .close-button {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1.5rem;
+    color: var(--black);
+}
