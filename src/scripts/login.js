@@ -27,8 +27,8 @@ loginForm.addEventListener("submit", (event) => {
         }
         
     }).catch(err => {
-        console.log(err);
-        alert("El usuario no existe.");
+        let loginFormOutput = document.getElementById("login-form-output");
+        loginFormOutput.textContent = "El usuario no existe.";
     })
 
 })

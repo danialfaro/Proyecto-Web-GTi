@@ -137,6 +137,10 @@
     text-align: center;
 }
 
+#login-form-output {
+    color: orangered;
+}
+
 /* Seccion Faq */
 #sectionFaq {
     text-align: center;
