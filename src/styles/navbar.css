@@ -49,6 +49,7 @@
     background: white;
     position: absolute;
     left: 0%;
+    top: -25rem;
     width: 100vw;
     max-height: 100vh;
     z-index: -1;
@@ -56,13 +57,13 @@
     box-shadow: 0 6px 12px rgba(128, 128, 128, 0.48);
 }
 
-.login-open {
+#login-form-wrapper.login-open {
     max-height: 100vh;
     top: 3.65rem;
     opacity: 1;
 }
 
-.login-closed {
+#login-form-wrapper.login-closed {
     max-height: 0px;
     top: -25rem;
 }

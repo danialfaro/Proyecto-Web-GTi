@@ -112,11 +112,9 @@
                 var adminOptions = document.getElementsByClassName("isadmin");
                 for (let i = 0; i < adminOptions.length; i++){
                     if(data.rol === 'admin') {
-                        adminOptions[i].style.display = 'block';
-                        console.log("block")
+                        adminOptions[i].classList.remove('d-none');
                     } else {
-                        adminOptions[i].style.display = 'none';
-                        console.log("none")
+                        adminOptions[i].classList.add('d-none');
                     }
                 }
 
