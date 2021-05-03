@@ -1,4 +1,5 @@
 # Docs API v1.0 - Equipo 05
+
 ## Sesión
 
 #### POST /sesion/
@@ -47,3 +48,12 @@ Elimina una sesión en el servidor.
 ##### Respuestas:
 
 - 200 OK
+
+## Usuario
+
+
+## Campos
+
+
+api comprobar sesion en las peticiones para ver si tienen permisos
+
