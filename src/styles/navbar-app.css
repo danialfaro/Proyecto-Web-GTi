@@ -6,7 +6,7 @@
 
 .navbar {
     width: 100%;
-    height: 3.625rem;
+    height: 3.7rem;
     display: flex;
 }
 
@@ -70,7 +70,7 @@
 
 #login-form-wrapper.login-open {
     max-height: 100vh;
-    top: 3.65rem;
+    top: 3.625rem;
     opacity: 1;
 }
 

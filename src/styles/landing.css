@@ -133,11 +133,12 @@
 }
 
 .login-form p {
-    font-size: 14px;
+    font-size: 0.95rem;
     text-align: center;
 }
 
 #login-form-output {
+    font-size: 0.95rem;
     color: orangered;
 }
 
