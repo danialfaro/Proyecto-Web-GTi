@@ -26,15 +26,15 @@ CREATE TABLE IF NOT EXISTS dB_equipo05.ubicaciones(
     coordenadas INT NOT NULL ,
 )
 
-INSERT INTO dB_equipo05.ubicaciones(id,coordenadas) VALUES
-(1,""),
-(2,""),
-(3,""),
-(4,""),
-(5,""),
-(6,""),
-(7,""),
-(8,"");
+INSERT INTO dB_equipo05.ubicaciones(coordenadas) VALUES
+(""),
+(""),
+(""),
+(""),
+(""),
+(""),
+(""),
+("");
 
 
 CREATE TABLE IF NOT EXISTS dB_equipo05.sondas(
@@ -42,12 +42,12 @@ CREATE TABLE IF NOT EXISTS dB_equipo05.sondas(
     mac VARCHAR (17) NOT NULL,
 )
 
-INSERT INTO dB_equipo05.sondas(id,mac) VALUES
-(1,"00:1e:c2:9e:28:6b"),
-(2,"40:5f:v6:8e:32:5s"),
-(3,"22:9h:n6:9c:56:4e"),
-(4,"68:2f:s3:7q:69:3x"),
-(5,"52:6p:l4:3v:62:1k"),
-(6,"86:2i:f8:2m:51:3r"),
-(7,"71:6x:h9:7d:20:6p"),
-(8,"20:3b:j8:5c:36:4c");
+INSERT INTO dB_equipo05.sondas(mac) VALUES
+("00:1e:c2:9e:28:6b"),
+("40:5f:v6:8e:32:5s"),
+("22:9h:n6:9c:56:4e"),
+("68:2f:s3:7q:69:3x"),
+("52:6p:l4:3v:62:1k"),
+("86:2i:f8:2m:51:3r"),
+("71:6x:h9:7d:20:6p"),
+("20:3b:j8:5c:36:4c");
