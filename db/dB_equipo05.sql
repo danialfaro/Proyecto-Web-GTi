@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS ubicaciones(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     lat FLOAT( 10, 6 ) NOT NULL,
     lng FLOAT( 10, 6 ) NOT NULL
-)
+);
 
 INSERT INTO ubicaciones(lat, lng) VALUES(-12.1312321, 34.1231234);
 INSERT INTO ubicaciones(lat, lng) VALUES();
@@ -35,8 +35,8 @@ INSERT INTO ubicaciones(lat, lng) VALUES();
 
 CREATE TABLE IF NOT EXISTS sondas(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    mac VARCHAR (17) NOT NULL,
-)
+    mac VARCHAR (17) NOT NULL
+);
 
 INSERT INTO sondas(mac) VALUES
 ("00:1e:c2:9e:28:6b"),
