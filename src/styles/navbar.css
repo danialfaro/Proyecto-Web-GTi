@@ -125,7 +125,7 @@
 }
 
 #menu-emergente h2 {
-    margin: .8rem 2rem;
+    margin: .65rem 1.5rem;
 }
 
 #menu-emergente ul {
@@ -159,3 +159,12 @@
     font-size: 1.5rem;
     color: var(--black);
 }
+
+/* Media queries */
+
+@media(min-width: 1200px) {
+    #menu-emergente {
+        width: 40vw;
+    }
+}
+

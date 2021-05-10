@@ -17,7 +17,7 @@ function initMap() {
         mapTypeControl: false,
         streetViewControl: false,
         rotateControl: false,
-        zoomControl:false,
+        zoomControl: false,
     });
 	var marker1 = new google.maps.Marker({
             position: {lat: -37.78535123595972, lng: 144.95436592384175},

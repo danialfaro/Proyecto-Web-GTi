@@ -66,9 +66,12 @@
                 </div>
         </section>
     </main>
+
+
     <script>
 
         var sesionPath = "../../api/v1.0/sesion";
+        var landingPath = '../../index.html';
 
         fetch(sesionPath).then((res) => {
             if(res.ok) {
@@ -77,28 +80,20 @@
                 redirectLogin();
             }
         }).then(data => {
-            if(data.rol != 'admin') {
-                redirectLogin();
+            if(data.rol != 'admin') {                
+                window.location.href = '../usuario';
             } else {
                 var username = document.getElementById("usernameDisplay");
                 username.textContent = data.nombre;
             }
         });
 
-        function loadMenu() {
-
-        }
-
         function logout(){
             fetch(sesionPath, {
                 method: 'DELETE'
             }).then(res => {
-                redirectLogin();
+                window.location.href = landingPath;
             })
-        }
-
-        function redirectLogin() {
-            window.location.href = '../../index.html';
         }
 
         var logoutButton = document.getElementsByClassName("logout_button")[0];
