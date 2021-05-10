@@ -41,7 +41,7 @@
             <nav>
                 <ul>
                     <li class="isadmin"><a href="../admin"><i class="fas fa-fw fa-user-shield"></i>Panel de control</a></li>
-                    <li><a href="#misCampos"><i class="fab fa-fw fa-pagelines"></i>Mis campos</a></li>
+                    <li><a href="./campos/index.html"><i class="fab fa-fw fa-pagelines"></i>Mis campos</a></li>
                     <li class="logout_button"><a href="#"><i class="fas fa-fw fa-sign-out-alt"></i>Cerrar sesión</a></li>
                 </ul>
             </nav>
@@ -91,21 +91,22 @@
     <script>
 
         var sesionPath = "../../api/v1.0/sesion";
+        var landingPath = "../../index.html";
 
         fetch(sesionPath).then((res) => {
             if(res.ok) {
                 return res.json();
             } else {
-                redirectLogin();
+                 window.location.href = landingPath;
             }
         }).then(data => {
             if(data.rol !== 'admin' && data.rol !== 'user') {
-                redirectLogin();
+                 window.location.href = landingPath;
             } else {
                 var username = document.getElementById("usernameDisplay");
                 username.textContent = data.nombre;
 
-                var usernameTitle = document.getElementById("usernameDisplayTitle");
+                //var usernameTitle = document.getElementById("usernameDisplayTitle");
                 //usernameTitle.textContent = data.nombre;
 
 
@@ -125,12 +126,8 @@
             fetch(sesionPath, {
                 method: 'DELETE'
             }).then(res => {
-                redirectLogin();
+                 window.location.href = landingPath;
             })
-        }
-
-        function redirectLogin() {
-            window.location.href = '../../index.html';
         }
 
         var logoutButton = document.getElementsByClassName("logout_button")[0];
@@ -139,6 +136,6 @@
     </script>
     <script src="../../scripts/navbar.js"></script>
     <script src="map.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDScccCQFgTFoHXtxkj611ZtR_frUJwvhM&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
 </body>
 </html>
