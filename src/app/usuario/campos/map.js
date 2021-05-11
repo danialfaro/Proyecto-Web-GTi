@@ -62,8 +62,11 @@ function initMap() {
         }
     ]
 
+    //campos = getCampos();
+
     campos.forEach(campo => {
         // Esto por cada campo leido de la base de datos
+
         let polygon = new google.maps.Polygon({
             data: {
                 title: campo.title,
@@ -142,6 +145,7 @@ function closePanelContainer() {
     panelContainer.classList.remove("open");
 }
 
+// Devuelve las coordenadas del centro del poligono
 function polygonCenter(poly) {
     var lowx,
         highx,
@@ -165,4 +169,47 @@ function polygonCenter(poly) {
     center_x = lowx + ((highx-lowx) / 2);
     center_y = lowy + ((highy - lowy) / 2);
     return (new google.maps.LatLng(center_x, center_y));
+}
+
+// datos
+
+console.log(getCampos());
+
+function getCampos(userId) {
+
+    let campos = [];
+
+    if(userId) {
+        url = "../../../api/v1.0/campos/" + userId;
+    } else {
+        url = "../../../api/v1.0/campos";
+    }
+
+    fetch(url).then(res => {
+        if(res.ok) {
+            return res.json();
+        }
+    }).then(data => {
+
+        if(!data) return;
+
+        data.forEach(campoBd => {
+            let campo = {};
+
+            campo.title = campoBd.nombre;
+            campo.paths = [];
+            campoBd.geometria.coordinates[0].forEach(coord => {
+                campo.paths.push({
+                    lat: coord[0],
+                    lng: coord[1]
+                })
+            })
+            //campo.alerts.push();
+
+            campos.push(campo);
+        });
+
+    })
+
+    return campos;
 }

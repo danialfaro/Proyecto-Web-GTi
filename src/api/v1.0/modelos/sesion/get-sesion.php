@@ -8,5 +8,4 @@ if(!isset($_SESSION["nombre"])) {
     die();
 }
 
-http_response_code(200);
-echo json_encode($_SESSION);
+$respuesta = $_SESSION;

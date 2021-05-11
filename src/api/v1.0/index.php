@@ -18,8 +18,15 @@ $recursoPath = 'modelos/' . $recurso . '/' . strtolower($metodo) . '-' . $recurs
 
 
 if (file_exists($recursoPath)) {
+
+    $respuesta = array();
+
     // Si existe le delegamos la tarea de procesar la peticion al archivo correspondiente del recurso
     include $recursoPath;
+
+    // Devolvemos la respuesta en formato JSON.
+    include "vistas/json.php";
+
 } else if ($recurso === "") {
     echo "Proyecto Web - Api v1.0";
 } else {

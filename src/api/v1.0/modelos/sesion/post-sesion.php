@@ -20,19 +20,15 @@ if(mysqli_num_rows($result) > 0) {
         //echo "<b>" . $fila['nombre'] . "</b> " .$fila['rol'] . "<br>";
 
         // Iniciar variables de respuesta
-        $salida = [];
-        $salida['id'] = $fila['id'];
-        $salida['nombre'] = $fila['nombre'];
-        $salida['rol'] = $fila['rol'];
+        $respuesta['id'] = $fila['id'];
+        $respuesta['nombre'] = $fila['nombre'];
+        $respuesta['rol'] = $fila['rol'];
 
         // Iniciar variables de sesion
         $_SESSION["id"] = $fila['id'];
         $_SESSION["nombre"] = $fila['nombre'];
         $_SESSION["rol"] = $fila['rol'];
 
-        // Enviar respuesta en formato JSON
-        header("Content-Type: application/json;");
-        echo json_encode($salida);
     }
 
     http_response_code(200);
