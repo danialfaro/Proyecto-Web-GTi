@@ -83,10 +83,10 @@ function fitPolygonBounds(polygon) {
         bounds.extend(v);
     });
     let boundsPadding = {
-        //top: window.innerWidth > 400 ? (window.innerHeight * 5) / 100 : 0,
-        bottom: (window.innerHeight * 25) / 100,
+        top: window.innerWidth > 1200 ? (window.innerHeight * 20) / 100 : 0,
+        bottom: (window.innerHeight * 30) / 100,
         left: 20,
-        right: 20
+        right: window.innerWidth > 1200 ? (window.innerWidth * 45) / 100: 20
     }
     map.fitBounds(bounds, boundsPadding);
 }
