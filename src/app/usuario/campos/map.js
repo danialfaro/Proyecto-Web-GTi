@@ -1,28 +1,25 @@
 let map;
-const initCoordinates = { lat: 38.996470, lng: -0.166034 };
-
 let polygonsCampos = [];
-var currentPolygon;
+let currentPolygon;
 
 function initMap() {
 
     map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 15,
-        center: initCoordinates,
+        zoom: 14,
         mapTypeId: 'hybrid',
         styles: [
             {
                 featureType: 'transit',
                 elementType: 'labels.icon',
-                stylers: [{ visibility: 'off' }]
+                stylers: [{visibility: 'off'}]
             },
             {
                 featureType: 'poi',
-                stylers: [{ visibility: 'off' }]
+                stylers: [{visibility: 'off'}]
             },
             {
                 featureType: 'road',
-                stylers: [{ visibility: 'off' }]
+                stylers: [{visibility: 'off'}]
             },
         ],
         mapTypeControl: false,
@@ -32,65 +29,42 @@ function initMap() {
         fullscreenControl: false
     });
 
-    let campos = [
-        {
-            title: "Campo caliente",
-            paths: [
-                { lat: 38.996985, lng: -0.166835 },
-                { lat: 38.995776, lng: -0.167017 },
-                { lat: 38.995551, lng: -0.165333 },
-                { lat: 38.996967, lng: -0.165400 }
-            ],
-            alerts: [
-                { title: "Aviso humedad baja." },
-                { title: "Aviso humedad baja." },
-                { title: "Aviso humedad baja." },
-                { title: "Aviso humedad baja." }
-            ],
-        },
-        {
-            title: "Campo tibio",
-            paths: [
-                { lat: 38.994284, lng: -0.165939 },
-                { lat: 38.993731, lng: -0.165426 },
-                { lat: 38.993356, lng: -0.165714 },
-                { lat: 38.992422, lng: -0.165937 },
-                { lat: 38.992558, lng: -0.167594 },
-                { lat: 38.993979, lng: -0.167213 }
-            ]
 
-        }
-    ]
+    getCampos(userData).then((campos) => {
 
-    //campos = getCampos();
+        //console.log(campos);
 
-    campos.forEach(campo => {
-        // Esto por cada campo leido de la base de datos
+        campos.forEach(campo => {
 
-        let polygon = new google.maps.Polygon({
-            data: {
-                title: campo.title,
-                alerts: campo.alerts
-            },
-            paths: campo.paths,
-            strokeColor: "#cc1884",
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: "#820053",
-            fillOpacity: 0.35,
-            map: map,
+            // Esto por cada campo leido de la base de datos
+
+            let polygon = new google.maps.Polygon({
+                data: {
+                    title: campo.title,
+                    alerts: campo.alerts
+                },
+                paths: campo.paths,
+                strokeColor: "#cc1884",
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: "#820053",
+                fillOpacity: 0.35,
+                map: map,
+            });
+
+
+            google.maps.event.addListener(polygon, 'click', function (e) {
+                currentPolygon = this;
+                fitPolygonBounds(currentPolygon);
+                openPanelContainer(currentPolygon.data);
+            });
+
+            polygonsCampos.push(polygon);
+            //
         });
 
-        google.maps.event.addListener(polygon, 'click', function (e) {
-            currentPolygon = this;
-            fitPolygonBounds(currentPolygon);
-            openPanelContainer(currentPolygon.data);
-        });
-
-        polygonsCampos.push(polygon);
-        //
-    });
-
+        map.setCenter(polygonCenter(polygonsCampos[0]));
+    })
 
 
     google.maps.event.addListener(map, 'zoom_changed', function (e) {
@@ -98,6 +72,8 @@ function initMap() {
             closePanelContainer();
         }
     })
+
+
 
 }
 
@@ -108,7 +84,7 @@ function fitPolygonBounds(polygon) {
     });
     let boundsPadding = {
         //top: window.innerWidth > 400 ? (window.innerHeight * 5) / 100 : 0,
-        bottom: (window.innerHeight * 30) / 100,
+        bottom: (window.innerHeight * 25) / 100,
         left: 20,
         right: 20
     }
@@ -155,7 +131,7 @@ function polygonCenter(poly) {
         lngs = [],
         vertices = poly.getPath();
 
-    for(var i=0; i<vertices.length; i++) {
+    for (var i = 0; i < vertices.length; i++) {
         lngs.push(vertices.getAt(i).lng());
         lats.push(vertices.getAt(i).lat());
     }
@@ -166,50 +142,55 @@ function polygonCenter(poly) {
     highx = lats[vertices.length - 1];
     lowy = lngs[0];
     highy = lngs[vertices.length - 1];
-    center_x = lowx + ((highx-lowx) / 2);
+    center_x = lowx + ((highx - lowx) / 2);
     center_y = lowy + ((highy - lowy) / 2);
     return (new google.maps.LatLng(center_x, center_y));
 }
 
-// datos
+// Cargar datos de los campos
 
-console.log(getCampos());
+function getCampos(userData) {
+    return new Promise((resolve, reject) => {
 
-function getCampos(userId) {
+        let campos = [];
+        let url;
 
-    let campos = [];
-
-    if(userId) {
-        url = "../../../api/v1.0/campos/" + userId;
-    } else {
-        url = "../../../api/v1.0/campos";
-    }
-
-    fetch(url).then(res => {
-        if(res.ok) {
-            return res.json();
+        if (userData && userData.rol !== "admin") {
+            url = "../../../api/v1.0/campos/usuario/" + userData.id;
+        } else {
+            url = "../../../api/v1.0/campos";
         }
-    }).then(data => {
 
-        if(!data) return;
+        fetch(url).then(res => {
+            if (res.ok) {
+                return res.json();
+            } else {
+                reject();
+            }
+        }).then(data => {
 
-        data.forEach(campoBd => {
-            let campo = {};
+            if (!data) return;
 
-            campo.title = campoBd.nombre;
-            campo.paths = [];
-            campoBd.geometria.coordinates[0].forEach(coord => {
-                campo.paths.push({
-                    lat: coord[0],
-                    lng: coord[1]
+            data.forEach(campoBd => {
+                let campo = {};
+
+                campo.title = campoBd.nombre;
+                campo.paths = [];
+                campoBd.geometria.coordinates[0].forEach(coord => {
+                    campo.paths.push({
+                        lat: coord[0],
+                        lng: coord[1]
+                    })
                 })
-            })
-            //campo.alerts.push();
+                //campo.alerts.push();
 
-            campos.push(campo);
-        });
+                campos.push(campo);
+            });
+
+            resolve(campos);
+
+        })
 
     })
 
-    return campos;
 }

@@ -26,9 +26,9 @@ body, html, main {
 
 #panelContainer {
     position: absolute;
-    bottom: -40vh;
+    bottom: -30vh;
     left: 0;
-    right: 0;
+    width: 100vw;
     transition: .5s;
     display: flex;
     flex-direction: column;
@@ -53,21 +53,21 @@ body, html, main {
 }
 
 #panelContainer .panel_toolbar button {
-    margin: 1rem;
-    padding: 1rem;
+    margin: 1.2rem;
+    padding: 1.2rem;
     background: white;
     border-radius: 50%;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.25), inset 0 0 6px rgba(107, 107, 107, 0.25);
     border: none;
     height: min-content;
     opacity: 1;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     color: gray;
     transition: .2s;
 }
 
 #panelContainer.open .panel_toolbar button {
-    opacity: 0;
+    opacity: .5;
     padding: .7rem;
     font-size: 1.2rem;
 }
@@ -76,34 +76,45 @@ body, html, main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 30vh;
+    height: 40vh;
     background: white;
-    padding: .3rem;
-    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.25), inset 0 2px 6px rgba(107, 107, 107, 0.15);     
+    padding: .9rem;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.25), inset 0 2px 6px rgba(107, 107, 107, 0.15);
     font-size: .9rem;
     opacity: 0;
     transition: .2s;
+    position: relative;
 }
 
 #panelContainer.open .panel_info  {
     opacity: 1;
 }
 
-#panelContainer .panel_info .panel_info_body_header {
-    padding: .9rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+#panelContainer.open .panel_info::after  {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 8px;
+    width: 4em;
+    height: 4px;
+    background: lightgrey;
+    transform: translateX(-50%);
+    border-radius: 120px;
 }
 
 
 #panelContainer .panel_info .panel_info_body {
-    padding: 0 .9rem;
+    padding: .9rem;    
     text-align: justify;
-    overflow: auto;
-    height: 120px;
 }
 
+#panelContainer .panel_info .panel_info_body .panel_info_body_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
 
 span.alert {
     padding: .2rem 1.3rem;
@@ -125,5 +136,5 @@ span.alert-danger {
 
 #panelContainer .panel_info a[type=button] {
     display: block;
-    margin-bottom: .9rem;
+    margin: 0;
 }

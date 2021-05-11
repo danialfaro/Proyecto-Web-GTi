@@ -59,7 +59,7 @@
     overflow: hidden;
     background: white;
     position: absolute;
-    left: 0%;
+    left: 0;
     width: 100vw;
     top: -25rem;
     max-height: 100vh;
@@ -79,12 +79,21 @@
     top: -25rem;
 }
 
-#login-form-wrapper ul {
-    padding: 12px;
+#login-form-wrapper ul li a {
+    display: block;
+    padding: 12px 16px;
+    color: var(--black);
 }
+
 #login-form-wrapper ul li i {
-    margin: 12px;
+    margin: 0 12px;
 }
+
+#login-form-wrapper ul li.logout_button a {
+    background: rgba(231, 231, 231, 0.25);
+    color: gray;
+}
+
 
 #overlay {
     background: rgba(0, 0, 0, 0.2);
@@ -186,24 +195,15 @@
     font-size: 1.5rem;
     color: var(--black);
 }
-    
-#menu-emergente ul li.logout_button {
-    border-left: 1px #818181 solid;
-}
-
-#menu-emergente ul li.logout_button i {
-    color: #818181;
-}
-
-#menu-emergente ul li.logout_button a {
-    background: rgba(231, 231, 231, 0.25);
-    color: gray;
-}
 
 /* Media queries */
 
 @media(min-width: 1200px) {
     #menu-emergente {
         width: 40vw;
+    }
+
+    #login-form-wrapper {
+        width: 30vw;
     }
 }

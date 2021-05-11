@@ -32,7 +32,8 @@
         </div>
         <div id="login-form-wrapper">
             <ul>
-                <li><i class="fa fa-fw fa-edit"></i>Editar perfil</li>
+                <li><a href="#"><i class="fa fa-fw fa-edit"></i>Editar perfil</a></li>
+                <li class="logout_button"><a href="#"><i class="fas fa-fw fa-sign-out-alt"></i>Cerrar sesión</a></li>
             </ul>
         </div>
         <div id="menu-emergente">
@@ -42,7 +43,6 @@
                 <ul>
                     <li class="isadmin"><a href="../admin"><i class="fas fa-fw fa-user-shield"></i>Panel de control</a></li>
                     <li><a href="./campos/index.html"><i class="fab fa-fw fa-pagelines"></i>Mis campos</a></li>
-                    <li class="logout_button"><a href="#"><i class="fas fa-fw fa-sign-out-alt"></i>Cerrar sesión</a></li>
                 </ul>
             </nav>
         </div>
@@ -103,12 +103,9 @@
             if(data.rol !== 'admin' && data.rol !== 'user') {
                  window.location.href = landingPath;
             } else {
+
                 var username = document.getElementById("usernameDisplay");
                 username.textContent = data.nombre;
-
-                //var usernameTitle = document.getElementById("usernameDisplayTitle");
-                //usernameTitle.textContent = data.nombre;
-
 
                 var adminOptions = document.getElementsByClassName("isadmin");
                 for (let i = 0; i < adminOptions.length; i++){

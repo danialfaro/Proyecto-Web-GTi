@@ -9,7 +9,7 @@
           integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="../../../styles/estilos.css">
     <link rel="stylesheet" href="../../../styles/navbar-app.css">
-    <link rel="stylesheet" href="campos_v2.css">
+    <link rel="stylesheet" href="campos.css">
 </head>
 <body>
 
@@ -32,7 +32,8 @@
     </div>
     <div id="login-form-wrapper">
         <ul>
-            <li><i class="fa fa-fw fa-edit"></i>Editar perfil</li>
+            <li><a href="#"><i class="fa fa-fw fa-edit"></i>Editar perfil</a></li>
+            <li class="logout_button"><a href="#"><i class="fas fa-fw fa-sign-out-alt"></i>Cerrar sesión</a></li>
         </ul>
     </div>
     <div id="menu-emergente">
@@ -40,10 +41,8 @@
         <h2>Menú</h2>
         <nav>
             <ul>
-                <li class="isadmin"><a href="../../admin"><i class="fas fa-fw fa-user-shield"></i>Panel de control</a>
-                </li>
+                <li class="isadmin"><a href="../../admin"><i class="fas fa-fw fa-user-shield"></i>Panel de control</a></li>
                 <li><a href="#"><i class="fab fa-fw fa-pagelines"></i>Mis campos</a></li>
-                <li class="logout_button"><a href="#"><i class="fas fa-fw fa-sign-out-alt"></i>Cerrar sesión</a></li>
             </ul>
         </nav>
     </div>
@@ -77,39 +76,47 @@
 </main>
 
 
+<script src="../../../scripts/navbar.js"></script>
+<script src="map.js"></script>
 <script>
 
-    var sesionPath = "../../../api/v1.0/sesion";
-    var landingPath = '../../../index.html';
+    let userData;
+    const sesionPath = "../../../api/v1.0/sesion";
+    const landingPath = '../../../index.html';
 
-    fetch(sesionPath).then((res) => {
-        if (res.ok) {
-            return res.json();
-        } else {
-            window.location.href = landingPath;
-        }
-    }).then(data => {
-        if (data.rol !== 'admin' && data.rol !== 'user') {
-            window.location.href = landingPath;
-        } else {
-            var username = document.getElementById("usernameDisplay");
-            username.textContent = data.nombre;
+    function initView() {
 
-            //var usernameTitle = document.getElementById("usernameDisplayTitle");
-            //usernameTitle.textContent = data.nombre;
-
-
-            var adminOptions = document.getElementsByClassName("isadmin");
-            for (let i = 0; i < adminOptions.length; i++) {
-                if (data.rol === 'admin') {
-                    adminOptions[i].classList.remove('d-none');
-                } else {
-                    adminOptions[i].classList.add('d-none');
-                }
+        fetch(sesionPath).then((res) => {
+            if (res.ok) {
+                return res.json();
+            } else {
+                window.location.href = landingPath;
             }
+        }).then(data => {
+            if (data.rol !== 'admin' && data.rol !== 'user') {
+                window.location.href = landingPath;
+            } else {
 
-        }
-    });
+                userData = data;
+
+                const username = document.getElementById("usernameDisplay");
+                username.textContent = data.nombre;
+
+                const adminOptions = document.getElementsByClassName("isadmin");
+                for (let i = 0; i < adminOptions.length; i++) {
+                    if (data.rol === 'admin') {
+                        adminOptions[i].classList.remove('d-none');
+                    } else {
+                        adminOptions[i].classList.add('d-none');
+                    }
+                }
+
+                initMap();
+
+            }
+        });
+    }
+
 
     function logout() {
         fetch(sesionPath, {
@@ -125,10 +132,6 @@
     //document.getElementsByClassName("map-section-wrapper")[0].style.height = 'calc(' + window.outerHeight + 'px - 3.625rem)'
 
 </script>
-<script src="../../../scripts/navbar.js"></script>
-<script src="map.js"></script>
-<!-- <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script> -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDScccCQFgTFoHXtxkj611ZtR_frUJwvhM&callback=initMap" async
-        defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initView" async defer></script>
 </body>
 </html>
