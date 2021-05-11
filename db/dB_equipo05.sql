@@ -1,4 +1,3 @@
-
 CREATE TABLE IF NOT EXISTS usuarios (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
@@ -18,18 +17,23 @@ CREATE TABLE IF NOT EXISTS campos (
 
 INSERT INTO campos(nombre, geometria) VALUES ('campo1', PolyFromText('POLYGON((39.493657 -0.546388, 39.494768 -0.547670, 39.495761 -0.546128,39.495719 -0.545953,39.495765 -0.545840,39.495145 -0.545133,39.493657 -0.546388))', 0));
 INSERT INTO campos(nombre, geometria) VALUES ('campo2', PolyFromText('POLYGON((39.483713 -0.550990,39.482736 -0.550990,39.481510 -0.548522,39.483688 -0.548672,39.483713 -0.550990))', 0));
-INSERT INTO campos(nombre, geometria) VALUES ('campo3', PolyFromText('POLYGON((36.909953 -2.446600,36.909851 -2.449178,36.911224 -2.449167,36.911404 -2.446892,36.909953 -2.446600))', 0));
+INSERT INTO campos(nombre, geometria) VALUES ('campo3', PolyFromText('POLYGON((36.909953 -2.446600,36.909851 -2.449178,36.911224 -2.449167,36.911224 -2.449167,36.909953 -2.446600))', 0));
 
 CREATE TABLE IF NOT EXISTS ubicaciones(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    lat FLOAT( 10, 6 ) NOT NULL,
-    lng FLOAT( 10, 6 ) NOT NULL
+    lat FLOAT( 10, 10 ) NOT NULL,
+    lng FLOAT( 10, 10 ) NOT NULL
 );
 
-INSERT INTO ubicaciones(lat, lng) VALUES(-12.1312321, 34.1231234);
-INSERT INTO ubicaciones(lat, lng) VALUES();
-INSERT INTO ubicaciones(lat, lng) VALUES();
-INSERT INTO ubicaciones(lat, lng) VALUES();
+INSERT INTO ubicaciones(lat, lng) VALUES(39.494424, -0.546801);
+INSERT INTO ubicaciones(lat, lng) VALUES(39.495256, -0.546803);
+INSERT INTO ubicaciones(lat, lng) VALUES(39.494267, -0.546072);
+INSERT INTO ubicaciones(lat, lng) VALUES(39.483233, -0.550636);
+INSERT INTO ubicaciones(lat, lng) VALUES(39.482173, -0.548748);
+INSERT INTO ubicaciones(lat, lng) VALUES(39.483332, -0.549220);
+INSERT INTO ubicaciones(lat, lng) VALUES(36.910537, -2.449017);
+INSERT INTO ubicaciones(lat, lng) VALUES(36.910074, -2.446989);
+INSERT INTO ubicaciones(lat, lng) VALUES(36.911112, -2.447708);
 
 
 
@@ -46,4 +50,5 @@ INSERT INTO sondas(mac) VALUES
 ("52:6p:l4:3v:62:1k"),
 ("86:2i:f8:2m:51:3r"),
 ("71:6x:h9:7d:20:6p"),
-("20:3b:j8:5c:36:4c");
+("20:3b:j8:5c:36:4c"),
+("15:8b:s4:7r:20:7f");
