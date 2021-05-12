@@ -57,6 +57,7 @@ function initMap() {
                 currentPolygon = this;
                 fitPolygonBounds(currentPolygon);
                 openPanelContainer(currentPolygon.data);
+                //mostrarSondasCampo();
             });
 
             polygonsCampos.push(polygon);
@@ -73,8 +74,10 @@ function initMap() {
         }
     })
 
+}
 
-
+function OnClickVer(){
+    fitPolygonBounds(currentPolygon);
 }
 
 function fitPolygonBounds(polygon) {
@@ -89,6 +92,16 @@ function fitPolygonBounds(polygon) {
         right: window.innerWidth > 1200 ? (window.innerWidth * 45) / 100: 20
     }
     map.fitBounds(bounds, boundsPadding);
+}
+
+function fitAllPolygons() {
+    let bounds = new google.maps.LatLngBounds();
+    polygonsCampos.forEach(polygon => {
+        polygon.getPath().getArray().forEach(function (v) {
+            bounds.extend(v);
+        });
+    })
+    map.fitBounds(bounds);
 }
 
 function openPanelContainer(data) {
