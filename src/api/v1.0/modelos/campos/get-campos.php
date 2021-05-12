@@ -11,7 +11,7 @@ switch (true) {
 
     case is_numeric($paramPath[0]):
         $id = $paramPath[0];
-        // Query para devolver los campos de un usuario
+        // Query para devolver un campo
         $sql = "SELECT nombre, ST_AsGeoJSON(geometria) as geometria FROM campos WHERE id = '${id}'";
         break;
 
