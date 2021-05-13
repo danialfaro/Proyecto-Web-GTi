@@ -406,7 +406,7 @@ footer section {
     transform: scale(0.7);
     opacity: 0;
 }
-.popup .btn-cerrar-popup {
+.popup #btn-cerrar-popup {
     font-size: 16px;
     line-height: 16px;
     display: block;
@@ -414,7 +414,7 @@ footer section {
     color: #BBBBBB;
     transition: .3s ease all;
 }
-.popup .btn-cerrar-popup:hover{
+.popup #btn-cerrar-popup:hover{
     color: #000;
 }
 
@@ -430,8 +430,8 @@ footer section {
 }
 
 .popup.active{opacity: 1; transform: scale(1);}
-.popup.active h3 {animation: entradaTitulo .8s ease .5s forwards;}
-.popup.active p {animation: entradaSubtitulo .8s ease .5s forwards;}
+.popup.active h3 {animation: entradaTitulo .5s ease .2s forwards;}
+.popup.active p {animation: entradaSubtitulo .5s ease .2s forwards;}
 
 @keyframes entradaTitulo {
     from{

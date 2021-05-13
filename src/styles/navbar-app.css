@@ -49,6 +49,15 @@
     align-items: center;
 }
 
+#flecha-login {
+    font-size: 1rem;
+    margin-left: .5rem;
+}
+
+#flecha-login.open {
+    transform: rotate(180deg);
+}
+
 #usernameDisplay {
     margin-left: .5rem;
 }
@@ -81,7 +90,7 @@
 
 #login-form-wrapper ul li a {
     display: block;
-    padding: 12px 16px;
+    padding: 1.4rem;
     color: var(--black);
 }
 
@@ -90,7 +99,7 @@
 }
 
 #login-form-wrapper ul li.logout_button a {
-    background: rgba(231, 231, 231, 0.25);
+    background: rgba(246, 246, 246, 0.25);
     color: gray;
 }
 
