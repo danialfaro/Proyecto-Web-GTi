@@ -217,19 +217,20 @@
         <p>¿Ya te has decidido o aún tienes dudas? ¡Dejanos ayudarte!</p>
         <form action="" id="formContactanos">
             <div class="form-group">
-                <input type="text" placeholder="Nombre" required  >
+                <input type="text" id="nombreOK" placeholder="Nombre" required  >
                 <label>Nombre</label>
             </div>
 
             <div class="form-group">
-                <input type="email" placeholder="Correo electrónico" required>
+                <input type="email" id="mailOK" placeholder="Correo electrónico" required>
                 <label>Correo electrónico</label>
             </div>
             <div class="form-group">
-                <input type="text" placeholder="Asunto" name="asunto" list="asuntos_datlist" required>
+                <input type="text" placeholder="Asunto" id="asuntoOK" name="asunto" list="asuntos_datlist" required>
                 <datalist id="asuntos_datlist">
                     <option>MÁS INFORMACIÓN</option>
                     <option>CONTRATAR SERVICIO</option>
+                    <option>OTRO</option>
                 </datalist>
                 <label>Asunto</label>
             </div>
@@ -302,7 +303,6 @@
                 </div>
             </li>
         </ul>
-
     </section>
 
     <section id="seccionSocialMedia" class="padding-container">
@@ -324,8 +324,6 @@
         <p>GTi - Equipo 05</p>
     </section>
 </footer>
-
-
 <script src="scripts/main.js"></script>
 <script src="scripts/navbar.js"></script>
 <script src="scripts/slider.js"></script>
