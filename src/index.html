@@ -239,9 +239,16 @@
                 <label>Mensaje</label>
             </div>
 
-            <input type="submit" value="Enviar consulta" class="button_primary">
+            <input type="submit" value="Enviar consulta" class="button_primary" id="popupContact">
         </form>
 
+        <div class="overlay" id="overlayID">
+            <div class="popup" id="popupID">
+                <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
+                <h3> ¡Gracias!</h3>
+                <h4>Su consulta ha sido enviada correctamente, en breve recibirá una respuesta</h4>
+            </div>
+        </div>
     </section>
 
     <section id="sectionFaq" class="anchor padding-container">
@@ -323,6 +330,7 @@
 <script src="scripts/navbar.js"></script>
 <script src="scripts/slider.js"></script>
 <script src="scripts/login.js"></script>
+<script src="scripts/popup.js"></script>
 
 </body>
 </html>
