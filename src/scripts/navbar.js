@@ -11,16 +11,6 @@ window.onload = () => {
 
     /* Login Form Toggle Behaviour */
 
-    /* navbar-app */
-    const flecha = document.getElementById('flecha-login');
-    var abrirFlecha = (abrir) => {
-        if(abrir) {
-            flecha?.classList.add("open")
-        } else {
-            flecha?.classList.remove("open")
-        }
-    }
-
     var isLoginOpen = false;
     var loginToggleButton = document.getElementById("loginToggleButton");
     var loginWrapper = document.getElementById("login-form-wrapper");
@@ -30,7 +20,6 @@ window.onload = () => {
         loginWrapper.classList.add("login-open");
         loginWrapper.classList.remove("login-closed");
         activeOverlay(true);
-        abrirFlecha(true);
     }
 
     var closeLoginMenu = () => {
@@ -38,15 +27,12 @@ window.onload = () => {
         loginWrapper.classList.remove("login-open");
         loginWrapper.classList.add("login-closed");
         activeOverlay(false);
-        abrirFlecha(false);
     }
-
 
     loginToggleButton.addEventListener('click', () => {
         isLoginOpen = !isLoginOpen;
         isLoginOpen ? openLoginMenu() : closeLoginMenu();
     });
-
 
     /* End Login Form Toggle Behaviour */
 

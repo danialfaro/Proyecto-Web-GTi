@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-05-2021 a las 01:04:08
+-- Tiempo de generación: 14-05-2021 a las 00:05:49
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -124,8 +124,7 @@ ALTER TABLE `ubicaciones`
 --
 ALTER TABLE `ubicacion_sonda`
   ADD PRIMARY KEY (`id_ubicacion`,`id_sonda`),
-  ADD KEY `fk_sonda` (`id_sonda`),
-  ADD KEY `id_ubicacion` (`id_ubicacion`);
+  ADD KEY `ubicacion_sonda_ibfk_2` (`id_sonda`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -182,8 +181,8 @@ ALTER TABLE `ubicaciones`
 -- Filtros para la tabla `ubicacion_sonda`
 --
 ALTER TABLE `ubicacion_sonda`
-  ADD CONSTRAINT `fk_sonda` FOREIGN KEY (`id_sonda`) REFERENCES `sondas` (`id`),
-  ADD CONSTRAINT `fk_ubicacion` FOREIGN KEY (`id_ubicacion`) REFERENCES `ubicaciones` (`id`);
+  ADD CONSTRAINT `ubicacion_sonda_ibfk_1` FOREIGN KEY (`id_ubicacion`) REFERENCES `ubicaciones` (`id`),
+  ADD CONSTRAINT `ubicacion_sonda_ibfk_2` FOREIGN KEY (`id_sonda`) REFERENCES `sondas` (`id`);
 
 --
 -- Filtros para la tabla `usuarios_campos`
