@@ -5,18 +5,16 @@ var btnAbrirPopup = document.getElementById('popupContact'),
 
 var mail = document.getElementById("mailOK");
 var nombre = document.getElementById("nombreOK");
-var asunto = document.getElementById("asuntoOK");
+var asunto = document.getElementById("nombreOK");
 var text = document.getElementById("mensaje");
 
 
 
 mail.addEventListener("input", function (event) {
-	
-	console.log("Mail: "+mail.validity.typeMismatch);
-	console.log("Nombre: "+nombre.validity.valueMissing);
-	console.log("Asunto: "+asunto.validity.valueMissing);
-	console.log("Text: "+text.validity.valueMissing);
-	if (mail.validity.typeMismatch || nombre.validity.valueMissing ||asunto.validity.valueMissing  ||text.validity.valueMissing ) {} 
+
+	if (mail.validity.typeMismatch || nombre.validity.valueMissing || asunto.validity.valueMissing || text.validity.valueMissing ) {
+		//
+	}
 	else {
   
 		btnAbrirPopup.addEventListener('click',function (){
@@ -30,5 +28,15 @@ mail.addEventListener("input", function (event) {
 		});
 	}
 });
+
+let formContactanos = document.getElementById("formContactanos");
+formContactanos.addEventListener("submit", (event) => {
+
+	event.preventDefault();
+
+	overlay.classList.add('active');
+	popup.classList.add('active');
+
+})
 
 

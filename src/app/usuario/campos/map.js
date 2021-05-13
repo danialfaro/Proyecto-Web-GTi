@@ -52,7 +52,6 @@ function initMap() {
                 map: map,
             });
 
-
             google.maps.event.addListener(polygon, 'click', function (e) {
                 currentPolygon = this;
                 fitPolygonBounds(currentPolygon);

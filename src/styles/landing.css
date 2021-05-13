@@ -388,16 +388,19 @@ footer section {
     justify-content: center;
     visibility: hidden;
 }
+
 .overlay.active{
     visibility: visible;
 }
+
 .popup{
     background: #f8f8f8;
-    box-shadow:0px 0px 5px 0px rgba(0,0,0,0.3);
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.3);
     border-radius: 5px;
-    padding: 20px;
+    padding: 1.2rem;
     text-align: center;
     width: 600px;
+    margin: 1rem;
 
     transition: .3s ease all;
     transform: scale(0.7);
@@ -416,19 +419,19 @@ footer section {
 }
 
 .popup h3{
-    font-size: 36px;
+    font-size: 2.5rem;
     margin-bottom: 10px;
     opacity: 0;
 }
-.popup h4{
-    font-size: 26px;
+.popup p{
+    font-size: 1rem;
     margin-bottom: 40px;
     opacity: 0;
 }
 
 .popup.active{opacity: 1; transform: scale(1);}
 .popup.active h3 {animation: entradaTitulo .8s ease .5s forwards;}
-.popup.active h4 {animation: entradaSubtitulo .8s ease .5s forwards;}
+.popup.active p {animation: entradaSubtitulo .8s ease .5s forwards;}
 
 @keyframes entradaTitulo {
     from{
