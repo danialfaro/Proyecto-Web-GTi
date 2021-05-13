@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-05-2021 a las 18:44:13
+-- Tiempo de generación: 14-05-2021 a las 00:06:35
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -64,15 +64,15 @@ INSERT INTO `ubicaciones` (`id`, `lat`, `lng`, `id_campo`) VALUES
 -- Volcado de datos para la tabla `ubicacion_sonda`
 --
 
-INSERT INTO `ubicacion_sonda` (`id_ubicacion`, `id_sonda`) VALUES
-(4, 1),
-(5, 2),
-(6, 3),
-(7, 4),
-(8, 6),
-(9, 7),
-(10, 8),
-(11, 9);
+INSERT INTO `ubicacion_sonda` (`id_ubicacion`, `id_sonda`, `activa`) VALUES
+(4, 1, 1),
+(5, 2, 1),
+(6, 3, 1),
+(7, 4, 1),
+(8, 6, 1),
+(9, 7, 1),
+(10, 8, 1),
+(11, 9, 1);
 
 --
 -- Volcado de datos para la tabla `usuarios`

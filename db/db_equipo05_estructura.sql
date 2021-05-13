@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-05-2021 a las 16:17:47
+-- Tiempo de generación: 14-05-2021 a las 00:05:49
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -65,7 +65,8 @@ CREATE TABLE `ubicaciones` (
 
 CREATE TABLE `ubicacion_sonda` (
   `id_ubicacion` int(11) NOT NULL,
-  `id_sonda` int(11) NOT NULL
+  `id_sonda` int(11) NOT NULL,
+  `activa` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -122,7 +123,8 @@ ALTER TABLE `ubicaciones`
 -- Indices de la tabla `ubicacion_sonda`
 --
 ALTER TABLE `ubicacion_sonda`
-  ADD PRIMARY KEY (`id_ubicacion`,`id_sonda`);
+  ADD PRIMARY KEY (`id_ubicacion`,`id_sonda`),
+  ADD KEY `ubicacion_sonda_ibfk_2` (`id_sonda`);
 
 --
 -- Indices de la tabla `usuarios`
