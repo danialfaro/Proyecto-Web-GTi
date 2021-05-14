@@ -1,35 +1,29 @@
-var btnAbrirPopup = document.getElementById('popupContact'),
-    overlay= document.getElementById('overlayID'),
-    popup = document.getElementById('popupID'),
-    btnCerrarPopup = document.getElementById('btn-cerrar-popup');
+const overlay= document.getElementById('overlayID');
+const popup = document.getElementById('popupID');
 
-var mail = document.getElementById("mailOK");
-var nombre = document.getElementById("nombreOK");
-var asunto = document.getElementById("nombreOK");
-var text = document.getElementById("mensaje");
+const mail = document.getElementById("mailOK");
+const nombre = document.getElementById("nombreOK");
+const asunto = document.getElementById("nombreOK");
+const text = document.getElementById("mensaje");
 
 
-
-mail.addEventListener("input", function (event) {
-
-	if (mail.validity.typeMismatch || nombre.validity.valueMissing || asunto.validity.valueMissing || text.validity.valueMissing ) {
-		//
-	}
-	else {
-  
-		btnAbrirPopup.addEventListener('click',function (){
-			overlay.classList.add('active');
-			popup.classList.add('active');
-		});
-
-		btnCerrarPopup.addEventListener('click',function (){
-		  overlay.classList.remove('active');
-		  popup.classList.remove('active');
-		});
-	}
+const btnCerrarPopup = document.getElementById('btn-cerrar-popup');
+btnCerrarPopup.addEventListener('click',function (){
+	overlay.classList.remove('active');
+	popup.classList.remove('active');
 });
 
-let formContactanos = document.getElementById("formContactanos");
+const formContactanos = document.getElementById("formContactanos");
+
+formContactanos.addEventListener("input", function (event) {
+
+	if (mail.validity.typeMismatch || nombre.validity.valueMissing || asunto.validity.valueMissing || text.validity.valueMissing ) {
+		//incorrecto
+		console.log("incorrecto/incompleto");
+	}
+
+});
+
 formContactanos.addEventListener("submit", (event) => {
 
 	event.preventDefault();
@@ -38,5 +32,3 @@ formContactanos.addEventListener("submit", (event) => {
 	popup.classList.add('active');
 
 })
-
-

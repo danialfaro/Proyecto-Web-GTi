@@ -106,6 +106,15 @@
     animation: appear .2s forwards;
 }
 
+#flecha-login {
+    font-size: 1rem;
+    margin-left: .5rem;
+}
+
+#flecha-login.open {
+    transform: rotate(180deg);
+}
+
 #overlay.closed {
     animation: disappear .2s forwards;
 }

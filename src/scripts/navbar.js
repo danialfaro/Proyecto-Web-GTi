@@ -9,6 +9,16 @@ window.onload = () => {
         }
     }
 
+    /* navbar-app */
+    const flecha = document.getElementById('flecha-login');
+    var abrirFlecha = (abrir) => {
+        if(abrir) {
+            flecha?.classList.add("open")
+        } else {
+            flecha?.classList.remove("open")
+        }
+    }
+
     /* Login Form Toggle Behaviour */
 
     var isLoginOpen = false;
@@ -20,6 +30,7 @@ window.onload = () => {
         loginWrapper.classList.add("login-open");
         loginWrapper.classList.remove("login-closed");
         activeOverlay(true);
+        abrirFlecha(true);
     }
 
     var closeLoginMenu = () => {
@@ -27,6 +38,7 @@ window.onload = () => {
         loginWrapper.classList.remove("login-open");
         loginWrapper.classList.add("login-closed");
         activeOverlay(false);
+        abrirFlecha(false);
     }
 
     loginToggleButton.addEventListener('click', () => {

@@ -406,7 +406,7 @@ footer section {
     transform: scale(0.7);
     opacity: 0;
 }
-.popup .btn-cerrar-popup {
+.popup #btn-cerrar-popup {
     font-size: 16px;
     line-height: 16px;
     display: block;
@@ -414,7 +414,7 @@ footer section {
     color: #BBBBBB;
     transition: .3s ease all;
 }
-.popup .btn-cerrar-popup:hover{
+.popup #btn-cerrar-popup:hover{
     color: #000;
 }
 

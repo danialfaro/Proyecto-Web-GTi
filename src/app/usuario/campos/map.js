@@ -2,6 +2,8 @@ let map;
 let polygonsCampos = [];
 let currentPolygon;
 
+let markers = [];
+
 function initMap() {
 
     map = new google.maps.Map(document.getElementById("map"), {
@@ -40,6 +42,7 @@ function initMap() {
 
             let polygon = new google.maps.Polygon({
                 data: {
+                    id_campo: campo.id,
                     title: campo.title,
                     alerts: campo.alerts
                 },
@@ -56,7 +59,7 @@ function initMap() {
                 currentPolygon = this;
                 fitPolygonBounds(currentPolygon);
                 openPanelContainer(currentPolygon.data);
-                //mostrarSondasCampo();
+                mostrarUbicacionesCampo(currentPolygon.data.id_campo);
             });
 
             polygonsCampos.push(polygon);
@@ -66,10 +69,12 @@ function initMap() {
         map.setCenter(polygonCenter(polygonsCampos[0]));
     })
 
-
     google.maps.event.addListener(map, 'zoom_changed', function (e) {
         if (map.zoom < 18) {
             closePanelContainer();
+            markers.forEach(marker => {
+                marker.setMap(null);
+            })
         }
     })
 
@@ -159,7 +164,31 @@ function polygonCenter(poly) {
     return (new google.maps.LatLng(center_x, center_y));
 }
 
-// Cargar datos de los campos
+
+function mostrarUbicacionesCampo(campoId) {
+
+    getUbicaciones(campoId).then(ubicaciones => {
+
+        ubicaciones.forEach(ubi => {
+            let marker = new google.maps.Marker({
+                position: {lat: parseFloat(ubi.lat), lng: parseFloat(ubi.lng)},
+                map,
+                icon: {
+                    //url: "../../../images/pink-marker.png",
+                    url: "../../../images/purple-sensor-marker.png",
+                    scaledSize: new google.maps.Size(35, 35)
+                },
+                title: ubi.id
+            });
+            markers.push(marker);
+        })
+    })
+
+
+}
+
+
+// Cargar datos ====================== //
 
 function getCampos(userData) {
     return new Promise((resolve, reject) => {
@@ -181,11 +210,10 @@ function getCampos(userData) {
             }
         }).then(data => {
 
-            if (!data) return;
-
-            data.forEach(campoBd => {
+            data?.forEach(campoBd => {
                 let campo = {};
 
+                campo.id = campoBd.id;
                 campo.title = campoBd.nombre;
                 campo.paths = [];
                 campoBd.geometria.coordinates[0].forEach(coord => {
@@ -200,6 +228,32 @@ function getCampos(userData) {
             });
 
             resolve(campos);
+
+        })
+
+    })
+
+}
+
+function getUbicaciones(campoId) {
+    return new Promise((resolve, reject) => {
+
+        let ubicaciones = [];
+        let url = "../../../api/v1.0/campos/" + campoId + "/ubicaciones";
+
+        fetch(url).then(res => {
+            if (res.ok) {
+                return res.json();
+            } else {
+                reject();
+            }
+        }).then(data => {
+
+            data?.forEach(ubicacionBd => {
+                ubicaciones.push(ubicacionBd);
+            });
+
+            resolve(ubicaciones);
 
         })
 
