@@ -130,6 +130,124 @@ span.alert-danger {
     margin-bottom: .9rem;
 }
 
+
+/* Popup busqueda */
+
+#overlayPopup {
+    background: rgba(0,0,0,.3);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    visibility: hidden;
+}
+
+#overlayPopup.active {
+    visibility: visible;
+}
+
+.popup {
+    background: #F8F8F8;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+    border-radius: 6px;
+    padding: 1.4rem;
+    text-align: center;
+    position: relative;
+    width: 600px;
+    max-height: 70vh;
+    margin: 1rem;
+
+    transition: .3s ease all;
+    transform: scale(0.7);
+    opacity: 0;
+    border-bottom: 6px var(--primary) solid;
+}
+
+.popup #btn-cerrar-popup {
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    padding: 1rem;
+    position: absolute;
+    right: .6rem;
+    top: .6rem;
+
+    transition: .3s ease all;
+    color: #8c8c8c;
+    z-index: 10;
+}
+
+.popup #btn-cerrar-popup:hover {
+    color: #000;
+}
+
+.popup h3 {
+    font-size: 1.8rem;
+    margin-bottom: .2rem;
+    opacity: 0;
+}
+
+.popup h4 {
+    font-size: 1.1rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+
+}
+.popup ul {
+    overflow: scroll;
+    min-height: 200px;
+    max-height: 40vh;
+}
+
+.popup li {
+    list-style: none;
+    background: #ececec;
+    margin: auto;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    padding: 15px;
+    width: 100%;
+}
+.popup li:hover{
+    background: #e5e5e5;
+}
+
+.popup.active {	transform: scale(1); opacity: 1; }
+.popup.active h3 { animation: entradaTitulo .3s ease .1s forwards; }
+.popup.active h4 { animation: entradaSubtitulo .3s ease .1s forwards; }
+
+@keyframes entradaTitulo {
+    from {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes entradaSubtitulo {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+
+
+/* Media Queries */
 @media(min-width: 1200px) {
     #panelContainer {
         width: 40vw;

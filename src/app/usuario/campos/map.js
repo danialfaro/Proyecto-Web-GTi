@@ -38,35 +38,44 @@ function initMap() {
 
         campos.forEach(campo => {
 
-            // Esto por cada campo leido de la base de datos
-
+            // Crear las instancias de los campos
             let polygon = new google.maps.Polygon({
                 data: {
                     id_campo: campo.id,
                     title: campo.title,
-                    alerts: campo.alerts
+                    alerts: campo.alerts,
+                    descripcion: "Lorem ipsum dolor sit, amet consectetur adipisicing elit." //default dev
                 },
                 paths: campo.paths,
                 strokeColor: "#cc1884",
                 strokeOpacity: 0.8,
                 strokeWeight: 2,
                 fillColor: "#820053",
-                fillOpacity: 0.35,
+                fillOpacity: 0.25,
                 map: map,
             });
 
             google.maps.event.addListener(polygon, 'click', function (e) {
-                currentPolygon = this;
-                fitPolygonBounds(currentPolygon);
-                openPanelContainer(currentPolygon.data);
-                mostrarUbicacionesCampo(currentPolygon.data.id_campo);
+                focusCampoPolygonMap(this);
             });
 
             polygonsCampos.push(polygon);
-            //
+
+            //Rellenar lista de busqueda con los campos
+            const listaCampos = document.getElementById("listaCampos");
+            const li = document.createElement("li");
+            li.innerHTML = polygon.data.title;
+            li.addEventListener("click", () => {
+                cerrarPopupBusqueda();
+                focusCampoPolygonMap(polygon);
+            })
+            listaCampos.appendChild(li);
+
         });
 
-        map.setCenter(polygonCenter(polygonsCampos[0]));
+        fitAllPolygonsBounds();
+
+
     })
 
     google.maps.event.addListener(map, 'zoom_changed', function (e) {
@@ -84,6 +93,12 @@ function OnClickVer(){
     fitPolygonBounds(currentPolygon);
 }
 
+function focusCampoPolygonMap(campoPolygon){
+    currentPolygon = campoPolygon;
+    fitPolygonBounds(currentPolygon);
+    openPanelContainer(currentPolygon.data);
+    mostrarUbicacionesCampo(currentPolygon.data.id_campo);
+}
 function fitPolygonBounds(polygon) {
     let bounds = new google.maps.LatLngBounds();
     polygon.getPath().getArray().forEach(function (v) {
@@ -98,7 +113,7 @@ function fitPolygonBounds(polygon) {
     map.fitBounds(bounds, boundsPadding);
 }
 
-function fitAllPolygons() {
+function fitAllPolygonsBounds() {
     let bounds = new google.maps.LatLngBounds();
     polygonsCampos.forEach(polygon => {
         polygon.getPath().getArray().forEach(function (v) {
@@ -114,6 +129,9 @@ function openPanelContainer(data) {
 
     let title = panelContainer.getElementsByClassName("title")[0];
     title.textContent = data.title;
+
+    let descripcion = panelContainer.getElementsByClassName("descripcion")[0];
+    descripcion.textContent = data.descripcion;
 
     let alerts = panelContainer.getElementsByClassName("alert")[0];
     let numAlerts = data.alerts ? data.alerts.length : 0;
@@ -167,7 +185,7 @@ function polygonCenter(poly) {
 
 function mostrarUbicacionesCampo(campoId) {
 
-    getUbicaciones(campoId).then(ubicaciones => {
+    getUbicacionesCampo(campoId).then(ubicaciones => {
 
         ubicaciones.forEach(ubi => {
             let marker = new google.maps.Marker({
@@ -187,8 +205,55 @@ function mostrarUbicacionesCampo(campoId) {
 
 }
 
+// Click events
 
-// Cargar datos ====================== //
+const infoBotonVer = document.getElementById("infoBotonVer");
+infoBotonVer.addEventListener("click", () => {
+  alert(currentPolygon.data.title + "\n"
+      + currentPolygon.data.descripcion + "\n"
+      + (currentPolygon.data.alerts ? currentPolygon.data.alerts.length : 0) + " alertas");
+})
+
+const overlay = document.getElementById('overlayPopup')
+const popup = document.getElementById('popup');
+
+// boton busqueda @ abrir/cerrar popup
+const busquedaBoton = document.getElementById("busquedaBoton");
+let busquedaActivo = false;
+busquedaBoton.addEventListener("click", () => {
+    if(busquedaActivo) {
+        /*cerrarPopupBusqueda();
+        busquedaBoton.getElementsByTagName("i")[0].className = "fa fa-search";*/
+        busquedaActivo = false;
+    } else {
+        overlay.classList.add('active');
+        popup.classList.add('active');
+        //busquedaBoton.getElementsByTagName("i")[0].className = "fa fa-times";
+        busquedaActivo = true;
+    }
+});
+
+// x - cerrar popup
+const btnCerrarPopup = document.getElementById('btn-cerrar-popup');
+btnCerrarPopup.addEventListener('click', function(e){
+    e.preventDefault();
+    cerrarPopupBusqueda();
+});
+
+const cerrarPopupBusqueda = () => {
+    overlay.classList.remove('active');
+    popup.classList.remove('active');
+    busquedaActivo = false;
+}
+
+
+// boton mapa @ fit bounds
+const fitMapBoton = document.getElementById("fitMapBoton");
+fitMapBoton.addEventListener("click", () => {
+    fitAllPolygonsBounds();
+})
+
+// API Calls ====================== Cargar los datos //
 
 function getCampos(userData) {
     return new Promise((resolve, reject) => {
@@ -235,7 +300,7 @@ function getCampos(userData) {
 
 }
 
-function getUbicaciones(campoId) {
+function getUbicacionesCampo(campoId) {
     return new Promise((resolve, reject) => {
 
         let ubicaciones = [];
