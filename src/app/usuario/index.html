@@ -62,29 +62,42 @@
             </div>
         </section>
 
-        <section id="misCampos">
+        <section id="seccionAlertas">
             <div class="main-container">
-                <div class="texto-enunciadoCampo">
-                    <h2>Mis campos</h2>
-                    <p>Selecciona el campo y sonda que quieras ver</p>
+                <!-- Texto principal -->
+                <h2>Alertas</h2>
+
+                <div class="lista-alertas">
+                    <ul>
+                        <li>
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Alerta 01 - Descripcion
+                        </li>
+                        <li>
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Alerta 02 - Descripcion
+                        </li>
+                        <li>
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Alerta 03 - Descripcion
+                        </li>
+                        <li>
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Alerta 04 - Descripcion
+                        </li>
+                        <li>
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Alerta 05 - Descripcion
+                        </li>
+                        <li>
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Alerta 06 - Descripcion
+                        </li>
+                    </ul>
                 </div>
 
-                <div id="sobreMapa">
-                    <input name="username" id="username" type="text" placeholder="Buscar" required>
-                    <button onclick=""><i class="fas fa-fw fa-search"></i></button>
-                    <button onclick=""><i class="fas fa-fw fa-list-ul"></i></button>
-                </div>
+                <a href="campos/" class="button_primary">Ver campos</a>
 
-                <div id="map"></div>
-
-                <div class="texto-comentarioCampo">
-                    <h3>Campo 2 - Melbourne</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aut delectus distinctio dolor dolore.
-                    </p>
-                </div>
-                <div class="mapaBotonVer">
-                    <input type="submit" value="Ver" class="button_primary">
-                </div>
             </div>
         </section>
 
@@ -134,7 +147,5 @@
 
     </script>
     <script src="../../scripts/navbar.js"></script>
-    <script src="map.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
 </body>
 </html>
