@@ -217,7 +217,7 @@ infoBotonVer.addEventListener("click", () => {
 const overlay = document.getElementById('overlayPopup')
 const popup = document.getElementById('popup');
 
-// boton busqueda @ abrir/cerrar popup
+// boton busqueda @ abrir/cerrar form_contacto
 const busquedaBoton = document.getElementById("busquedaBoton");
 let busquedaActivo = false;
 busquedaBoton.addEventListener("click", () => {
@@ -233,7 +233,7 @@ busquedaBoton.addEventListener("click", () => {
     }
 });
 
-// x - cerrar popup
+// x - cerrar form_contacto
 const btnCerrarPopup = document.getElementById('btn-cerrar-popup');
 btnCerrarPopup.addEventListener('click', function(e){
     e.preventDefault();

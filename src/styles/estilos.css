@@ -53,9 +53,13 @@ a {
     padding: .7rem 2rem;
 }
 
-.button_primary:hover {
+.button_primary:hover:not([disabled]) {
     transform: translate(0, -1px);
     background: linear-gradient(60deg, var(--primary_light), #b80175);
+}
+
+.button_primary:focus {
+    background: linear-gradient(60deg, var(--primary_light), #ca1f83);
 }
 
 .button_primary:active {
@@ -159,14 +163,24 @@ textarea:focus::placeholder {
     color: lightgray;  
 }
 
+input[type=checkbox] {
+    width: auto;
+}
+
 input[type=submit] {
     padding: .8rem;
     margin: .8rem 0;
 }
 
+input[disabled]{
+    background: lightgray;
+    opacity: .8;
+}
+
 textarea {
     resize: none;
 }
+
 
 /* Media queries */
 

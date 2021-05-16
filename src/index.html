@@ -218,16 +218,16 @@
         <p>¿Ya te has decidido o aún tienes dudas? ¡Dejanos ayudarte!</p>
         <form action="" id="formContactanos">
             <div class="form-group">
-                <input type="text" id="nombreOK" placeholder="Nombre" required  >
+                <input type="text" id="nombre" placeholder="Nombre" required  >
                 <label>Nombre</label>
             </div>
 
             <div class="form-group">
-                <input type="email" id="mailOK" placeholder="Correo electrónico" required>
+                <input type="email" id="mail" placeholder="Correo electrónico" required>
                 <label>Correo electrónico</label>
             </div>
             <div class="form-group">
-                <input type="text" placeholder="Asunto" id="asuntoOK" name="asunto" list="asuntos_datlist" required>
+                <input type="text" placeholder="Asunto" id="asunto" name="asunto" list="asuntos_datlist" required>
                 <datalist id="asuntos_datlist">
                     <option>MÁS INFORMACIÓN</option>
                     <option>CONTRATAR SERVICIO</option>
@@ -241,7 +241,14 @@
                 <label>Mensaje</label>
             </div>
 
-            <input type="submit" value="Enviar consulta" class="button_primary" id="popupContact">
+            <div class="form-group">
+                <div>
+                    <input type="checkbox" name="condiciones" id="condiciones" required>
+                    <label for="condiciones">Aceptar <a href="terminos-y-condiciones.html">términos y condiciones de privacidad</a></label>
+                </div>
+            </div>
+
+            <input type="submit" value="Enviar consulta" class="button_primary" id="submitButtonContact" disabled>
         </form>
 
         <div class="overlay" id="overlayID">
@@ -291,23 +298,11 @@
                     <p>El mantenimiento es continuo.</p>
                 </div>
             </li>
-
-            <li class="faq_title">Lorem Ipsum</li>
-
-            <li class="faq_item">
-                <div class="faq_trigger">
-                    <strong>¿Lorem ipsum dolor sit emet?</strong>
-                    <i class="fa fa-caret-down"></i>
-                </div>
-                <div class="faq_content">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus natus facilis distinctio nihil inventore vitae praesentium, necessitatibus nam veritatis id! Illum rerum, quam deserunt odit incidunt consectetur labore odio officiis.</p>
-                </div>
-            </li>
         </ul>
     </section>
 
     <section id="seccionSocialMedia" class="padding-container">
-        <h2>Nuestras redes sociales: </h2>
+        <h2>Nuestras redes sociales</h2>
         <div class="social_icons">
             <i class="fab fa-facebook" title="facebook"></i>
             <i class="fab fa-twitter" title="twitter"></i>
@@ -329,7 +324,7 @@
 <script src="scripts/navbar.js"></script>
 <script src="scripts/slider.js"></script>
 <script src="scripts/login.js"></script>
-<script src="scripts/popup.js"></script>
+<script src="scripts/form_contacto.js"></script>
 
 </body>
 </html>

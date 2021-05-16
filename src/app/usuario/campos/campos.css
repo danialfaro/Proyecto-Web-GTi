@@ -164,7 +164,7 @@ span.alert-danger {
     transition: .3s ease all;
     transform: scale(0.7);
     opacity: 0;
-    border-bottom: 6px var(--primary) solid;
+    border-bottom: 4px var(--primary_light) solid;
 }
 
 .popup #btn-cerrar-popup {

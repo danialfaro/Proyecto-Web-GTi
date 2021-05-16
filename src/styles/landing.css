@@ -375,7 +375,7 @@ footer section {
 }
 
 
-/*  Desde aquí es el popup del envio de formulario  */
+/*  Desde aquí es el form_contacto del envio de formulario  */
 .overlay{
     background: rgba(0,0,0,.3);
     position: absolute;
@@ -452,4 +452,11 @@ footer section {
         transform: translateY(0px);
         opacity: 1;
     }
+}
+
+
+/* Media queries ======================= */
+
+@media(max-height: 1200px) {
+    /* TODO */
 }
