@@ -92,6 +92,11 @@ main {
     padding-top: 3.625rem;
 }
 
+.container {
+    width: 100%;
+    margin: auto;
+}
+
 .padding-container {
     padding: .8rem;
 }
@@ -181,7 +186,6 @@ textarea {
     resize: none;
 }
 
-
 /* Media queries */
 
 @media(max-width:380px) {
@@ -193,5 +197,11 @@ textarea {
 @media(max-width:350px) {
     html {
         font-size: 75%;
+    }
+}
+
+@media(min-width: 1024px) {
+    .container {
+        width: 80%;
     }
 }

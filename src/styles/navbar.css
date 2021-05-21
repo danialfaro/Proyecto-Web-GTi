@@ -48,7 +48,7 @@
     overflow: hidden;
     background: white;
     position: absolute;
-    left: 0%;
+    right: 0%;
     top: -25rem;
     width: 100vw;
     max-height: 100vh;
@@ -67,6 +67,41 @@
     max-height: 0px;
     top: -25rem;
 }
+
+/* Login form */
+
+.login-form {
+    width: 100%;
+    display: block;
+    padding: 1.5rem;
+
+}
+
+.login-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form h2 {
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.login-form label {
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+
+.login-form p {
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+#login-form-output {
+    font-size: 0.95rem;
+    color: orangered;
+}
+
 
 #overlay {
     background: rgba(0, 0, 0, 0.2);
@@ -103,6 +138,7 @@
         opacity: 1;
     }
 }
+
 
 /* Menu emergente */
 
@@ -166,5 +202,9 @@
     #menu-emergente {
         width: 40vw;
     }
-}
 
+    #login-form-wrapper {
+        width: 40%;
+        border-radius: 0 0 0 20px;
+    }
+}

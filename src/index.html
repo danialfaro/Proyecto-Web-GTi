@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GTi | Gestion de cultivos sondas inteligentes</title>
     <link rel="icon" type="image/svg+xml" href="images/logos/logoGTI.svg" sizes="any">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+          integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/themes/original-theme.css">
     <link rel="stylesheet" href="styles/estilos.css">
     <link rel="stylesheet" href="styles/landing.css">
@@ -66,15 +67,19 @@
 
     <section id="seccionReclamo">
 
-        <div class="padding-container">
-            <!-- Textos de reclamo -->
-            <div><h1 class="texto-reclamo-principal">La mejor aplicación para tus cultivos</h1></div>
-            <div><h3 class="texto-reclamo-secundario" >Gestiona de forma eficiente tu negocio agrícola.</h3></div>
+        <div class="reclamo-wrapper">
+            <div class="reclamo-content">
+                <!-- Textos de reclamo -->
+                <div class="textos-reclamo">
+                    <h1 class="texto-reclamo-principal">La mejor aplicación para tus cultivos</h1>
+                    <h3 class="texto-reclamo-secundario">Gestiona de forma eficiente tu negocio agrícola.</h3>
+                </div>
 
-            <!-- Botones principales -->
-            <div class="botones">
-                <a type="button" href="#seccion_quienessomos" class="button_primary">Quiénes somos</a>
-                <a type="button" href="#seccion_contactanos" class="button_secondary">Contáctanos</a>
+                <!-- Botones principales -->
+                <div class="botones">
+                    <a type="button" href="#seccion_quienessomos" class="button_primary">Quiénes somos</a>
+                    <a type="button" href="#seccion_contactanos" class="button_secondary">Contáctanos</a>
+                </div>
             </div>
         </div>
 
@@ -85,222 +90,255 @@
 
         <div class="fondo_reclamo"></div>
 
-        <div class="flecha_ver_mas fa fa-chevron-down">
-            <a href="#seccion_quienessomos"></a>
-        </div>
+        <a href="#seccion_quienessomos" class="flecha_ver_mas fa fa-chevron-down">
+        </a>
 
     </section>
 
-    <section id="seccionQuienesSomos" class="anchor">
-        <a name="seccion_quienessomos"></a>
+    <div class="container">
 
-        <h2 class="text-center padding-container">¿Quiénes somos?</h2>
-        <div class="background-grey">
-            <p class="padding-container">GTi es una empresa que proporciona la monitorización y el análisis de parámetros agronómicos y medioambientales con el fin de optimizar la producción, la calidad y la sostenibilidad medioambiental, así como el mantenimiento de dicho servicio</p>
-        </div><br>
+        <section id="seccionQuienesSomos" class="anchor">
+            <a name="seccion_quienessomos"></a>
 
-        <div style="text-align: center">
-            <img id="videoGTI" src="images/video.png">
-        </div>
-
-        <div class="padding-container">
-            <h2 class="text-center padding-container">Qué ofrecemos</h2>
-        <div id="ofertas">
-
-            <div class="ofertaV padding-container">
-                <h3 class="ofertas">SENSORES</h3>
-                <p>Amplia gama de sensores para agricultura que miden parámetros de humedad, salinidad en agua, temperatura e iluminación.</p>
+            <h2 class="text-center padding-container">¿Quiénes somos?</h2>
+            <div class="background-grey">
+                <p class="padding-container">GTi es una empresa que proporciona la monitorización y el análisis de
+                    parámetros agronómicos y medioambientales con el fin de optimizar la producción, la calidad y la
+                    sostenibilidad medioambiental, así como el mantenimiento de dicho servicio</p>
             </div>
 
-            <div class="ofertaV padding-container">
-
-                <h3 class="ofertas">SEGURIDAD ANTIROBO</h3>
-                <p>Sistema de detección de movimiento y alerta en caso de intento de robo del sensor. Incluye posibilidad de seguimiento del sensor a través geolocalización.</p>
-
+            <div class="video">
+                <!-- <img id="videoGTI" src="images/video.png"> -->
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/-o-niQnnQAk" title="YouTube video player" frameborder="0"allowfullscreen></iframe>
             </div>
 
-            <div class="ofertaV padding-container">
-                <h3 class="ofertas">INSTALACIÓN Y MANTENIMIENTO</h3>
-                <p>Instalación y mantenimiento incluidos en el paquete. Ademas los sensores constan de alimentación autónoma a través de panel solar integrado y una bateria.</p>
-            </div>
+            <div class="padding-container">
+                <h2 class="text-center padding-container">Qué ofrecemos</h2>
+                <div id="ofertas">
 
-            <div class="ofertaV padding-container">
-
-                <h3 class="ofertas">ENVIO DE DATOS A LA WEB</h3>
-                <p>Dispositivos conectados a los sensores, estos obtienen los datos y los envian inalámbricamente a la plataforma web donde se muestran los valores recogidos.</p>
-
-            </div>
-
-            <div class="ofertaV padding-container">
-                <h3 class="ofertas">REPRESENTACIÓN DE DATOS</h3>
-                <p>Se proporciona una cuenta para la aplicacion web de GTI donde se representarán los datos de los distintos sensores de forma gráfica y organizada.</p>
-            </div>
-        </div>
-        </div>
-
-
-        <h2 class="texto-esp-principal">Especificaciones de nuestros sensores</h2>
-        <div class="container-slider">
-            <div class="slider" id="slider">
-                <div class="slider__section">
-                    <div style="text-align: center">
-                        <img class="esp-icono" src="images/icons/ubi.png">
-                        <h3 class="esp-titulo">Ubicación</h3>
-                        <p class="esp-text">Los sensores indican su posición permitiendo su geolocalización</p>
+                    <div class="ofertaV padding-container">
+                        <i class="fa fa-wifi"></i>
+                        <h3 class="ofertas">SENSORES</h3>
+                        <p>Amplia gama de sensores para agricultura que miden parámetros de humedad, salinidad en agua,
+                            temperatura e iluminación.</p>
                     </div>
-                </div>
 
-                <div class="slider__section">
-                    <div style="text-align: center">
-                        <img class="esp-icono" src="images/icons/vibr.png">
-                        <h3 class="esp-titulo">Vibraciones</h3>
-                        <p class="esp-text">En caso de detectar vibraciones fuertes, el sensor activa una alerta antirrobo</p>
+                    <div class="ofertaV padding-container">
+                        <i class="fa fa-shield-alt"></i>
+                        <h3 class="ofertas">SEGURIDAD ANTIROBO</h3>
+                        <p>Sistema de detección de movimiento y alerta en caso de intento de robo del sensor. Incluye
+                            posibilidad de seguimiento del sensor a través geolocalización.</p>
+
                     </div>
-                </div>
 
-                <div class="slider__section">
-                    <div style="text-align: center">
-                        <img class="esp-icono" src="images/icons/humedad.png">
-                        <h3 class="esp-titulo">Humedad</h3>
-                        <p class="esp-text">Los sensores calculan el nivel de humedad en el ambiente</p>
+                    <div class="ofertaV padding-container">
+                        <i class="fa fa-tools"></i>
+                        <h3 class="ofertas">INSTALACIÓN Y MANTENIMIENTO</h3>
+                        <p>Instalación y mantenimiento incluidos en el paquete. Ademas los sensores constan de
+                            alimentación
+                            autónoma a través de panel solar integrado y una bateria.</p>
                     </div>
-                </div>
 
-                <div class="slider__section">
-                    <div style="text-align: center">
-                        <img class="esp-icono" src="images/icons/sal.png">
-                        <h3 class="esp-titulo">Salinidad</h3>
-                        <p class="esp-text">Los sensores calculan el nivel de sal en agua</p>
+                    <div class="ofertaV padding-container">
+                        <i class="fa fa-globe"></i>
+                        <h3 class="ofertas">ENVIO DE DATOS A LA WEB</h3>
+                        <p>Dispositivos conectados a los sensores, estos obtienen los datos y los envian
+                            inalámbricamente a
+                            la plataforma web donde se muestran los valores recogidos.</p>
+
                     </div>
-                </div>
 
-                <div class="slider__section">
-                    <div style="text-align: center">
-                        <img class="esp-icono" src="images/icons/temp.png">
-                        <h3 class="esp-titulo">Temperatura</h3>
-                        <p class="esp-text">Los sensores calculan el valor de la temperatura ambiente</p>
+                    <div class="ofertaV padding-container">
+                        <i class="fa fa-chart-bar"></i>
+                        <h3 class="ofertas">REPRESENTACIÓN DE DATOS</h3>
+                        <p>Se proporciona una cuenta para la aplicacion web de GTI donde se representarán los datos de
+                            los
+                            distintos sensores de forma gráfica y organizada.</p>
                     </div>
-                </div>
 
-                <div class="slider__section">
-                    <div style="text-align: center">
-                        <img class="esp-icono" src="images/icons/luz.png">
-                        <h3 class="esp-titulo">Iluminanción</h3>
-                        <p class="esp-text">Los sensores calculan el valor de iluminancia del terreno</p>
-                    </div>
-                </div>
-
-                <div class="slider__section">
-                    <div style="text-align: center">
-                        <img class="esp-icono" src="images/icons/bat.png">
-                        <h3 class="esp-titulo">Alimentación</h3>
-                        <p class="esp-text">Los sensores cuentan con una batería y un panel solar que permiten su alimentación autónoma</p>
-                    </div>
-                </div>
-
-                <div class="slider__section">
-                    <div style="text-align: center">
-                        <img class="esp-icono" src="images/icons/datos.png">
-                        <h3 class="esp-titulo">Datos WEB</h3>
-                        <p class="esp-text">Los sensores son capaces de conectarse a internet para enviar los datos recogidos a la WEB apk</p>
+                    <div class="ofertaV padding-container">
+                        <i class="fa fa-users"></i>
+                        <h3 class="ofertas">GESTION DE CUENTAS</h3>
+                        <p>La cuenta principal puede gestionar los permisos de las cuentas de usuario subcontratadas.</p>
                     </div>
                 </div>
             </div>
-            <div class="slider__btn slider__btn--right" id="btn-right">&#62;</div>
-            <div class="slider__btn slider__btn--left" id="btn-left">&#60;</div>
-        </div>
 
-    </section>
 
-    <section id="seccionContactanos" class="anchor padding-container">
-        <a name="seccion_contactanos"></a>
-        <h2>Contáctanos</h2>
-        <p>¿Ya te has decidido o aún tienes dudas? ¡Dejanos ayudarte!</p>
-        <form action="" id="formContactanos">
-            <div class="form-group">
-                <input type="text" id="nombre" placeholder="Nombre" required  >
-                <label>Nombre</label>
+            <h2 class="texto-esp-principal">Especificaciones de nuestros sensores</h2>
+            <div class="container-slider">
+                <div class="slider" id="slider">
+                    <div class="slider__section">
+                        <div style="text-align: center">
+                            <img class="esp-icono" src="images/icons/ubi.png">
+                            <h3 class="esp-titulo">Ubicación</h3>
+                            <p class="esp-text">Los sensores indican su posición permitiendo su geolocalización</p>
+                        </div>
+                    </div>
+
+                    <div class="slider__section">
+                        <div style="text-align: center">
+                            <img class="esp-icono" src="images/icons/vibr.png">
+                            <h3 class="esp-titulo">Vibraciones</h3>
+                            <p class="esp-text">En caso de detectar vibraciones fuertes, el sensor activa una alerta
+                                antirrobo</p>
+                        </div>
+                    </div>
+
+                    <div class="slider__section">
+                        <div style="text-align: center">
+                            <img class="esp-icono" src="images/icons/humedad.png">
+                            <h3 class="esp-titulo">Humedad</h3>
+                            <p class="esp-text">Los sensores calculan el nivel de humedad en el ambiente</p>
+                        </div>
+                    </div>
+
+                    <div class="slider__section">
+                        <div style="text-align: center">
+                            <img class="esp-icono" src="images/icons/sal.png">
+                            <h3 class="esp-titulo">Salinidad</h3>
+                            <p class="esp-text">Los sensores calculan el nivel de sal en agua</p>
+                        </div>
+                    </div>
+
+                    <div class="slider__section">
+                        <div style="text-align: center">
+                            <img class="esp-icono" src="images/icons/temp.png">
+                            <h3 class="esp-titulo">Temperatura</h3>
+                            <p class="esp-text">Los sensores calculan el valor de la temperatura ambiente</p>
+                        </div>
+                    </div>
+
+                    <div class="slider__section">
+                        <div style="text-align: center">
+                            <img class="esp-icono" src="images/icons/luz.png">
+                            <h3 class="esp-titulo">Iluminanción</h3>
+                            <p class="esp-text">Los sensores calculan el valor de iluminancia del terreno</p>
+                        </div>
+                    </div>
+
+                    <div class="slider__section">
+                        <div style="text-align: center">
+                            <img class="esp-icono" src="images/icons/bat.png">
+                            <h3 class="esp-titulo">Alimentación</h3>
+                            <p class="esp-text">Los sensores cuentan con una batería y un panel solar que permiten su
+                                alimentación autónoma</p>
+                        </div>
+                    </div>
+
+                    <div class="slider__section">
+                        <div style="text-align: center">
+                            <img class="esp-icono" src="images/icons/datos.png">
+                            <h3 class="esp-titulo">Datos WEB</h3>
+                            <p class="esp-text">Los sensores son capaces de conectarse a internet para enviar los datos
+                                recogidos a la WEB apk</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider__btn slider__btn--right" id="btn-right">&#62;</div>
+                <div class="slider__btn slider__btn--left" id="btn-left">&#60;</div>
             </div>
 
-            <div class="form-group">
-                <input type="email" id="mail" placeholder="Correo electrónico" required>
-                <label>Correo electrónico</label>
-            </div>
-            <div class="form-group">
-                <input type="text" placeholder="Asunto" id="asunto" name="asunto" list="asuntos_datlist" required>
-                <datalist id="asuntos_datlist">
-                    <option>MÁS INFORMACIÓN</option>
-                    <option>CONTRATAR SERVICIO</option>
-                    <option>OTRO</option>
-                </datalist>
-                <label>Asunto</label>
-            </div>
+        </section>
 
-            <div class="form-group">
-                <textarea name="mensaje" id="mensaje" cols="30" rows="10" placeholder="Mensaje" required></textarea>
-                <label>Mensaje</label>
-            </div>
+        <section id="seccionContactanos" class="anchor padding-container">
+            <a name="seccion_contactanos"></a>
+            <h2>Contáctanos</h2>
+            <p>¿Ya te has decidido o aún tienes dudas? ¡Dejanos ayudarte!</p>
+            <form action="" id="formContactanos">
+                <div class="form-group">
+                    <input type="text" id="nombre" placeholder="Nombre" required>
+                    <label>Nombre</label>
+                </div>
 
-            <div class="form-group">
-                <div>
-                    <input type="checkbox" name="condiciones" id="condiciones" required>
-                    <label for="condiciones">Aceptar <a href="terminos-y-condiciones.html">términos y condiciones de privacidad</a></label>
+                <div class="form-group">
+                    <input type="email" id="mail" placeholder="Correo electrónico" required>
+                    <label>Correo electrónico</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Asunto" id="asunto" name="asunto" list="asuntos_datlist" required>
+                    <datalist id="asuntos_datlist">
+                        <option>MÁS INFORMACIÓN</option>
+                        <option>CONTRATAR SERVICIO</option>
+                        <option>OTRO</option>
+                    </datalist>
+                    <label>Asunto</label>
+                </div>
+
+                <div class="form-group">
+                    <textarea name="mensaje" id="mensaje" cols="30" rows="10" placeholder="Mensaje" required></textarea>
+                    <label>Mensaje</label>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <input type="checkbox" name="condiciones" id="condiciones" required>
+                        <label for="condiciones">Aceptar <a href="terminos-y-condiciones.html">términos y condiciones de
+                            privacidad</a></label>
+                    </div>
+                </div>
+
+                <input type="submit" value="Enviar consulta" class="button_primary" id="submitButtonContact" disabled>
+            </form>
+
+            <div class="overlay" id="overlayID">
+                <div class="popup" id="popupID">
+                    <a href="#" id="btn-cerrar-popup"><i class="fas fa-times"></i></a>
+                    <h3>¡Gracias!</h3>
+                    <p>Su consulta ha sido enviada correctamente, en breve recibirá una respuesta</p>
                 </div>
             </div>
+        </section>
 
-            <input type="submit" value="Enviar consulta" class="button_primary" id="submitButtonContact" disabled>
-        </form>
+        <section id="sectionFaq" class="anchor padding-container">
+            <a name="seccion_faq"></a>
 
-        <div class="overlay" id="overlayID">
-            <div class="popup" id="popupID">
-                <a href="#" id="btn-cerrar-popup"><i class="fas fa-times"></i></a>
-                <h3>¡Gracias!</h3>
-                <p>Su consulta ha sido enviada correctamente, en breve recibirá una respuesta</p>
-            </div>
-        </div>
-    </section>
+            <h2>Preguntas frecuentes</h2>
 
-    <section id="sectionFaq" class="anchor padding-container">
-        <a name="seccion_faq"></a>
+            <ul>
+                <li class="faq_title">Contratar</li>
+                <li class="faq_item">
+                    <div class="faq_trigger">
+                        <strong>¿Qué tengo que hacer para contratar el servicio?</strong>
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+                    <div class="faq_content">
+                        <p>Para contratar el servicio puedes contactar con nosotros mediante el <a
+                                href="#seccion_contactanos">formulario de contacto</a> y hablaremos personalmente.</p>
+                    </div>
+                </li>
 
-        <h2>Preguntas frecuentes</h2>
+                <li class="faq_title">Instalación y Mantenimiento</li>
 
-        <ul>
-            <li class="faq_title">Contratar</li>
-            <li class="faq_item">
-                <div class="faq_trigger">
-                    <strong>¿Qué tengo que hacer para contratar el servicio?</strong>
-                    <i class="fa fa-caret-down"></i>
-                </div>
-                <div class="faq_content">
-                    <p>Para contratar el servicio puedes contactar con nosotros mediante el <a href="#seccion_contactanos">formulario de contacto</a> y hablaremos personalmente.</p>
-                </div>
-            </li>
+                <li class="faq_item">
+                    <div class="faq_trigger">
+                        <strong>¿Os encargais de la instalación del sistema?</strong>
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+                    <div class="faq_content">
+                        <p>Si, nosotros realizamos la instalacion completa del sistema en tu campo, ajustandolo a tus
+                            necesidades.</p>
+                    </div>
+                </li>
 
-            <li class="faq_title">Instalación y Mantenimiento</li>
+                <li class="faq_item">
+                    <div class="faq_trigger">
+                        <strong>¿Ofreceis mantenimiento?</strong>
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+                    <div class="faq_content">
+                        <p>El mantenimiento es continuo.</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
 
-            <li class="faq_item">
-                <div class="faq_trigger">
-                    <strong>¿Os encargais de la instalación del sistema?</strong>
-                    <i class="fa fa-caret-down"></i>
-                </div>
-                <div class="faq_content">
-                    <p>Si, nosotros realizamos la instalacion completa del sistema en tu campo, ajustandolo a tus necesidades.</p>
-                </div>
-            </li>
 
-            <li class="faq_item">
-                <div class="faq_trigger">
-                    <strong>¿Ofreceis mantenimiento?</strong>
-                    <i class="fa fa-caret-down"></i>
-                </div>
-                <div class="faq_content">
-                    <p>El mantenimiento es continuo.</p>
-                </div>
-            </li>
-        </ul>
-    </section>
 
+    </div>
+</main>
+
+<footer>
     <section id="seccionSocialMedia" class="padding-container">
         <h2>Nuestras redes sociales</h2>
         <div class="social_icons">
@@ -309,10 +347,6 @@
             <i class="fab fa-instagram" title="instagram"></i>
         </div>
     </section>
-
-</main>
-
-<footer>
     <div>
         <a href="#seccionReclamo" class="volver_arriba"><i class="fa fa-arrow-up"></i>Volver arriba</a>
     </div>
