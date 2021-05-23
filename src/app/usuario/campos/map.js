@@ -89,10 +89,6 @@ function initMap() {
 
 }
 
-function OnClickVer(){
-    fitPolygonBounds(currentPolygon);
-}
-
 function focusCampoPolygonMap(campoPolygon){
     currentPolygon = campoPolygon;
     fitPolygonBounds(currentPolygon);
@@ -254,6 +250,7 @@ fitMapBoton.addEventListener("click", () => {
 })
 
 // API Calls ====================== Cargar los datos //
+
 
 function getCampos(userData) {
     return new Promise((resolve, reject) => {
