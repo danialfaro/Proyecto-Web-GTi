@@ -1,10 +1,12 @@
+import CamposService from "../../services/campos-service.js";
+
 let map;
 let polygonsCampos = [];
 let currentPolygon;
 
 let markers = [];
 
-function initMap() {
+let initMap = () => {
 
     map = new google.maps.Map(document.getElementById("map"), {
         zoom: 14,
@@ -30,7 +32,6 @@ function initMap() {
         zoomControl: false,
         fullscreenControl: false
     });
-
 
     getCampos(userData).then((campos) => {
 
@@ -88,6 +89,8 @@ function initMap() {
     })
 
 }
+
+window.initMap = initMap;
 
 function focusCampoPolygonMap(campoPolygon){
     currentPolygon = campoPolygon;
@@ -255,46 +258,17 @@ fitMapBoton.addEventListener("click", () => {
 function getCampos(userData) {
     return new Promise((resolve, reject) => {
 
-        let campos = [];
-        let url;
+        let request;
 
         if (userData && userData.rol !== "admin") {
-            url = "../../../api/v1.0/campos/usuario/" + userData.id;
+            request = CamposService.getCamposUsuario(userData.id);
         } else {
-            url = "../../../api/v1.0/campos";
+            request = CamposService.getCampos();
         }
 
-        fetch(url).then(res => {
-            if (res.ok) {
-                return res.json();
-            } else {
-                reject();
-            }
-        }).then(data => {
+        request.then(data => resolve(data)).catch(err => reject(err));
 
-            data?.forEach(campoBd => {
-                let campo = {};
-
-                campo.id = campoBd.id;
-                campo.title = campoBd.nombre;
-                campo.paths = [];
-                campoBd.geometria.coordinates[0].forEach(coord => {
-                    campo.paths.push({
-                        lat: coord[0],
-                        lng: coord[1]
-                    })
-                })
-                //campo.alerts.push();
-
-                campos.push(campo);
-            });
-
-            resolve(campos);
-
-        })
-
-    })
-
+    });
 }
 
 function getUbicacionesCampo(campoId) {
@@ -322,3 +296,4 @@ function getUbicacionesCampo(campoId) {
     })
 
 }
+
