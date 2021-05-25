@@ -6,10 +6,10 @@ let map;
 let polygonsCampos = [];
 let currentPolygon;
 
-let markers = [];
+let markersUbicaciones = [];
+let markersCampos = [];
 
-
-let initMap = function() {
+let initMap = function () {
 
     map = new google.maps.Map(document.getElementById("map"), {
         zoom: 14,
@@ -47,10 +47,11 @@ let initMap = function() {
     google.maps.event.addListener(map, 'zoom_changed', function (e) {
 
         if (map.zoom < 16) {
-            markers.forEach(marker => {
+            markersUbicaciones.forEach(marker => {
                 marker.setMap(null);
             });
             closePanelContainer();
+            mostrarMarkers(null, false);
         }
 
         if (map.zoom > 12) {
@@ -61,7 +62,7 @@ let initMap = function() {
 
 initMap();
 
-function setupCamposMapa(campos){
+function setupCamposMapa(campos) {
     campos.forEach(campo => {
 
         // Crear las instancias de los campos
@@ -87,7 +88,68 @@ function setupCamposMapa(campos){
 
         polygonsCampos.push(polygon);
 
-        //Rellenar lista de busqueda con los campos
+        // Precargar Marker Campo
+        let markerCampo = new google.maps.Marker({
+            position: polygonCenter(polygon),
+            map: map,
+            icon: {
+                url: "../../../images/pink-marker.png",
+                scaledSize: new google.maps.Size(35, 35)
+            },
+            title: campo.title,
+            campo_id: campo.id
+        });
+        let contentInfoWindow = `<div class="info-window">
+                                    <h4 style="text-align: center">${campo.title}</h4>
+                                    <button class="button_primary" data-campoid="${campo.id}">Visitar</button>
+                                 </div>`
+        const infowindowCampo = new google.maps.InfoWindow({
+            content: contentInfoWindow,
+        });
+        google.maps.event.addListener(infowindowCampo, 'domready', function() {
+            let infoWindows = document.getElementsByClassName("info-window");
+            for (const iw of infoWindows) {
+                let btn = iw.getElementsByTagName("button")[0];
+                btn.addEventListener('click', () => {
+                    focusCampoPolygonMap(polygonsCampos.find((p) => {
+                        return p.data.id_campo === btn.dataset.campoid;
+                    }))
+                })
+            }
+        });
+
+
+        markerCampo.addListener("click", () => {
+            infowindowCampo.open(map, markerCampo);
+        });
+        markersCampos.push(markerCampo);
+
+        // Precargar Markers Sondas
+        getUbicacionesCampo(campo.id).then(ubicaciones => {
+
+            ubicaciones.forEach(ubi => {
+                let marker = new google.maps.Marker({
+                    position: {lat: parseFloat(ubi.lat), lng: parseFloat(ubi.lng)},
+                    icon: {
+                        //url: "../../../images/pink-marker.png",
+                        url: "../../../images/purple-sensor-marker.png",
+                        scaledSize: new google.maps.Size(35, 35)
+                    },
+                    title: ubi.id,
+                    campo_id: campo.id
+                });
+                const infowindow = new google.maps.InfoWindow({
+                    content: `<p>${ubi.lat}, ${ubi.lng}</p>`,
+                });
+
+                marker.addListener("click", () => {
+                    infowindow.open(map, marker);
+                });
+                markersUbicaciones.push(marker);
+            })
+        })
+
+        // Rellenar lista de busqueda con los campos
         const listaCampos = document.getElementById("listaCampos");
         const li = document.createElement("li");
         li.innerHTML = polygon.data.title;
@@ -102,14 +164,16 @@ function setupCamposMapa(campos){
     fitAllPolygonsBounds();
 }
 
-function focusCampoPolygonMap(campoPolygon){
-    mostrarUbicacionesCampo(campoPolygon.data.id_campo);
+function focusCampoPolygonMap(campoPolygon) {
+    mostrarMarkers(campoPolygon.data.id_campo);
     fitPolygonBounds(campoPolygon);
     openPanelContainer(campoPolygon.data);
 
     currentPolygon = campoPolygon;
-
 }
+
+window.focusCampoPolygonMap = focusCampoPolygonMap;
+
 function fitPolygonBounds(polygon) {
     let bounds = new google.maps.LatLngBounds();
     polygon.getPath().getArray().forEach(function (v) {
@@ -119,7 +183,7 @@ function fitPolygonBounds(polygon) {
         top: window.innerWidth > 1200 ? (window.innerHeight * 20) / 100 : 0,
         bottom: (window.innerHeight * 30) / 100,
         left: 20,
-        right: window.innerWidth > 1200 ? (window.innerWidth * 45) / 100: 20
+        right: window.innerWidth > 1200 ? (window.innerWidth * 45) / 100 : 20
     }
     map.fitBounds(bounds, boundsPadding);
 }
@@ -160,38 +224,22 @@ function polygonCenter(poly) {
     return (new google.maps.LatLng(center_x, center_y));
 }
 
-function mostrarUbicacionesCampo(campoId) {
-
-    getUbicacionesCampo(campoId).then(ubicaciones => {
-
-        ubicaciones.forEach(ubi => {
-            let marker = new google.maps.Marker({
-                position: {lat: parseFloat(ubi.lat), lng: parseFloat(ubi.lng)},
-                map,
-                icon: {
-                    //url: "../../../images/pink-marker.png",
-                    url: "../../../images/purple-sensor-marker.png",
-                    scaledSize: new google.maps.Size(35, 35)
-                },
-                title: ubi.id
-            });
-            const infowindow = new google.maps.InfoWindow({
-                content: `<p>${ubi.lat}, ${ubi.lng}</p>`,
-            });
-
-            marker.addListener("click", () => {
-
-                infowindow.open(map, marker);
-            });
-            markers.push(marker);
-        })
+function mostrarMarkers(campoId, mostrar = true) {
+    let mapa = mostrar ? map : null;
+    markersUbicaciones.forEach(marker => {
+        if (campoId === null || marker.campo_id === campoId) {
+            marker.setMap(mapa);
+        }
+    });
+    markersCampos.forEach(marker => {
+        marker.campo_id === campoId ? marker.setMap(null) : marker.setMap(map);
     })
-
-
 }
+
 // UI
 
 const panelContainer = document.getElementById("panelContainer");
+
 function openPanelContainer(data) {
     let panelContainer = document.getElementById("panelContainer");
     panelContainer.classList.add("open");
@@ -221,6 +269,7 @@ function openPanelContainer(data) {
     togglePanelHide(false);
 
 }
+
 function closePanelContainer() {
 
     panelContainer.classList.remove("open");
@@ -230,7 +279,8 @@ const panelHeader = document.getElementById("panelHideToggle");
 panelHeader.addEventListener('click', () => {
     togglePanelHide(!panelContainer.classList.contains("hide"));
 });
-function togglePanelHide(hide){
+
+function togglePanelHide(hide) {
     if (hide) {
         panelContainer.classList.add("hide");
     } else {
@@ -242,9 +292,9 @@ function togglePanelHide(hide){
 
 const infoBotonVer = document.getElementById("infoBotonVer");
 infoBotonVer.addEventListener("click", () => {
-  alert(currentPolygon.data.title + "\n"
-      + currentPolygon.data.descripcion + "\n"
-      + (currentPolygon.data.alerts ? currentPolygon.data.alerts.length : 0) + " alertas");
+    alert(currentPolygon.data.title + "\n"
+        + currentPolygon.data.descripcion + "\n"
+        + (currentPolygon.data.alerts ? currentPolygon.data.alerts.length : 0) + " alertas");
 })
 
 const overlay = document.getElementById('overlayPopup')
@@ -254,7 +304,7 @@ const popup = document.getElementById('popup');
 const busquedaBoton = document.getElementById("busquedaBoton");
 let busquedaActivo = false;
 busquedaBoton.addEventListener("click", () => {
-    if(busquedaActivo) {
+    if (busquedaActivo) {
         /*cerrarPopupBusqueda();
         busquedaBoton.getElementsByTagName("i")[0].className = "fa fa-search";*/
         busquedaActivo = false;
@@ -268,7 +318,7 @@ busquedaBoton.addEventListener("click", () => {
 
 // x - cerrar form_contacto
 const btnCerrarPopup = document.getElementById('btn-cerrar-popup');
-btnCerrarPopup.addEventListener('click', function(e){
+btnCerrarPopup.addEventListener('click', function (e) {
     e.preventDefault();
     cerrarPopupBusqueda();
 });

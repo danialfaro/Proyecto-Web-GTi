@@ -38,7 +38,7 @@ a {
 .button_primary,
 .button_secondary {
     padding: .5rem 2rem;
-    margin: .5rem;
+    *margin: .5rem;
     text-align: center;
     border-radius: 1.3rem;
     font-size: 1rem;
@@ -173,8 +173,8 @@ input[type=checkbox] {
 }
 
 input[type=submit] {
-    padding: .8rem;
-    margin: .8rem 0;
+    *padding: .8rem;
+    *margin: .8rem 0;
 }
 
 input[disabled]{

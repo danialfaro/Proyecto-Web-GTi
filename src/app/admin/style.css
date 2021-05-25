@@ -1,47 +1,53 @@
+.container {
+    padding: 1.2rem;
+}
 
-#seccionAdmin {
-    height: 100vh;
-    height: calc(100vh - 3.625rem);
+#seccionClientes {
+    max-width: 400px;
+}
+
+#listaClientes {
+    list-style: none;
+}
+
+#listaClientes .cliente-item {
+    padding: .5rem;
     display: flex;
-    flex-direction: column;
-    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    border: 3px transparent solid;
 }
-.main-container {
-    padding: .8rem;
+
+#listaClientes .cliente-item:nth-child(2n-1) {
+    background: #f8f8f8;
 }
-.texto-principal {
-    line-height: 2.4rem;
-    font-size: 2rem;
+
+#listaClientes .cliente-item button {
+    margin: 1px;
+    padding: .6rem;
+    border: none;
     font-weight: bold;
     color: var(--black);
-    text-align: left;
-    margin: 15px auto;
-    max-width: 90%;
 }
-.texto-secundario {
-    font-size: 1rem;
-    text-align: center;
-    color: var(--black);
-    margin: 1rem auto;
-    margin-bottom: 1.8rem;
-    line-height: 1.5rem;
-    font-weight: 400;
-    padding: 10px;
-    border-left: 2px var(--primary) solid;
-    max-width: 90%;
+
+#listaClientes .cliente-item button:hover {
+    background: #d4d4d4;
 }
-.texto-empresa{
-    font-weight: bold;
-    color: var(--black);
-    text-align: left;
-    margin: 15px auto;
-    max-width: 90%;
+
+.focused {
+    animation: flash .5s forwards;
 }
-.buscador-empresas{
-    max-width: 90%;
-    align-self: center;
-    margin: 15px auto;
+
+#modificarClienteForm.disabled {
+    opacity: .3;
+    pointer-events: none;
 }
-#empresas::placeholder{
-    color: rgb(77, 77, 77);
+
+@keyframes flash {
+    from {
+        border-color: rgb(0, 102, 255);
+    }
+    to {
+        border-color: rgba(255, 191, 0, 0);
+    }
 }

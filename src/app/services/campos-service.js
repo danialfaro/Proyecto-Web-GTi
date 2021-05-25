@@ -16,17 +16,12 @@ const CamposService = {
         });
     },
     getCampo(id) {
-        return new Promise((resolve, reject) => {
-            ApiService.get("campos/" + id)
-                .then(data => {
-                    let campos = formatCampos(data);
-                    resolve(campos);
-
-                })
-                .catch(err => {
-                    reject(err);
-                });
-        });
+        return new Promise(((resolve, reject) => {
+            ApiService.get("campos/" + id).then(data => {
+                let campos = formatCampos(data);
+                resolve(campos[0]);
+            }).catch(err => reject(err));
+        }))
     },
     getCamposUsuario(id) {
         return new Promise((resolve, reject) => {
