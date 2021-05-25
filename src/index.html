@@ -245,14 +245,14 @@
             <a name="seccion_contactanos"></a>
             <h2>Contáctanos</h2>
             <p>¿Ya te has decidido o aún tienes dudas? ¡Dejanos ayudarte!</p>
-            <form action="" id="formContactanos">
+            <form action="enviar-form.php" method="post" id="formContactanos">
                 <div class="form-group">
-                    <input type="text" id="nombre" placeholder="Nombre" required>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
                     <label>Nombre</label>
                 </div>
 
                 <div class="form-group">
-                    <input type="email" id="mail" placeholder="Correo electrónico" required>
+                    <input type="email" id="mail" name="correo" placeholder="Correo electrónico" required>
                     <label>Correo electrónico</label>
                 </div>
                 <div class="form-group">
