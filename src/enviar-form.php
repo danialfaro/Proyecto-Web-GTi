@@ -6,6 +6,15 @@ require 'PHPMailer/Exception.php';
 require 'PHPMailer/PHPMailer.php';
 require 'PHPMailer/SMTP.php';
 
+$nombre = $_POST["nombre"];
+$correo = $_POST["correo"];
+$asunto = $_POST["asunto"];
+$mensaje = $_POST["mensaje"];
+
+$body ="<strong>Nombre: </strong>" . $nombre . "<br><strong>Correo: </strong>" . $correo . "<br><strong>Asunto: </strong>" . $asunto . "<br><strong>Mensaje: </strong>" . $mensaje;
+
+echo $body;
+
 //Instantiation and passing `true` enables exceptions
 $mail = new PHPMailer(true);
 
@@ -21,8 +30,8 @@ try {
     $mail->Port       = 587;                                    //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
     //Recipients
-    $mail->setFrom('gti.equipo5@gmail.com', 'webGTI'); //desde que correo se envia y con que nombre aparece de quien es el envio
-    $mail->addAddress('gti.equipo5@gmail.com', 'Jose Luís'); // a que correo se envia el mensaje y el nombre del destinatario, el campo nombre es opcional
+    $mail->setFrom($correo, $nombre); //desde que correo se envia y con que nombre aparece de quien es el envio
+    $mail->addAddress('gti.equipo5@gmail.com', 'Jose Luis'); // a que correo se envia el mensaje y el nombre del destinatario, el campo nombre es opcional
     // $mail->addAddress('otro.correo@gmail.com');    si quisieramos enviar el mensaje a mas correos se haria repitiendo la misma linea
 
     /* ESTO ES PARA ENVIAR IMAGENES U OTROS ARCHIVOS ADJUNTOS
@@ -33,11 +42,21 @@ try {
 
     //Content
     $mail->isHTML(true);  //  ESTO PERMITE QUE EL CORREO QUE ENVIES ACEPTE HTML     (Set email format to HTML)
-    $mail->Subject = 'Formulario de la web'; //ASUNTO DEL CORREO
-    $mail->Body    = 'Hola, este es un correo de prueba, <b>Maria mira la nota de redes de ayer</b>';
+    $mail->Subject = $asunto; //ASUNTO DEL CORREO
+    $mail->Body    = "afsegw"; ///$body;
+    $mail->CharSet = "UTF-8";
 
     $mail->send();
+
+    echo '<script>
+        window.history.go(-1);
+    </script>';
+
+
     echo 'El mensaje se envió correctamente';
+
+
 } catch (Exception $e) {
     echo "Hubo un error al enviar el mensaje: {$mail->ErrorInfo}";
 }
+
