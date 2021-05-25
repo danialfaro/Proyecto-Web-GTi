@@ -1,6 +1,6 @@
 const ApiService = {
 
-    path: "../../../api/v1.0/",
+    path: "/Proyecto-Web-GTi/src/api/v1.0/",
 
     get(resource) {
         return new Promise((resolve, reject) => {
@@ -46,15 +46,8 @@ const ApiService = {
                 method: 'delete'
             })
                 .then((response) => {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    reject(
-                        "No hemos podido recuperar ese json. El código de respuesta del servidor es: " +
-                        response.status
-                    );
+                    resolve(response);
                 })
-                .then((json) => resolve(json))
                 .catch((err) => reject(err));
         });
     },

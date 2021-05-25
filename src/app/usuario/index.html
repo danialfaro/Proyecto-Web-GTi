@@ -6,7 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+          integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="../../styles/themes/original-theme.css">
     <link rel="stylesheet" href="../../styles/estilos.css">
     <link rel="stylesheet" href="../../styles/navbar-app.css">
@@ -14,128 +15,115 @@
 </head>
 <body>
 
-    <header id="headerbar">
-        <div class="navbar">
-            <img src="../../images/logos/logoGTI.svg" alt="logoGTI" class="logo">
-            <div class="nav-container">
-                <nav class="nav-menu">
-                    <ul>
-                        <li id="loginToggleButton">
-                            <i class="fa fa-fw fa-user-circle"></i>
-                            <span id="usernameDisplay"></span>
-                            <i class="fa fa-caret-down" id="flecha-login"></i>
-                        </li>
-                        <li id="menuOpenButton">
-                            <i class="fa fa-fw fa-bars"></i>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <div id="login-form-wrapper">
-            <ul>
-                <li><a href="#"><i class="fa fa-fw fa-edit"></i>Editar perfil</a></li>
-                <li class="logout_button"><a href="#"><i class="fas fa-fw fa-sign-out-alt"></i>Cerrar sesión</a></li>
-            </ul>
-        </div>
-        <div id="menu-emergente">
-            <i id="menuCloseButton" class="fa fa-fw fa-times close-button"></i>
-            <h2>Menú</h2>
-            <nav>
+<header id="headerbar">
+    <div class="navbar">
+        <img src="../../images/logos/logoGTI.svg" alt="logoGTI" class="logo">
+        <div class="nav-container">
+            <nav class="nav-menu">
                 <ul>
-                    <li class="isadmin"><a href="../admin"><i class="fas fa-fw fa-user-shield"></i>Panel de control</a></li>
-                    <li><a href="./campos/index.html"><i class="fab fa-fw fa-pagelines"></i>Mis campos</a></li>
+                    <li id="loginToggleButton">
+                        <i class="fa fa-fw fa-user-circle"></i>
+                        <span id="usernameDisplay"></span>
+                        <i class="fa fa-caret-down" id="flecha-login"></i>
+                    </li>
+                    <li id="menuOpenButton">
+                        <i class="fa fa-fw fa-bars"></i>
+                    </li>
                 </ul>
             </nav>
         </div>
-        <div id="overlay">
-        </div>
-    </header>
+    </div>
+    <div id="login-form-wrapper">
+        <ul>
+            <li><a href="#"><i class="fa fa-fw fa-edit"></i>Editar perfil</a></li>
+            <li class="logout_button"><a href="#"><i class="fas fa-fw fa-sign-out-alt"></i>Cerrar sesión</a></li>
+        </ul>
+    </div>
+    <div id="menu-emergente">
+        <i id="menuCloseButton" class="fa fa-fw fa-times close-button"></i>
+        <h2>Menú</h2>
+        <nav>
+            <ul>
+                <li class="isadmin"><a href="../admin"><i class="fas fa-fw fa-user-shield"></i>Panel de control</a></li>
+                <li><a href="./campos/index.html"><i class="fab fa-fw fa-pagelines"></i>Mis campos</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div id="overlay">
+    </div>
+</header>
 
-    <main>
+<main>
 
-        <div class="main-container">
-            <h1 class="texto-principal">Dashboard<!--, <span id="usernameDisplayTitle"></span> --></h1>
+    <div class="main-container">
+        <h1 class="texto-principal">Dashboard<!--, <span id="usernameDisplayTitle"></span> --></h1>
 
-            <section id="seccionAlertas">
-                <!-- Texto principal -->
-                <h2>Alertas</h2>
+        <section id="seccionAlertas">
+            <!-- Texto principal -->
+            <h2>Alertas</h2>
 
-                <div class="lista-alertas">
-                    <ul>
-                        <li>
-                            <i class="fas fa-exclamation-triangle fondo"></i>
-                            <strong>Salinidad alta</strong> Campo Caliente
-                            <div>23/05/2021</div>
-                            <i class="fa fa-arrow-right alerta-flecha"></i>
-                        </li>
-                        <li>
-                            <i class="fas fa-exclamation-triangle fondo"></i>
-                            <strong>Humedad baja</strong> Campo Caliente
-                            <div>20/05/2021</div>
-                            <i class="fa fa-arrow-right alerta-flecha"></i>
-                        </li>
-                        <li>
-                            <i class="fas fa-exclamation-triangle fondo"></i>
-                            <strong>Luminosidad alta</strong> Campo Caliente
-                            <div>20/05/2021</div>
-                            <i class="fa fa-arrow-right alerta-flecha"></i>
-                        </li>
-                    </ul>
-                </div>
+            <div class="lista-alertas">
+                <ul>
+                    <li>
+                        <i class="fas fa-exclamation-triangle fondo"></i>
+                        <strong>Salinidad alta</strong> Campo Caliente
+                        <div>23/05/2021</div>
+                        <i class="fa fa-arrow-right alerta-flecha"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-exclamation-triangle fondo"></i>
+                        <strong>Humedad baja</strong> Campo Caliente
+                        <div>20/05/2021</div>
+                        <i class="fa fa-arrow-right alerta-flecha"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-exclamation-triangle fondo"></i>
+                        <strong>Luminosidad alta</strong> Campo Caliente
+                        <div>20/05/2021</div>
+                        <i class="fa fa-arrow-right alerta-flecha"></i>
+                    </li>
+                </ul>
+            </div>
 
-            </section>
+        </section>
 
-        </div>
+    </div>
 
 
-        <a href="campos/" class="button_primary">Ver mapa campos</a>
+    <a href="campos/" class="button_primary">Ver mapa campos</a>
 
-    </main>
+</main>
 
-    <script>
 
-        var sesionPath = "../../api/v1.0/sesion";
-        var landingPath = "../../index.html";
+<script src="../../scripts/navbar.js"></script>
+<script type="module">
 
-        fetch(sesionPath).then((res) => {
-            if(res.ok) {
-                return res.json();
-            } else {
-                 window.location.href = landingPath;
-            }
-        }).then(data => {
-            if(data.rol !== 'admin' && data.rol !== 'user') {
-                 window.location.href = landingPath;
-            } else {
+    import SesionService from "../services/sesion-service.js";
+    import Access from "../services/access.js";
 
-                var username = document.getElementById("usernameDisplay");
-                username.textContent = data.nombre;
+    SesionService.getSesion().then(user => {
+        if (Access.checkAccess(user.rol, Access.pages.userPage)) {
 
-                var adminOptions = document.getElementsByClassName("isadmin");
-                for (let i = 0; i < adminOptions.length; i++){
-                    if(data.rol === 'admin') {
-                        adminOptions[i].classList.remove('d-none');
-                    } else {
-                        adminOptions[i].classList.add('d-none');
-                    }
+            // Init view with user datas
+            const username = document.getElementById("usernameDisplay");
+            username.textContent = user.nombre;
+
+            const adminOptions = document.getElementsByClassName("isadmin");
+            for (let i = 0; i < adminOptions.length; i++) {
+                if (user.rol === 'admin') {
+                    adminOptions[i].classList.remove('d-none');
+                } else {
+                    adminOptions[i].classList.add('d-none');
                 }
-
             }
-        });
-
-        function logout(){
-            fetch(sesionPath, {
-                method: 'DELETE'
-            }).then(res => {
-                 window.location.href = landingPath;
-            })
         }
+    });
 
-        var logoutButton = document.getElementsByClassName("logout_button")[0];
-        logoutButton.addEventListener('click', logout);
+    const logoutButton = document.getElementsByClassName("logout_button")[0];
+    logoutButton.addEventListener('click', () => {
+        SesionService.logout();
+    });
 
-    </script>
-    <script src="../../scripts/navbar.js"></script>
+</script>
 </body>
 </html>

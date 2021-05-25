@@ -1,6 +1,14 @@
-:root {
+/*:root {
     --primary: #820053;
     --primary_light: #eb0f93;
     --black: rgb(48, 48, 48);
     --main_gradient: linear-gradient(160deg, var(--primary_light), var(--primary));
+}*/
+
+:root {
+    --primary: #4caf50;
+    --primary_light: #8bc34a;
+    --black: rgb(48, 48, 48);
+    --main_gradient: linear-gradient(160deg, var(--primary_light), var(--primary));
 }
+

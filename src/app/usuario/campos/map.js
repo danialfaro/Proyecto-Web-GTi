@@ -1,4 +1,6 @@
 import CamposService from "../../services/campos-service.js";
+import UbicacionesService from "../../services/ubicaciones-service.js";
+import SesionService from "../../services/sesion-service.js";
 
 let map;
 let polygonsCampos = [];
@@ -6,7 +8,8 @@ let currentPolygon;
 
 let markers = [];
 
-let initMap = () => {
+
+let initMap = function() {
 
     map = new google.maps.Map(document.getElementById("map"), {
         zoom: 14,
@@ -33,70 +36,79 @@ let initMap = () => {
         fullscreenControl: false
     });
 
-    getCampos(userData).then((campos) => {
-
-        //console.log(campos);
-
-        campos.forEach(campo => {
-
-            // Crear las instancias de los campos
-            let polygon = new google.maps.Polygon({
-                data: {
-                    id_campo: campo.id,
-                    title: campo.title,
-                    alerts: campo.alerts,
-                    descripcion: "Lorem ipsum dolor sit, amet consectetur adipisicing elit." //default dev
-                },
-                paths: campo.paths,
-                strokeColor: "#cc1884",
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: "#820053",
-                fillOpacity: 0.25,
-                map: map,
-            });
-
-            google.maps.event.addListener(polygon, 'click', function (e) {
-                focusCampoPolygonMap(this);
-            });
-
-            polygonsCampos.push(polygon);
-
-            //Rellenar lista de busqueda con los campos
-            const listaCampos = document.getElementById("listaCampos");
-            const li = document.createElement("li");
-            li.innerHTML = polygon.data.title;
-            li.addEventListener("click", () => {
-                cerrarPopupBusqueda();
-                focusCampoPolygonMap(polygon);
-            })
-            listaCampos.appendChild(li);
-
+    // Cargar los campos del usuario logeado
+    SesionService.getSesion().then(user => {
+        getCampos(user).then((campos) => {
+            setupCamposMapa(campos);
         });
+    });
 
-        fitAllPolygonsBounds();
-
-
-    })
-
+    // Zoom changed
     google.maps.event.addListener(map, 'zoom_changed', function (e) {
-        if (map.zoom < 18) {
-            closePanelContainer();
+
+        if (map.zoom < 16) {
             markers.forEach(marker => {
                 marker.setMap(null);
-            })
+            });
+            closePanelContainer();
+        }
+
+        if (map.zoom > 12) {
+            togglePanelHide(true);
         }
     })
-
 }
 
-window.initMap = initMap;
+initMap();
+
+function setupCamposMapa(campos){
+    campos.forEach(campo => {
+
+        // Crear las instancias de los campos
+        let polygon = new google.maps.Polygon({
+            data: {
+                id_campo: campo.id,
+                title: campo.title,
+                alerts: campo.alerts,
+                descripcion: "Lorem ipsum dolor sit, amet consectetur adipisicing elit." //default dev
+            },
+            paths: campo.paths,
+            strokeColor: getComputedStyle(document.documentElement).getPropertyValue('--primary'),
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: getComputedStyle(document.documentElement).getPropertyValue('--primary'),
+            fillOpacity: 0.25,
+            map: map,
+        });
+
+        google.maps.event.addListener(polygon, 'click', function (e) {
+            focusCampoPolygonMap(this);
+        });
+
+        polygonsCampos.push(polygon);
+
+        //Rellenar lista de busqueda con los campos
+        const listaCampos = document.getElementById("listaCampos");
+        const li = document.createElement("li");
+        li.innerHTML = polygon.data.title;
+        li.addEventListener("click", () => {
+            cerrarPopupBusqueda();
+            focusCampoPolygonMap(polygon);
+        })
+        listaCampos.appendChild(li);
+
+    });
+
+    fitAllPolygonsBounds();
+}
 
 function focusCampoPolygonMap(campoPolygon){
+    mostrarUbicacionesCampo(campoPolygon.data.id_campo);
+    fitPolygonBounds(campoPolygon);
+    openPanelContainer(campoPolygon.data);
+
     currentPolygon = campoPolygon;
-    fitPolygonBounds(currentPolygon);
-    openPanelContainer(currentPolygon.data);
-    mostrarUbicacionesCampo(currentPolygon.data.id_campo);
+
 }
 function fitPolygonBounds(polygon) {
     let bounds = new google.maps.LatLngBounds();
@@ -122,6 +134,64 @@ function fitAllPolygonsBounds() {
     map.fitBounds(bounds);
 }
 
+// Devuelve las coordenadas del centro del poligono
+function polygonCenter(poly) {
+    var lowx,
+        highx,
+        lowy,
+        highy,
+        lats = [],
+        lngs = [],
+        vertices = poly.getPath();
+
+    for (var i = 0; i < vertices.length; i++) {
+        lngs.push(vertices.getAt(i).lng());
+        lats.push(vertices.getAt(i).lat());
+    }
+
+    lats.sort();
+    lngs.sort();
+    lowx = lats[0];
+    highx = lats[vertices.length - 1];
+    lowy = lngs[0];
+    highy = lngs[vertices.length - 1];
+    let center_x = lowx + ((highx - lowx) / 2);
+    let center_y = lowy + ((highy - lowy) / 2);
+    return (new google.maps.LatLng(center_x, center_y));
+}
+
+function mostrarUbicacionesCampo(campoId) {
+
+    getUbicacionesCampo(campoId).then(ubicaciones => {
+
+        ubicaciones.forEach(ubi => {
+            let marker = new google.maps.Marker({
+                position: {lat: parseFloat(ubi.lat), lng: parseFloat(ubi.lng)},
+                map,
+                icon: {
+                    //url: "../../../images/pink-marker.png",
+                    url: "../../../images/purple-sensor-marker.png",
+                    scaledSize: new google.maps.Size(35, 35)
+                },
+                title: ubi.id
+            });
+            const infowindow = new google.maps.InfoWindow({
+                content: `<p>${ubi.lat}, ${ubi.lng}</p>`,
+            });
+
+            marker.addListener("click", () => {
+
+                infowindow.open(map, marker);
+            });
+            markers.push(marker);
+        })
+    })
+
+
+}
+// UI
+
+const panelContainer = document.getElementById("panelContainer");
 function openPanelContainer(data) {
     let panelContainer = document.getElementById("panelContainer");
     panelContainer.classList.add("open");
@@ -148,60 +218,24 @@ function openPanelContainer(data) {
             break;
     }
 
-}
+    togglePanelHide(false);
 
+}
 function closePanelContainer() {
-    let panelContainer = document.getElementById("panelContainer");
+
     panelContainer.classList.remove("open");
 }
 
-// Devuelve las coordenadas del centro del poligono
-function polygonCenter(poly) {
-    var lowx,
-        highx,
-        lowy,
-        highy,
-        lats = [],
-        lngs = [],
-        vertices = poly.getPath();
-
-    for (var i = 0; i < vertices.length; i++) {
-        lngs.push(vertices.getAt(i).lng());
-        lats.push(vertices.getAt(i).lat());
+const panelHeader = document.getElementById("panelHideToggle");
+panelHeader.addEventListener('click', () => {
+    togglePanelHide(!panelContainer.classList.contains("hide"));
+});
+function togglePanelHide(hide){
+    if (hide) {
+        panelContainer.classList.add("hide");
+    } else {
+        panelContainer.classList.remove("hide");
     }
-
-    lats.sort();
-    lngs.sort();
-    lowx = lats[0];
-    highx = lats[vertices.length - 1];
-    lowy = lngs[0];
-    highy = lngs[vertices.length - 1];
-    center_x = lowx + ((highx - lowx) / 2);
-    center_y = lowy + ((highy - lowy) / 2);
-    return (new google.maps.LatLng(center_x, center_y));
-}
-
-
-function mostrarUbicacionesCampo(campoId) {
-
-    getUbicacionesCampo(campoId).then(ubicaciones => {
-
-        ubicaciones.forEach(ubi => {
-            let marker = new google.maps.Marker({
-                position: {lat: parseFloat(ubi.lat), lng: parseFloat(ubi.lng)},
-                map,
-                icon: {
-                    //url: "../../../images/pink-marker.png",
-                    url: "../../../images/purple-sensor-marker.png",
-                    scaledSize: new google.maps.Size(35, 35)
-                },
-                title: ubi.id
-            });
-            markers.push(marker);
-        })
-    })
-
-
 }
 
 // Click events
@@ -216,7 +250,7 @@ infoBotonVer.addEventListener("click", () => {
 const overlay = document.getElementById('overlayPopup')
 const popup = document.getElementById('popup');
 
-// boton busqueda @ abrir/cerrar form_contacto
+// boton busqueda - abrir/cerrar form_contacto
 const busquedaBoton = document.getElementById("busquedaBoton");
 let busquedaActivo = false;
 busquedaBoton.addEventListener("click", () => {
@@ -246,7 +280,7 @@ const cerrarPopupBusqueda = () => {
 }
 
 
-// boton mapa @ fit bounds
+// boton mapa - fit bounds
 const fitMapBoton = document.getElementById("fitMapBoton");
 fitMapBoton.addEventListener("click", () => {
     fitAllPolygonsBounds();
@@ -257,42 +291,25 @@ fitMapBoton.addEventListener("click", () => {
 
 function getCampos(userData) {
     return new Promise((resolve, reject) => {
-
         let request;
-
         if (userData && userData.rol !== "admin") {
             request = CamposService.getCamposUsuario(userData.id);
         } else {
             request = CamposService.getCampos();
         }
-
         request.then(data => resolve(data)).catch(err => reject(err));
-
     });
 }
 
 function getUbicacionesCampo(campoId) {
     return new Promise((resolve, reject) => {
-
         let ubicaciones = [];
-        let url = "../../../api/v1.0/campos/" + campoId + "/ubicaciones";
-
-        fetch(url).then(res => {
-            if (res.ok) {
-                return res.json();
-            } else {
-                reject();
-            }
-        }).then(data => {
-
+        UbicacionesService.getUbicacionesCampo(campoId).then(data => {
             data?.forEach(ubicacionBd => {
                 ubicaciones.push(ubicacionBd);
             });
-
             resolve(ubicaciones);
-
-        })
-
+        }).catch(err => reject());
     })
 
 }

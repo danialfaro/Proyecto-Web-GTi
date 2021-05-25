@@ -43,7 +43,8 @@
         <h2>Menú</h2>
         <nav>
             <ul>
-                <li class="isadmin"><a href="../../admin"><i class="fas fa-fw fa-user-shield"></i>Panel de control</a></li>
+                <li class="isadmin"><a href="../../admin"><i class="fas fa-fw fa-user-shield"></i>Panel de control</a>
+                </li>
                 <li><a href="../../usuario"><i class="fas fa-fw fa-user"></i>Dashboard usuario</a></li>
                 <li><a href="#"><i class="fab fa-fw fa-pagelines"></i>Mis campos</a></li>
             </ul>
@@ -64,14 +65,18 @@
                 <button id="fitMapBoton"><i class="fa fa-map"></i></button>
             </div>
             <div class="panel_info">
-                <div class="panel_info_body_header">
-                    <h2 class="title">Campo title</h2>
-                    <span class="alert">0 alertas</span>
-                </div>
-                <div class="panel_info_body">
+                <div class="panel_info_body" id="panelHideToggle">
+                    <div class="panel_info_body_header">
+                        <h2 class="title">Campo title</h2>
+                        <span class="alert">0 alertas</span>
+                    </div>
                     <p class="descripcion">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
                 </div>
-                <a type="button" class="button_primary" id="infoBotonVer">Ver</a>
+                <div class="panel_info_buttons">
+                    <a type="button" class="button_primary" id="infoBotonVer">Ver todas las sondas</a>
+                    <!-- <a type="button" class="button_secondary" id="infoBoton"><i class="fa fa-edit"></i></a> -->
+                </div>
+
             </div>
         </div>
 
@@ -91,61 +96,36 @@
 
 
 <script src="../../../scripts/navbar.js"></script>
-<script type="module" src="map.js"></script>
-<script>
+<script type="module">
 
-    let userData;
-    const sesionPath = "../../../api/v1.0/sesion";
-    const landingPath = '../../../index.html';
+    import SesionService from "../../services/sesion-service.js";
+    import Access from "../../services/access.js";
 
-    function initView() {
+    SesionService.getSesion().then(user => {
+        if (Access.checkAccess(user.rol, Access.pages.userPage)) {
 
-        fetch(sesionPath).then((res) => {
-            if (res.ok) {
-                return res.json();
-            } else {
-                window.location.href = landingPath;
-            }
-        }).then(data => {
-            if (data.rol !== 'admin' && data.rol !== 'user') {
-                window.location.href = landingPath;
-            } else {
+            // Init view with user datas
+            const username = document.getElementById("usernameDisplay");
+            username.textContent = user.nombre;
 
-                userData = data;
-
-                const username = document.getElementById("usernameDisplay");
-                username.textContent = data.nombre;
-
-                const adminOptions = document.getElementsByClassName("isadmin");
-                for (let i = 0; i < adminOptions.length; i++) {
-                    if (data.rol === 'admin') {
-                        adminOptions[i].classList.remove('d-none');
-                    } else {
-                        adminOptions[i].classList.add('d-none');
-                    }
+            const adminOptions = document.getElementsByClassName("isadmin");
+            for (let i = 0; i < adminOptions.length; i++) {
+                if (user.rol === 'admin') {
+                    adminOptions[i].classList.remove('d-none');
+                } else {
+                    adminOptions[i].classList.add('d-none');
                 }
-
-                window.initMap();
-
             }
-        });
-    }
+        }
+    });
 
-
-    function logout() {
-        fetch(sesionPath, {
-            method: 'DELETE'
-        }).then(res => {
-            window.location.href = landingPath;
-        })
-    }
-
-    var logoutButton = document.getElementsByClassName("logout_button")[0];
-    logoutButton.addEventListener('click', logout);
-
-    //document.getElementsByClassName("map-section-wrapper")[0].style.height = 'calc(' + window.outerHeight + 'px - 3.625rem)'
+    const logoutButton = document.getElementsByClassName("logout_button")[0];
+    logoutButton.addEventListener('click', () => {
+        SesionService.logout();
+    });
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?callback=initView" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script type="module" src="map.js"></script>
 </body>
 </html>

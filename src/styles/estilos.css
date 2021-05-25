@@ -55,11 +55,11 @@ a {
 
 .button_primary:hover:not([disabled]) {
     transform: translate(0, -1px);
-    background: linear-gradient(60deg, var(--primary_light), #b80175);
+    background: linear-gradient(60deg, var(--primary), var(--primary));
 }
 
 .button_primary:focus {
-    background: linear-gradient(60deg, var(--primary_light), #ca1f83);
+    background: linear-gradient(60deg, var(--primary), var(--primary));
 }
 
 .button_primary:active {

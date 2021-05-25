@@ -6,7 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Panel de control</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+          integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="../../styles/themes/admin-theme.css">
     <link rel="stylesheet" href="../../styles/estilos.css">
     <link rel="stylesheet" href="../../styles/navbar-app.css">
@@ -15,94 +16,88 @@
 </head>
 <body>
 
-    <header id="headerbar">
-        <div class="navbar">
-            <img src="../../images/logos/logoGTI.svg" alt="logoGTI" class="logo">
-            <div class="nav-container">
-                <nav class="nav-menu">
-                    <ul>
-                        <li id="loginToggleButton">
-                            <i class="fa fa-user-circle"></i>
-                            <span id="usernameDisplay"></span>
-                            <i class="fa fa-caret-down" id="flecha-login"></i>
-                        </li>
-                        <li id="menuOpenButton">
-                            <i class="fa fa-bars"></i>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <div id="login-form-wrapper">
-            <ul>
-                <li><a href="#"><i class="fa fa-fw fa-edit"></i>Editar perfil</a></li>
-                <li class="logout_button"><a href="#"><i class="fas fa-fw fa-sign-out-alt"></i>Cerrar sesión</a></li>
-            </ul>
-        </div>
-        <div id="menu-emergente">
-            <i id="menuCloseButton" class="fa fa-times close-button"></i>
-            <h2>Menú</h2>
-            <nav>
+<header id="headerbar">
+    <div class="navbar">
+        <img src="../../images/logos/logoGTI.svg" alt="logoGTI" class="logo">
+        <div class="nav-container">
+            <nav class="nav-menu">
                 <ul>
-                    <li><a href="#"><i class="fa fa-fw fa-user-cog"></i>Panel de control</a></li>
-                    <li><a href="../usuario"><i class="fa fa-fw fa-user"></i>Dashboard Usuario</a></li>
+                    <li id="loginToggleButton">
+                        <i class="fa fa-user-circle"></i>
+                        <span id="usernameDisplay"></span>
+                        <i class="fa fa-caret-down" id="flecha-login"></i>
+                    </li>
+                    <li id="menuOpenButton">
+                        <i class="fa fa-bars"></i>
+                    </li>
                 </ul>
             </nav>
         </div>
-        <div id="overlay">
+    </div>
+    <div id="login-form-wrapper">
+        <ul>
+            <li><a href="#"><i class="fa fa-fw fa-edit"></i>Editar perfil</a></li>
+            <li class="logout_button"><a href="#"><i class="fas fa-fw fa-sign-out-alt"></i>Cerrar sesión</a></li>
+        </ul>
+    </div>
+    <div id="menu-emergente">
+        <i id="menuCloseButton" class="fa fa-times close-button"></i>
+        <h2>Menú</h2>
+        <nav>
+            <ul>
+                <li><a href="#"><i class="fa fa-fw fa-user-cog"></i>Panel de control</a></li>
+                <li><a href="../usuario"><i class="fa fa-fw fa-user"></i>Dashboard Usuario</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div id="overlay">
+    </div>
+</header>
+
+<main>
+
+    <section id="seccionAdmin">
+        <div class="main-container">
+            <h1 class="texto-principal">Panel de control<!--, <span id="usernameDisplayTitle"></span> --></h1>
+
+            <h2 class="texto-empresa">Clientes</h2>
+            <div class="buscador-empresas">
+                <input name="empresas" id="empresas" type="text" placeholder="Buscar cliente" required>
+                <input type="submit" value="Dar de alta cliente" class="button_primary">
+            </div>
         </div>
-    </header>
+    </section>
 
-    <main>
-
-        <section id="seccionAdmin">
-            <div class="main-container">
-                <!-- Texto principal -->
-                <div><h1 class="texto-principal">Panel de control</h1></div>
-                <div><h3 class="texto-secundario">Gestiona desde un panel centralizado</h3></div>
-                <div><h2 class="texto-empresa">Empresas</h2></div>
-                <div class="buscador-empresas">
-                    <input name="empresas" id="empresas" type="text" placeholder="Buscar empresa" required>
-                    <input type="submit" value="Dar de alta empresa" class="button_primary">
-                </div>
-                </div>
-        </section>
-
-    </main>
+</main>
 
 
-    <script>
+<script src="../../scripts/navbar.js"></script>
+<script type="module">
 
-        var sesionPath = "../../api/v1.0/sesion";
-        var landingPath = '../../index.html';
+    import SesionService from "../services/sesion-service.js";
+    import Access from "../services/access.js";
 
-        fetch(sesionPath).then((res) => {
-            if(res.ok) {
-                return res.json();
-            } else {
-                redirectLogin();
+    SesionService.getSesion().then(user => {
+        if (Access.checkAccess(user.rol, Access.pages.userPage)) {
+
+            // Init view with user datas
+            const username = document.getElementById("usernameDisplay");
+            username.textContent = user.nombre;
+
+        } else {
+            let redirects = {
+                admin: "admin", user: "usuario"
             }
-        }).then(data => {
-            if(data.rol != 'admin') {                
-                window.location.href = '../usuario';
-            } else {
-                var username = document.getElementById("usernameDisplay");
-                username.textContent = data.nombre;
-            }
-        });
-
-        function logout(){
-            fetch(sesionPath, {
-                method: 'DELETE'
-            }).then(res => {
-                window.location.href = landingPath;
-            })
+            console.log(redirects[user.rol]);
+            window.location.href = '../' + redirects[user.rol];
         }
+    });
 
-        var logoutButton = document.getElementsByClassName("logout_button")[0];
-        logoutButton.addEventListener('click', logout);
+    const logoutButton = document.getElementsByClassName("logout_button")[0];
+    logoutButton.addEventListener('click', () => {
+        SesionService.logout();
+    });
 
-    </script>
-    <script src="../../scripts/navbar.js"></script>
+</script>
 </body>
 </html>

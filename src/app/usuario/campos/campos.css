@@ -26,18 +26,19 @@ body, html, main {
 
 #panelContainer {
     position: absolute;
-    bottom: -26vh;
-    width: 100vw;
     right: 0;
+    transform: translateY(-32%);
+    width: 100%;
     transition: .5s;
-    display: flex;
-    flex-direction: column;
+}
+
+#panelContainer.open.hide {
+    transform: translateY(-50%);
 }
 
 #panelContainer.open {
-    bottom: 0px;
+    transform: translateY(-99%);
 }
-
 
 #panelContainer .panel_toolbar {
     display: flex;
@@ -90,18 +91,24 @@ body, html, main {
     opacity: 1;
 }
 
-#panelContainer .panel_info .panel_info_body_header {
-    padding: .9rem;
+.panel_info .panel_info_body .panel_info_body_header {
+    margin-bottom: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-
-#panelContainer .panel_info .panel_info_body {
-    padding: 0 .9rem;
+.panel_info .panel_info_body {
+    padding: .8em 1.2rem;
     text-align: justify;
     overflow: auto;
+}
+
+#panelContainer .panel_info .panel_info_buttons {
+    display: flex;
+}
+.panel_info_buttons a:nth-child(1) {
+    flex-grow: 1;
 }
 
 
