@@ -17,7 +17,19 @@ switch (true) {
         break;
 
     case is_numeric($paramPath[0]) && $paramPath[1] === "mediciones":
+
         $id = $paramPath[0];
+        $queryUri = parse_url($uri, PHP_URL_QUERY);
+        parse_str($queryUri, $query);
+
+        if(isset($query["last"])) {
+            // Query para devolver las ultimas mediciones de una ubicacion
+            $sql = "SELECT * FROM `mediciones` WHERE id_ubicacion = '${id}' AND timestamp IN (SELECT MAX(timestamp) FROM mediciones WHERE id_ubicacion = '${id}')";
+
+            break;
+        }
+
+
         // Query para devolver las mediciones de una ubicacion
         $sql = "SELECT * FROM mediciones WHERE id_ubicacion = '${id}'";
         break;

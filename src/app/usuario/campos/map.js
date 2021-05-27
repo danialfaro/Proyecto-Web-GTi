@@ -3,11 +3,14 @@ import UbicacionesService from "../../services/ubicaciones-service.js";
 import SesionService from "../../services/sesion-service.js";
 
 let map;
+
 let polygonsCampos = [];
 let currentPolygon;
 
 let markersUbicaciones = [];
 let markersCampos = [];
+
+let sondas = [];
 
 let initMap = function () {
 
@@ -69,7 +72,7 @@ function setupCamposMapa(campos) {
         let polygon = new google.maps.Polygon({
             data: {
                 id_campo: campo.id,
-                title: campo.title,
+                title: campo.nombre,
                 alerts: campo.alerts,
                 descripcion: "Lorem ipsum dolor sit, amet consectetur adipisicing elit." //default dev
             },
@@ -96,17 +99,17 @@ function setupCamposMapa(campos) {
                 url: "../../../images/pink-marker.png",
                 scaledSize: new google.maps.Size(35, 35)
             },
-            title: campo.title,
+            title: campo.nombre,
             campo_id: campo.id
         });
-        let contentInfoWindow = `<div class="info-window">
-                                    <h4 style="text-align: center">${campo.title}</h4>
+        let contentInfoWindow = `<div class="info-window">                                    
+                                    <h4>${campo.nombre}</h4>
                                     <button class="button_primary" data-campoid="${campo.id}">Visitar</button>
                                  </div>`
         const infowindowCampo = new google.maps.InfoWindow({
             content: contentInfoWindow,
         });
-        google.maps.event.addListener(infowindowCampo, 'domready', function() {
+        google.maps.event.addListener(infowindowCampo, 'domready', function () {
             let infoWindows = document.getElementsByClassName("info-window");
             for (const iw of infoWindows) {
                 let btn = iw.getElementsByTagName("button")[0];
@@ -128,24 +131,28 @@ function setupCamposMapa(campos) {
         getUbicacionesCampo(campo.id).then(ubicaciones => {
 
             ubicaciones.forEach(ubi => {
-                let marker = new google.maps.Marker({
-                    position: {lat: parseFloat(ubi.lat), lng: parseFloat(ubi.lng)},
-                    icon: {
-                        //url: "../../../images/pink-marker.png",
-                        url: "../../../images/purple-sensor-marker.png",
-                        scaledSize: new google.maps.Size(35, 35)
-                    },
-                    title: ubi.id,
-                    campo_id: campo.id
-                });
-                const infowindow = new google.maps.InfoWindow({
-                    content: `<p>${ubi.lat}, ${ubi.lng}</p>`,
-                });
 
-                marker.addListener("click", () => {
-                    infowindow.open(map, marker);
-                });
-                markersUbicaciones.push(marker);
+                    UbicacionesService.getMedicionesUbicacion(ubi.id, {last:true}).then(mediciones => {
+                        console.log(mediciones);
+                    }); 
+
+                    let marker = new google.maps.Marker({
+                        position: {lat: parseFloat(ubi.lat), lng: parseFloat(ubi.lng)},
+                        icon: {
+                            //url: "../../../images/pink-marker.png",
+                            url: "../../../images/purple-sensor-marker.png",
+                            scaledSize: new google.maps.Size(35, 35)
+                        },
+                        title: ubi.id,
+                        campo_id: campo.id
+                    });
+
+                UbicacionesService.getSondaUbicacion(ubi.id).then(sonda => {
+                    createInfoWindowSonda(marker, sonda);
+                }).catch(err => {
+                    createInfoWindowSonda(marker, null);
+                })
+
             })
         })
 
@@ -162,6 +169,33 @@ function setupCamposMapa(campos) {
     });
 
     fitAllPolygonsBounds();
+}
+
+function createInfoWindowSonda(marker, sonda){
+
+    let info = sonda?.mac;
+
+    if(!sonda) {
+        info = " No hay sonda";
+    }
+
+    let contentInfoWindow = `<div class="info-window-sonda">
+                                            <!-- <i class="fa fa-tint fa-fw humedad"></i>
+                                            <i class="fa fa-mountain fa-fw salinidad"></i>
+                                            <i class="fa fa-thermometer-three-quarters fa-fw temperatura"></i>
+                                            <i class="fa fa-sun luninosidad fa-fw"></i>-->
+                                            <div class="info">
+                                                <p>${info}</p>
+                                            </div>
+                                        </div>`
+    const infowindowSonda = new google.maps.InfoWindow({
+        content: contentInfoWindow,
+    });
+
+    marker.addListener("click", () => {
+        infowindowSonda.open(map, marker);
+    });
+    markersUbicaciones.push(marker);
 }
 
 function focusCampoPolygonMap(campoPolygon) {

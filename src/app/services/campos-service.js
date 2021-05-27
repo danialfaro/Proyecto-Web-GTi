@@ -6,8 +6,8 @@ const CamposService = {
         return new Promise((resolve, reject) => {
             ApiService.get("campos")
                 .then(data => {
-                    let campos = formatCampos(data);
-                    resolve(campos);
+                    //let campos = formatCampos(data);
+                    resolve(data);
 
                 })
                 .catch(err => {
@@ -18,8 +18,8 @@ const CamposService = {
     getCampo(id) {
         return new Promise(((resolve, reject) => {
             ApiService.get("campos/" + id).then(data => {
-                let campos = formatCampos(data);
-                resolve(campos[0]);
+                //let campos = formatCampos(data);
+                resolve(data[0]);
             }).catch(err => reject(err));
         }))
     },
@@ -27,8 +27,8 @@ const CamposService = {
         return new Promise((resolve, reject) => {
             ApiService.get("campos/usuario/" + id)
                 .then(data => {
-                    let campos = formatCampos(data);
-                    resolve(campos);
+                    //let campos = formatCampos(data);
+                    resolve(data);
 
                 })
                 .catch(err => {
@@ -47,6 +47,7 @@ const CamposService = {
     }
 }
 
+//GeoJSON (not used)
 function formatCampos(data){
 
     let campos = [];
