@@ -209,41 +209,23 @@
 
 /* Seccion Contact - Social media */
 
- .containerContacto #seccionContactanos{
-    margin-top: 1rem;   
+#seccionContactanos {
+    margin-top: 1rem;
+    padding: 1rem;
 }
 
-.containerContacto .form-group input ,
+#seccionContactanos .privacidad {
+    display: flex;
+}
+
+input,
 textarea,
 select, option{
-    
     display:flex;
     align-items:center;
     justify-content: center;
-    width: 90%;
-    margin-right: 5px;
-    margin-left: 15px;
+    width: 100%;
 }
-
-.containerContacto input{
-    display: flex;
-    align-items:center;
-    justify-content: center;
-    width:90%;
-    margin-right: 5px;
-    margin-left: 15px;
-    
-}
-.containerContacto .form-group .Privacidad {
-    display: inline-table;
-}
-
-.containerContacto .form-group .Privacidad label{
- display: table-cell;
- vertical-align: middle;
- padding-left: 10px;
-}
-
 
 .containerContacto img{    
     display: none;
@@ -526,7 +508,12 @@ footer section {
         display: flex;
         flex-direction:row; 
         justify-content: space-between;   
-        margin:0.625rem;    
+        margin: 0.625rem;
+        width: auto;
+    }
+
+    .botones > a {
+        margin: .6rem;
     }
 
     .video {
@@ -548,16 +535,17 @@ footer section {
         background: rgb(255, 255, 255);
     }
 
-    .containerContacto{
+    .containerContacto {
         display: flex;
         flex-direction:row-reverse;
+        margin-bottom: 2rem;
     
     }
+
     .containerContacto #seccionContactanos{
-        margin-top: 1rem;
         width:500px;
-        margin:0 5.133rem;    
-    
+        margin: 0 5rem;
+
     }
 
     .containerContacto img{
@@ -566,36 +554,14 @@ footer section {
         height: 31.25rem;
         margin-top: 5rem;
     }
-    
-
-    
-    .faq_trigger{
-        max-width:37.5rem;
-        display:flex;
-        
-    }
-
-    .faq_content{
-        max-width: 37.5rem;
-        display:flex;
-    }
 
     .questions{
         display: flex;
         justify-content: center;
-        
     }
-    /*.faq_item .faq_trigger i {
-        transform: rotate(0deg);
-        transition: .2s;
-        display:flex;
-        align-items: flex-end;
-    }*/
 
-    .faq_item.faq_open .faq_trigger i {
-        transform: rotate(180deg);
-        display: flex;
-    ;
+    .faq_content {
+        width: 50vw;
     }
     
     

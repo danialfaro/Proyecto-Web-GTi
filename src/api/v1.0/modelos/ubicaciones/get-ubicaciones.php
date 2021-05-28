@@ -29,7 +29,6 @@ switch (true) {
             break;
         }
 
-
         // Query para devolver las mediciones de una ubicacion
         $sql = "SELECT * FROM mediciones WHERE id_ubicacion = '${id}'";
         break;
