@@ -29,12 +29,6 @@ a {
 
 /* Formato de botones */
 
-.botones {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}   
-
 .button_primary,
 .button_secondary {
     padding: .5rem 2rem;

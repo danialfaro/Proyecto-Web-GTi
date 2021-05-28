@@ -24,12 +24,80 @@ body, html, main {
     overflow: hidden;
 }
 
+
+/* InfoWindow */
+
+
+.info-window-ubicacion {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-window-ubicacion .medicion {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.info-window-ubicacion .medicion span {
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    margin-left: .5rem;
+}
+
+.info-window-ubicacion button {
+    margin-top: 1rem;
+}
+
+.info-window-ubicacion i {
+    font-size: 1.2rem;
+    padding: .5rem;
+    border-radius: 10%;
+    width: 3rem;
+    margin: .2rem;
+}
+
+.info-window-ubicacion i.humedad {
+    color: #0484d9;
+}
+
+.info-window-ubicacion i.salinidad {
+    color: #cacaca;
+}
+
+.info-window-ubicacion i.temperatura {
+    color: #e56625;
+}
+
+.info-window-ubicacion i.luminosidad {
+    color: #fcea47;
+}
+
+
+.info-window-ubicacionf .info {
+    height: 20px;
+    margin: .5rem;
+}
+
+.info-window h4 {
+    text-align: center;
+    margin-bottom: .6rem;
+}
+
+.info-window button {
+    padding: .4rem 1.2rem;
+}
+
+
+
 #panelContainer {
     position: absolute;
     right: 0;
     transform: translateY(-32%);
     width: 100%;
     transition: .5s;
+    z-index: 5;
 }
 
 #panelContainer.open.hide {
@@ -69,6 +137,7 @@ body, html, main {
 
 #panelContainer.open .panel_toolbar button {
     opacity: 0;
+    display: none;
     padding: .7rem;
     font-size: 1.2rem;
 }
@@ -107,6 +176,11 @@ body, html, main {
 #panelContainer .panel_info .panel_info_buttons {
     display: flex;
 }
+
+.panel_info_buttons a {
+    margin: .5rem;
+}
+
 .panel_info_buttons a:nth-child(1) {
     flex-grow: 1;
 }
@@ -133,6 +207,37 @@ span.alert-danger {
 #panelContainer .panel_info a[type=button] {
     display: block;
     margin-bottom: .9rem;
+}
+
+/* Panel Graficas */
+
+#panelGraficas {
+    position: absolute;
+    right: 0;
+    transform: translateY(0%);
+    width: 100%;
+    transition: .5s;
+
+    height: calc(100vh - 3.65rem);
+    padding: 1rem;
+    padding-top: 1.2rem;
+    background: white;
+
+    z-index: 2;
+
+
+}
+
+#panelGraficas.show {
+    transform: translateY(-100%);
+}
+
+#btn-cerrar-panelGraficas {
+    position: absolute;
+    top: .8rem;
+    right: 1.2rem;
+    font-size: 2rem;
+    color: var(--black);
 }
 
 

@@ -6,13 +6,13 @@ switch (true) {
 
     case !isset($paramPath) || empty($paramPath):
         // Query para devolver todos los campos
-        $sql = "SELECT id, nombre, ST_AsGeoJSON(geometria) as geometria FROM campos";
+        $sql = "SELECT id, nombre, geometria FROM campos";
         break;
 
     case is_numeric($paramPath[0]) && !isset($paramPath[1]):
         $id = $paramPath[0];
         // Query para devolver un campo
-        $sql = "SELECT id, nombre, ST_AsGeoJSON(geometria) as geometria FROM campos WHERE id = '${id}'";
+        $sql = "SELECT id, nombre, geometria FROM campos WHERE id = '${id}'";
         break;
 
     case is_numeric($paramPath[0]) && $paramPath[1] === "ubicaciones":
@@ -25,7 +25,7 @@ switch (true) {
     case $paramPath[0] === "usuario" && $paramPath[1]:
         $id = $paramPath[1];
         // Query para devolver los campos de un usuario
-        $sql = "SELECT id, nombre, ST_AsGeoJSON(geometria) as geometria FROM campos WHERE id IN (SELECT campo_id FROM usuarios_campos WHERE usuario_id = '${id}')";
+        $sql = "SELECT id, nombre, geometria FROM campos WHERE id IN (SELECT campo_id FROM usuarios_campos WHERE usuario_id = '${id}')";
         break;
 
 }
@@ -53,7 +53,7 @@ if(mysqli_num_rows($result)) {
 
             $reg['id'] = $fila['id'];
             $reg['nombre'] = $fila['nombre'];
-            $reg['geometria'] = json_decode($fila['geometria']);
+            $reg['paths'] = json_decode($fila['geometria']);
         }
 
         array_push($data, $reg);
