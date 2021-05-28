@@ -5,16 +5,18 @@
     --main_gradient: linear-gradient(160deg, var(--primary_light), var(--primary));
 }
 
-/* Verde
+/* Verde */
+/*
 :root {
     --primary: #4caf50;
     --primary_light: #8bc34a;
     --black: rgb(48, 48, 48);
     --main_gradient: linear-gradient(160deg, var(--primary_light), var(--primary));
-}
-*/
+}*/
 
-/* Naranja
+
+/* Naranja */
+/*
 :root {
     --primary: #e8be24;
     --primary_light: #ff855a;

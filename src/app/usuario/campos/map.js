@@ -10,6 +10,8 @@ let currentPolygon;
 let markersUbicaciones = [];
 let markersCampos = [];
 
+let infoWindowUbicaciones = [];
+
 let sondas = [];
 
 let initMap = function () {
@@ -132,14 +134,9 @@ function setupCamposMapa(campos) {
 
             ubicaciones.forEach(ubi => {
 
-                    UbicacionesService.getMedicionesUbicacion(ubi.id, {last:true}).then(mediciones => {
-                        console.log(mediciones);
-                    }); 
-
                     let marker = new google.maps.Marker({
                         position: {lat: parseFloat(ubi.lat), lng: parseFloat(ubi.lng)},
                         icon: {
-                            //url: "../../../images/pink-marker.png",
                             url: "../../../images/purple-sensor-marker.png",
                             scaledSize: new google.maps.Size(35, 35)
                         },
@@ -148,9 +145,11 @@ function setupCamposMapa(campos) {
                     });
 
                 UbicacionesService.getSondaUbicacion(ubi.id).then(sonda => {
-                    createInfoWindowSonda(marker, sonda);
+                    UbicacionesService.getMedicionesUbicacion(ubi.id, {last:true}).then(mediciones => {
+                        createinfowindowUbicacion(marker, sonda, mediciones);
+                    });
                 }).catch(err => {
-                    createInfoWindowSonda(marker, null);
+                    createinfowindowUbicacion(marker, null);
                 })
 
             })
@@ -171,7 +170,7 @@ function setupCamposMapa(campos) {
     fitAllPolygonsBounds();
 }
 
-function createInfoWindowSonda(marker, sonda){
+function createinfowindowUbicacion(marker, sonda, mediciones){
 
     let info = sonda?.mac;
 
@@ -179,21 +178,57 @@ function createInfoWindowSonda(marker, sonda){
         info = " No hay sonda";
     }
 
-    let contentInfoWindow = `<div class="info-window-sonda">
-                                            <!-- <i class="fa fa-tint fa-fw humedad"></i>
-                                            <i class="fa fa-mountain fa-fw salinidad"></i>
-                                            <i class="fa fa-thermometer-three-quarters fa-fw temperatura"></i>
-                                            <i class="fa fa-sun luninosidad fa-fw"></i>-->
-                                            <div class="info">
-                                                <p>${info}</p>
-                                            </div>
-                                        </div>`
-    const infowindowSonda = new google.maps.InfoWindow({
+    let contentInfoWindow = `<div class="info-window-ubicacion">
+                                <div class="info">
+                                    <p>${info}</p>
+                                </div>
+                            </div>`
+
+    if(mediciones) {
+
+        let humedad = mediciones.filter(m => { return m.tipo === "humedad"})[0];
+        let salinidad = mediciones.filter(m => { return m.tipo === "salinidad"})[0];
+        let temperatura = mediciones.filter(m => { return m.tipo === "temperatura"})[0];
+        let luminosidad = mediciones.filter(m => { return m.tipo === "luminosidad"})[0];
+
+        contentInfoWindow = `<div class="info-window-ubicacion" data-idubi="${humedad.id_ubicacion}">
+                                <div class="medicion">
+                                    <i class="fa fa-tint fa-fw humedad"></i><p>Humedad:</p><span>${humedad.valor} ${humedad.unidad}</span>
+                                </div>
+                                <div class="medicion">
+                                    <i class="fa fa-mountain fa-fw salinidad"></i><p>Salinidad:</p><span>${salinidad.valor} ${salinidad.unidad}</span>
+                                </div>
+                                <div class="medicion">
+                                    <i class="fa fa-sun fa-fw luminosidad"></i><p>Luminosidad:</p><span>${luminosidad.valor} ${luminosidad.unidad}</span>                         
+                                </div>
+                                <div class="medicion">
+                                    <i class="fa fa-thermometer-three-quarters fa-fw temperatura"></i><p>Temperatura:</p><span>${temperatura.valor} ${temperatura.unidad}</span>
+                                </div>
+                                <button class="button_secondary">Ver graficas</button>                                
+                            </div>`
+    }
+
+    const infowindowUbicacion = new google.maps.InfoWindow({
         content: contentInfoWindow,
     });
 
+    infoWindowUbicaciones.push(infowindowUbicacion);
+
+    google.maps.event.addListener(infowindowUbicacion, 'domready', () => {
+        let infowindowUbicacionElement = document.getElementsByClassName("info-window-ubicacion");
+        for (const iw of infowindowUbicacionElement) {
+            let btn = iw.getElementsByTagName("button")[0];
+            btn.addEventListener('click', () => {
+                abrirPanelGraficas(mediciones);
+            })
+        }
+    });
+
     marker.addListener("click", () => {
-        infowindowSonda.open(map, marker);
+        infoWindowUbicaciones.forEach(iw => {
+            iw.close();
+        })
+        infowindowUbicacion.open(map, marker);
     });
     markersUbicaciones.push(marker);
 }
@@ -206,7 +241,6 @@ function focusCampoPolygonMap(campoPolygon) {
     currentPolygon = campoPolygon;
 }
 
-window.focusCampoPolygonMap = focusCampoPolygonMap;
 
 function fitPolygonBounds(polygon) {
     let bounds = new google.maps.LatLngBounds();
@@ -370,6 +404,32 @@ fitMapBoton.addEventListener("click", () => {
     fitAllPolygonsBounds();
 })
 
+
+/* Panel Graficas Ubicacion */
+
+// x - cerrar panel graficas
+const btnCerrarPanelGraficas = document.getElementById('btn-cerrar-panelGraficas');
+btnCerrarPanelGraficas.addEventListener('click', function (e) {
+    e.preventDefault();
+    let panelGraficas = document.getElementById("panelGraficas");
+    panelGraficas.classList.remove("show");
+});
+
+function abrirPanelGraficas(mediciones) {
+
+    panelGraficas.classList.add("show");
+
+    //TODO: Rellenar graficas con los datos
+
+    panelGraficas.getElementsByTagName("p")[0].innerText = "";
+    mediciones.forEach(med => {
+        panelGraficas.getElementsByTagName("p")[0].innerText += JSON.stringify(med);
+    })
+
+
+}
+
+
 // API Calls ====================== Cargar los datos //
 
 
@@ -397,4 +457,3 @@ function getUbicacionesCampo(campoId) {
     })
 
 }
-
