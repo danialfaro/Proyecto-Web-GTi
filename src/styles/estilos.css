@@ -116,6 +116,7 @@ main {
 .form-group {
     display: flex;
     flex-direction: column-reverse;
+    
 }
 
 .form-group input[required] ~ label::after, .form-group textarea[required] ~ label::after {

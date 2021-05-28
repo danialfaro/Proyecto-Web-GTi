@@ -40,10 +40,10 @@
 .textos-reclamo {
     width: 75%;
 }
-
+/*
 .botones {
     width: 75%;
-}
+}*/
 
 .botones > a {
     margin-bottom: .8rem;
@@ -206,8 +206,44 @@
 
 /* Seccion Contact - Social media */
 
-#formContactanos {
-    margin-top: 1rem;
+ .containerContacto #seccionContactanos{
+    margin-top: 1rem;   
+}
+
+.containerContacto .form-group input ,
+textarea,
+select, option{
+    
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    width: 90%;
+    margin-right: 5px;
+    margin-left: 15px;
+}
+
+.containerContacto input{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    width:90%;
+    margin-right: 5px;
+    margin-left: 15px;
+    
+}
+.containerContacto .form-group .Privacidad {
+    display: inline-table;
+}
+
+.containerContacto .form-group .Privacidad label{
+ display: table-cell;
+ vertical-align: middle;
+ padding-left: 10px;
+}
+
+
+.containerContacto img{    
+    display: none;
 }
 
 #seccionSocialMedia {
@@ -482,6 +518,13 @@ footer section {
         width: 50%;
     }
 
+    .botones{
+        display: flex;
+        flex-direction:row; 
+        justify-content: space-between;   
+        margin:0.625rem;    
+    }
+
     .video {
         height: 80vh;
     }
@@ -500,5 +543,59 @@ footer section {
     #ofertas .ofertaV:nth-child(2n) {
         background: rgb(255, 255, 255);
     }
+
+    .containerContacto{
+        display: flex;
+        flex-direction:row-reverse;
+    
+    }
+    .containerContacto #seccionContactanos{
+        margin-top: 1rem;
+        width:500px;
+        margin:0 5.133rem;    
+    
+    }
+
+    .containerContacto img{
+        display: inline;
+        width: 21.875rem;
+        height: 31.25rem;
+        margin-top: 5rem;
+    }
+    
+
+    
+    .faq_trigger{
+        max-width:37.5rem;
+        display:flex;
+        
+    }
+
+    .faq_content{
+        max-width: 37.5rem;
+        display:flex;
+    }
+
+    .questions{
+        display: flex;
+        justify-content: center;
+        
+    }
+    /*.faq_item .faq_trigger i {
+        transform: rotate(0deg);
+        transition: .2s;
+        display:flex;
+        align-items: flex-end;
+    }*/
+
+    .faq_item.faq_open .faq_trigger i {
+        transform: rotate(180deg);
+        display: flex;
+    ;
+    }
+    
+    
+
+    
 
 }
