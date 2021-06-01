@@ -6,6 +6,9 @@ const SesionService = {
         return ApiService.get("sesion");
     },
     login(data) {
+        data.forEach((value, key) => {
+            console.log(key + ": " + value);
+        });
         return ApiService.post("sesion", data);
     },
     logout(){

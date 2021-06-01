@@ -14,6 +14,8 @@ let infoWindowUbicaciones = [];
 
 let sondas = [];
 
+let grafica;
+
 let initMap = function () {
 
     map = new google.maps.Map(document.getElementById("map"), {
@@ -592,8 +594,8 @@ let opciones = {
 
 function CrearGrafica() {
     let ctx = document.getElementById('chart');
-    if(miGrafica) miGrafica.destroy();
-    let miGrafica = new Chart(ctx, {
+    if(grafica !== undefined) grafica.destroy();
+    grafica = new Chart(ctx, {
         type: 'line',
         data: datos,
         options: opciones

@@ -8,17 +8,17 @@ loginForm.addEventListener("submit", (event) => {
 
     let loginFormData = new FormData(event.target); //loginForm
     loginFormData.forEach((value, key) => {
-        console.log(key + ": " + value);
+        //console.log(key + ": " + value);
     });
 
     SesionService.login(loginFormData).then(user => {
         let redirects = {
             admin: "admin", user: "usuario"
         }
-        console.log(redirects[user.rol]);
         window.location.href = 'app/' + redirects[user.rol];
 
-    }).catch(() => {
+    }).catch((err) => {
+        console.log(err)
         let loginFormOutput = document.getElementById("login-form-output");
         loginFormOutput.textContent = "El usuario no existe.";
     })
