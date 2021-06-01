@@ -2,9 +2,9 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'PHPMailer/Exception.php';
-require 'PHPMailer/PHPMailer.php';
-require 'PHPMailer/SMTP.php';
+require 'lib/PHPMailer/Exception.php';
+require 'lib/PHPMailer/PHPMailer.php';
+require 'lib/PHPMailer/SMTP.php';
 
 $nombre = $_POST["nombre"];
 $correo = $_POST["correo"];
@@ -12,8 +12,6 @@ $asunto = $_POST["asunto"];
 $mensaje = $_POST["mensaje"];
 
 $body ="<strong>Nombre: </strong>" . $nombre . "<br><strong>Correo: </strong>" . $correo . "<br><strong>Asunto: </strong>" . $asunto . "<br><strong>Mensaje: </strong>" . $mensaje;
-
-echo $body;
 
 //Instantiation and passing `true` enables exceptions
 $mail = new PHPMailer(true);
@@ -47,10 +45,6 @@ try {
     $mail->CharSet = "UTF-8";
 
     $mail->send();
-
-    echo '<script>
-        window.history.go(-1);
-    </script>';
 
 
     echo 'El mensaje se envió correctamente';
