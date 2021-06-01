@@ -497,13 +497,7 @@ footer section {
 
 
 /* Media queries ======================= */
-
-@media (min-width: 1024px) {
-
-    .reclamo-content {
-        width: 50%;
-    }
-
+@media(min-width:600px){
     .botones{
         display: flex;
         flex-direction:row; 
@@ -511,9 +505,19 @@ footer section {
         margin: 0.625rem;
         width: auto;
     }
-
     .botones > a {
         margin: .6rem;
+    }
+
+    
+    
+
+}
+
+@media (min-width: 1024px) {
+
+    .reclamo-content {
+        width: 50%;
     }
 
     .video {
