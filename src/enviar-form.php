@@ -43,7 +43,7 @@ try {
     //Content
     $mail->isHTML(true);  //  ESTO PERMITE QUE EL CORREO QUE ENVIES ACEPTE HTML     (Set email format to HTML)
     $mail->Subject = $asunto; //ASUNTO DEL CORREO
-    $mail->Body    = "afsegw"; ///$body;
+    $mail->Body    = $body;
     $mail->CharSet = "UTF-8";
 
     $mail->send();

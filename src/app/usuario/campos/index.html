@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="../../../styles/estilos.css">
     <link rel="stylesheet" href="../../../styles/navbar-app.css">
     <link rel="stylesheet" href="campos.css">
+
+    <!-- Chart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js" integrity="sha512-VMsZqo0ar06BMtg0tPsdgRADvl0kDHpTbugCBBrL55KmucH6hP9zWdLIWY//OTfMnzz6xWQRxQqsUFefwHuHyg==" crossorigin="anonymous"></script> <!-- ESTA LINEA INCLUYE LA LIBRERIA CHART PARA HACER GRAFICAS-->
+    <script src="https://cdn.jsdelivr.net/npm/luxon@1.26.0/build/global/luxon.min.js"></script><!-- ESTO INCLUYE LUXON PARA  EJES DE TIEMPO -->
+    <!--script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.0.0/dist/chartjs-adapter-luxon.min.js"></script-->
+    <script src="adapter-luxon.js"></script>
 </head>
 <body>
 
@@ -64,6 +70,9 @@
                 <h2>Gráficas datos</h2>
                 <div id="btn-cerrar-panelGraficas"><i class="fa fa-times"></i></div>
                 <p></p>
+                <div class="chart-container">
+                    <canvas id="chart"></canvas>
+                </div>
         </div>
 
         <div id="panelContainer" class="">
@@ -77,7 +86,7 @@
                         <h2 class="title">Campo title</h2>
                         <span class="alert">0 alertas</span>
                     </div>
-                    <p class="descripcion">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                    <p class="descripcion">Descripcion del campo.</p>
                 </div>
                 <div class="panel_info_buttons">
                     <a type="button" class="button_primary" id="infoBotonVer">Resumen</a>

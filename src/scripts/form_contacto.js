@@ -25,10 +25,15 @@ const popup = document.getElementById('popupID');
 // Abrir boton al enviar
 formContactanos.addEventListener("submit", (event) => {
 
-	//event.preventDefault();
+	event.preventDefault();
 
 	overlay.classList.add('active');
 	popup.classList.add('active');
+
+	fetch("enviar-form.php", {
+		method: "post",
+		body: new FormData(formContactanos),
+	})
 })
 
 const btnCerrarPopup = document.getElementById('btn-cerrar-popup');

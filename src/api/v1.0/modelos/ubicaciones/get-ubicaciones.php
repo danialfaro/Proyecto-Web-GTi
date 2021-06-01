@@ -25,7 +25,13 @@ switch (true) {
         if(isset($query["last"])) {
             // Query para devolver las ultimas mediciones de una ubicacion
             $sql = "SELECT * FROM `mediciones` WHERE id_ubicacion = '${id}' AND timestamp IN (SELECT MAX(timestamp) FROM mediciones WHERE id_ubicacion = '${id}')";
+            break;
+        }
 
+        if(isset($query["limit"])) {
+            $limit = intval($query["limit"]);
+            // Query para devolver las ultimas mediciones de una ubicacion
+            $sql = "SELECT * FROM `mediciones` WHERE id_ubicacion = '${id}' LIMIT ${limit}";
             break;
         }
 
