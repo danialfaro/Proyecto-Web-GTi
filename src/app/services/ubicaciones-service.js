@@ -24,7 +24,7 @@ const UbicacionesService = {
     },
     getMedicionesUbicacion(id, params = {}) {
         var queryString = Object.keys(params).map(key => key + '=' + params[key]).join('&');
-        if(queryString.includes("last"))
+        if(queryString.includes("last") || queryString.includes("limit"))
             return ApiService.get("ubicaciones/" + id + "/mediciones?" + queryString); // Cuidao muchos valores
     },
     crearUbicacion(data) {

@@ -146,10 +146,10 @@ function setupCamposMapa(campos) {
 
                 UbicacionesService.getSondaUbicacion(ubi.id).then(sonda => {
                     UbicacionesService.getMedicionesUbicacion(ubi.id, {last:true}).then(mediciones => {
-                        createinfowindowUbicacion(marker, sonda, mediciones);
+                        createinfowindowUbicacion(marker, ubi, sonda, mediciones);
                     });
                 }).catch(err => {
-                    createinfowindowUbicacion(marker, null);
+                    createinfowindowUbicacion(marker,  ubi);
                 })
 
             })
@@ -170,7 +170,7 @@ function setupCamposMapa(campos) {
     fitAllPolygonsBounds();
 }
 
-function createinfowindowUbicacion(marker, sonda, mediciones){
+function createinfowindowUbicacion(marker, ubicacion, sonda, mediciones){
 
     let info = sonda?.mac;
 
@@ -215,13 +215,20 @@ function createinfowindowUbicacion(marker, sonda, mediciones){
     infoWindowUbicaciones.push(infowindowUbicacion);
 
     google.maps.event.addListener(infowindowUbicacion, 'domready', () => {
-        let infowindowUbicacionElement = document.getElementsByClassName("info-window-ubicacion");
-        for (const iw of infowindowUbicacionElement) {
-            let btn = iw.getElementsByTagName("button")[0];
-            btn.addEventListener('click', () => {
-                abrirPanelGraficas(mediciones);
-            })
-        }
+
+        UbicacionesService.getMedicionesUbicacion(ubicacion.id, {limit: 32}).then(mediciones => {
+
+            let infowindowUbicacionElement = document.getElementsByClassName("info-window-ubicacion");
+            for (const iw of infowindowUbicacionElement) {
+                let btn = iw.getElementsByTagName("button")[0];
+                btn.addEventListener('click', () => {
+                    abrirPanelGraficas(mediciones);
+                })
+            }
+
+        });
+
+
     });
 
     marker.addListener("click", () => {
@@ -419,15 +426,180 @@ function abrirPanelGraficas(mediciones) {
 
     panelGraficas.classList.add("show");
 
-    //TODO: Rellenar graficas con los datos
-
-    panelGraficas.getElementsByTagName("p")[0].innerText = "";
-    mediciones.forEach(med => {
-        panelGraficas.getElementsByTagName("p")[0].innerText += JSON.stringify(med);
+    mediciones.map(m => {
+        var medicion = m.timestamp;
+        var newFormato = '';
+        for(let i=0;i<10;i++){
+            newFormato = newFormato.concat(medicion[i]);
+        }
+        newFormato = newFormato.concat('T');
+        for(let j=11;j<19;j++){
+            newFormato = newFormato.concat(medicion[j]);
+        }
+        newFormato = newFormato.concat('.000+00:00');
+        m.timestamp = newFormato;
     })
+
+    //TODO: Rellenar graficas con los datos
+    rellenarGrafica(mediciones);
+
 
 
 }
+
+function rellenarGrafica(mediciones) {
+    mediciones = mediciones.sort(function (a, b) {
+        if (a.timestamp < b.timestamp) return -1;
+        if (a.timestamp > b.timestamp) return 1;
+        return 0;
+    });
+
+    // recorrer las mediciones
+    let fechas = [];
+    let totalHumedad = [];
+    let totalSalinidad = [];
+    let totalLuz = [];
+    let totalTemperatura = [];
+
+    mediciones.forEach(function (medicion) {
+
+        let i = fechas.indexOf(medicion.timestamp);
+
+        if( medicion.tipo =='humedad') {
+            totalHumedad.push(parseFloat(medicion.valor));
+
+            if(i < 0){
+                fechas.push(medicion.timestamp);
+            }
+        }
+        else if( medicion.tipo =='salinidad') {
+            totalSalinidad.push(parseFloat(medicion.valor));
+
+            if(i < 0){
+                fechas.push(medicion.timestamp);
+            }
+        }
+        else if( medicion.tipo =='luminosidad') {
+            totalLuz.push(parseFloat(medicion.valor));
+
+            if(i < 0){
+                fechas.push(medicion.timestamp);
+            }
+        }
+        else{
+            totalTemperatura.push(parseFloat(medicion.valor));
+
+            if(i < 0){
+                fechas.push(medicion.timestamp);
+            }
+        }
+
+
+    })
+
+    datos.labels = fechas;
+    datos.datasets[0].data = totalHumedad;
+    datos.datasets[1].data = totalSalinidad;
+    datos.datasets[2].data = totalLuz;
+    datos.datasets[3].data = totalTemperatura;
+
+    CrearGrafica();
+    
+}
+let datos = {
+    labels: [],
+    datasets: [
+        { label: 'humedad',
+            data: [],
+            fill: false,
+            backgroundColor: 'blue',
+            borderColor: 'blue',
+            //borderDash: [2, 3],
+            pointStyle: 'rectRot',
+            pointRadius: 4,
+        },
+        {
+            label: 'salinidad',
+            data: [],
+            fill: false,
+            backgroundColor: 'purple',
+            borderColor: 'purple',
+            //borderDash: [3,2],
+            pointStyle: 'rectRot',
+            pointRadius: 4,
+        },
+        {
+            label: 'luz',
+            data: [],
+            fill: false,
+            backgroundColor: 'yellow',
+            borderColor: 'yellow',
+            //borderDash: [3,2],
+            pointStyle: 'rectRot',
+            pointRadius: 4,
+        },
+        { label: 'temperatura',
+            data: [],
+            fill: false,
+            backgroundColor: 'orange',
+            borderColor: 'orange',
+            //borderDash: [2, 3],
+            pointStyle: 'rectRot',
+            pointRadius: 4,
+        }
+
+
+
+    ]
+};
+
+
+let opciones = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+        x: {
+            type: 'time',
+            time: {
+                // formato de fecha con Luxon
+                tooltipFormat: 'DDDD',
+                unit: 'day'
+            },
+        },
+        y: {
+            stacked: false
+        }
+    },
+    plugins: {
+        legend: {
+            position: 'bottom',
+            align: 'center'
+        },
+        title: {
+            display: true,
+            text: 'Mediciones'
+        },
+        tooltips: {
+            backgroundColor: '#fff',
+            titleColor: '#000',
+            titleAlign: 'center',
+            bodyColor: '#333',
+            borderColor: '#666',
+            borderWidth: 1,
+        }
+    }
+};
+
+function CrearGrafica() {
+    let ctx = document.getElementById('chart');
+    if(miGrafica) miGrafica.destroy();
+    let miGrafica = new Chart(ctx, {
+        type: 'line',
+        data: datos,
+        options: opciones
+    });
+}
+
 
 
 // API Calls ====================== Cargar los datos //
