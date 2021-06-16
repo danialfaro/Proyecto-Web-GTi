@@ -2,8 +2,26 @@
     padding: 1.2rem;
 }
 
-#seccionClientes {
-    max-width: 400px;
+h1 {
+    margin-bottom: 2rem;
+}
+
+h3 {
+    margin-bottom: 1rem;
+}
+
+button {
+    margin: 1px;
+    padding: .6rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    color: var(--black);
+}
+
+button:hover {
+    cursor: pointer;
+    background: #d4d4d4;
 }
 
 #listaClientes {
@@ -12,35 +30,69 @@
 
 #listaClientes .cliente-item {
     padding: .5rem;
-    display: flex;
     justify-content: space-between;
     align-items: center;
     border: 3px transparent solid;
 }
 
-#listaClientes .cliente-item:nth-child(2n-1) {
+#listaClientes .cliente-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem;
+}
+
+#listaClientes .cliente-info .cliente-id {
+    width: 25px;
+    font-size: .6rem;
+    font-weight: bold;
+}
+
+#listaClientes .cliente-buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+
+#listaClientes .users-button {
+    color: white;
+    background: var(--primary_light);
+}
+
+#listaClientes .campos-button {
+    color: white;
+    background: var(--primary);
+}
+
+#listaClientes .users-button:hover, #listaClientes .campos-button:hover {
+    filter: brightness(.9);
+}
+
+#listaClientes .users-button i, #listaClientes .campos-button i {
+    margin-right: .6rem;
+}
+
+#listaClientes .cliente-item:nth-child(2n-1):not(.item-header) {
     background: #f8f8f8;
 }
 
-#listaClientes .cliente-item button {
-    margin: 1px;
-    padding: .6rem;
-    border: none;
-    font-weight: bold;
-    color: var(--black);
+#listaClientes .item-header {
+    margin: 0;
+    padding: 0;
+    border-radius: .5rem .5rem 0 0;
+    text-transform: uppercase;
+    background: #e2e2e2;
 }
 
-#listaClientes .cliente-item button:hover {
-    background: #d4d4d4;
+#listaClientes .item-header .cliente-info {
+    padding: 0 1rem;
 }
+
+
 
 .focused {
     animation: flash .5s forwards;
-}
-
-#modificarClienteForm.disabled {
-    opacity: .3;
-    pointer-events: none;
 }
 
 @keyframes flash {
@@ -49,5 +101,118 @@
     }
     to {
         border-color: rgba(255, 191, 0, 0);
+    }
+}
+
+.btn-red {
+    background: #fde5e5;
+    color: #ff4242;
+}
+
+.button_primary.btn-red:hover {
+    filter: brightness(.95);
+    background: #fde5e5;
+    color: #ff4242;
+}
+
+#seccionClientes header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+#seccionClientes header button i {
+    margin-right: .6rem;
+}
+
+/* Modals */
+
+#overlayModals {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.3);
+    z-index: 99;
+}
+
+.modal {
+    box-shadow: 0 0 12px -4px #dbdbdb;
+    padding: 2rem;
+    width: 90%;
+    background: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
+    opacity: 1;
+    transition: 1s;
+}
+
+.botones-modal {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.hide-modal {
+    opacity: 0;
+}
+
+/* Media queries */
+
+@media(min-width: 420px) {
+
+
+    #listaClientes .cliente-item {
+        padding: .5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 3px transparent solid;
+        flex-direction: column;
+    }
+
+    #listaClientes button {
+        margin-right: 1rem;
+
+    }
+
+    #listaClientes .cliente-buttons {
+        width: 100%;
+    }
+
+}
+
+
+@media(min-width: 720px) {
+    .modal {
+        width: 70%;
+    }
+
+    .botones-modal {
+        width: 100%;
+        justify-content: flex-start;
+        flex-direction: row-reverse;
+    }
+
+    .botones-modal input {
+        width: auto;
+        margin: 0 .4rem;
+    }
+
+    #listaClientes .cliente-item, #listaClientes .cliente-buttons {
+        width: auto;
+        flex-direction: row;
+    }
+
+}
+
+@media(min-width: 860px) {
+    .modal {
+        width: 45%;
     }
 }

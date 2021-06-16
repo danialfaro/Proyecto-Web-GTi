@@ -1,6 +1,7 @@
-import CamposService from "../../services/campos-service.js";
-import UbicacionesService from "../../services/ubicaciones-service.js";
-import SesionService from "../../services/sesion-service.js";
+import CamposService from "../services/campos-service.js";
+import UbicacionesService from "../services/ubicaciones-service.js";
+import SesionService from "../services/sesion-service.js";
+import ClientesService from "../services/clientes-service";
 
 let map;
 
@@ -100,7 +101,7 @@ function setupCamposMapa(campos) {
             position: polygonCenter(polygon),
             map: map,
             icon: {
-                url: "../../../images/pink-marker.png",
+                url: "../../images/pink-marker.png",
                 scaledSize: new google.maps.Size(35, 35)
             },
             title: campo.nombre,
@@ -139,7 +140,7 @@ function setupCamposMapa(campos) {
                     let marker = new google.maps.Marker({
                         position: {lat: parseFloat(ubi.lat), lng: parseFloat(ubi.lng)},
                         icon: {
-                            url: "../../../images/purple-sensor-marker.png",
+                            url: "../../images/purple-sensor-marker.png",
                             scaledSize: new google.maps.Size(35, 35)
                         },
                         title: ubi.id,
@@ -442,7 +443,6 @@ function abrirPanelGraficas(mediciones) {
         m.timestamp = newFormato;
     })
 
-    //TODO: Rellenar graficas con los datos
     rellenarGrafica(mediciones);
 
 
@@ -630,4 +630,44 @@ function getUbicacionesCampo(campoId) {
         }).catch(err => reject());
     })
 
+}
+
+// ##### Modificar campo
+
+modificarCampoModal.addEventListener('submit', (event) => {
+    event.preventDefault();
+    let formData = new FormData(event.target);
+    let displayId = document.querySelectorAll('#modificarCampoModal input[name="id"]')[0];
+    modificarCampo(displayId.value, formData); //App
+})
+function modificarCampo(id, formData) {
+
+    ClientesService.modificarCliente(id, formData).then( res => {
+        if(res) {
+
+            listItem.childNodes[0].nodeValue = id + " - " + res.body.nombre;
+
+            let CampoModificado = {
+                ...res.body
+            }
+
+            listItem.dataset.Cliente = JSON.stringify(CampoModificado);
+
+            showModal(modificarCampoModal, false);
+
+        }
+    });
+}
+
+function rellenarModificarCampoForm(campo) {
+
+    let displayId = document.querySelectorAll('#modificarCampoForm input[name="id"]')[0];
+    let inputNombre = document.querySelectorAll('#modificarCampoForm input[name="nombre"]')[0];
+
+    CamposService.getCampo(campo.id).then( campo => {
+        displayId.value = cliente.id;
+        inputNombre.value = cliente.nombre;
+
+        inputNombre.focus();
+    })
 }

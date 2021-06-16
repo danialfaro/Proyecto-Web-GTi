@@ -1,7 +1,40 @@
 import ClientesService from "../services/clientes-service.js";
 
+let lastItemClicked;
 
-// Lista clientes
+// #### Modals
+
+const nuevoClienteModal = document.getElementById("nuevoClienteForm");
+const modificarClienteModal = document.getElementById("modificarClienteForm");
+const eliminarClienteModal = document.getElementById("eliminarClienteForm");
+
+const overlayModals = document.getElementById("overlayModals");
+
+function showModal(modal, show){
+    if(show) {
+        overlayModals.classList.remove('hide-modal');
+        modal.classList.remove('hide-modal');
+    } else {
+        nuevoClienteModal.classList.add('hide-modal');
+        modificarClienteModal.classList.add('hide-modal');
+        overlayModals.classList.add('hide-modal');
+        modal.classList.add('hide-modal');
+    }
+}
+
+document.getElementById("cancelarNuevoClienteFormButton").addEventListener("click", (e) => {
+    showModal(nuevoClienteModal, false);
+})
+document.getElementById("cancelarModificarClienteFormButton").addEventListener("click", () => {
+    resetModificarClienteForm();
+    showModal(modificarClienteModal, false);
+})
+document.getElementById("cancelarEliminarClienteFormButton").addEventListener("click", () => {
+    showModal(eliminarClienteModal, false);
+})
+
+
+// ##### Lista clientes
 const listaClientes = document.getElementById("listaClientes");
 ClientesService.getClientes().then(clientes => {
     clientes.forEach(cliente => {
@@ -16,25 +49,30 @@ function createClienteListItem(cliente){
 
     //
 
-    item.innerHTML = cliente.id + " - " + cliente.nombre;
+    item.innerHTML = `<div class="cliente-info"><span class="cliente-id">${cliente.id}</span>${cliente.nombre}</div>`;
     item.dataset.id = cliente.id;
 
     // Buttons Container
     let buttonsContainer = document.createElement("div");
+    buttonsContainer.classList.add("cliente-buttons")
 
     // Delete Button
     let deleteButton = document.createElement("button");
     deleteButton.onclick = () => {
-        eliminarCliente(item);
+        showModal(eliminarClienteModal, true);
+        lastItemClicked = item;
     }
+    //deleteButton.classList.add("btn-red");
     let iconDelete = document.createElement("i");
-    iconDelete.className = "fa fa-trash-alt fa-fw";
+    //iconDelete.className = "fa fa-trash-alt fa-fw";
+    iconDelete.className = "fa fa-user-slash fa-fw";
     deleteButton.appendChild(iconDelete);
     //deleteButton.innerHTML += "Eliminar";
 
     // Edit Button
     let editButton = document.createElement("button");
     editButton.onclick = () => {
+        showModal(modificarClienteModal, true);
         rellenarModificarClienteForm(item);
     }
     let iconEdit = document.createElement("i");
@@ -42,8 +80,32 @@ function createClienteListItem(cliente){
     editButton.appendChild(iconEdit);
     editButton.innerHTML += "Editar";
 
+    // Usuarios Button
+    let usersButton = document.createElement("button");
+    usersButton.classList.add("users-button")
+    usersButton.onclick = () => {
+        //TODO: Cambiar a la pantalla de usuarios del cliente seleccionado
+    }
+    let iconUsers = document.createElement("i");
+    iconUsers.className = "fa fa-users fa-fw";
+    usersButton.appendChild(iconUsers);
+    usersButton.innerHTML += "Gestionar usuarios";
+
+    // Campos Button
+    let camposButton = document.createElement("button");
+    camposButton.classList.add("campos-button")
+    camposButton.onclick = () => {
+        //TODO: Cambiar a la pantalla de campos del cliente seleccionado
+    }
+    let iconCampos = document.createElement("i");
+    iconCampos.className = "fab fa-pagelines fa-fw";
+    camposButton.appendChild(iconCampos);
+    camposButton.innerHTML += "Gestionar campos";
+
 
     //Add buttons to buttonsContainer
+    buttonsContainer.appendChild(usersButton);
+    buttonsContainer.appendChild(camposButton);
     buttonsContainer.appendChild(editButton);
     buttonsContainer.appendChild(deleteButton);
 
@@ -56,9 +118,14 @@ function createClienteListItem(cliente){
     return item;
 }
 
-// Nuevo cliente
-let nuevoClienteForm = document.getElementById("nuevoClienteForm");
-nuevoClienteForm.addEventListener('submit', (event) => {
+// ##### Nuevo cliente
+
+let nuevoClienteButton = document.getElementById("nuevoClienteButton");
+nuevoClienteButton.addEventListener('click', () => {
+    showModal(nuevoClienteModal, true);
+})
+
+nuevoClienteModal.addEventListener('submit', (event) => {
     event.preventDefault();
     let formData = new FormData(event.target);
     nuevoCliente(formData); //App
@@ -68,24 +135,23 @@ function nuevoCliente(formData) {
 
     ClientesService.crearCliente(formData).then( res => {
         if(res) {
-            console.log(res)
             ClientesService.getCliente(res.id).then(cliente => {
                 createClienteListItem(cliente);
                 nuevoClienteForm.reset();
+                showModal(nuevoClienteModal, false);
             })
         }
     });
 }
 
-// Modificar cliente
-let modificarClienteForm = document.getElementById("modificarClienteForm");
-modificarClienteForm.addEventListener('submit', (event) => {
+
+// ##### Modificar cliente
+modificarClienteModal.addEventListener('submit', (event) => {
     event.preventDefault();
     let formData = new FormData(event.target);
     let displayId = document.querySelectorAll('#modificarClienteForm input[name="id"]')[0];
     modificarCliente(displayId.value, formData); //App
 })
-
 function modificarCliente(id, formData) {
 
     let listItem = document.querySelectorAll('#listaClientes li[data-id="'+ id + '"]')[0];
@@ -94,8 +160,6 @@ function modificarCliente(id, formData) {
     
     ClientesService.modificarCliente(id, formData).then( res => {
         if(res) {
-
-            console.log(res)
 
             listItem.childNodes[0].nodeValue = id + " - " + res.body.nombre;
 
@@ -108,6 +172,7 @@ function modificarCliente(id, formData) {
             listItem.classList.add("focused");
 
             resetModificarClienteForm();
+            showModal(modificarClienteModal, false);
 
         }
     });
@@ -123,23 +188,22 @@ function rellenarModificarClienteForm(item) {
         inputNombre.value = cliente.nombre;
 
         inputNombre.focus();
-        modificarClienteForm.classList.remove("disabled");
     })
 }
 
-let cancelarModificarClienteFormButton = document.getElementById("cancelarModificarClienteFormButton");
-cancelarModificarClienteFormButton.onclick = () => {
-    resetModificarClienteForm();
-}
 
 function resetModificarClienteForm(){
     document.activeElement.blur();
     modificarClienteForm.reset();
-    modificarClienteForm.classList.add("disabled");
 }
 
+// #### Eliminar cliente
 
-// Eliminar cliente
+eliminarClienteModal.addEventListener('submit', (event) => {
+    event.preventDefault();
+    eliminarCliente(lastItemClicked);
+    showModal(eliminarClienteModal, false);
+})
 
 function eliminarCliente(item) {
 

@@ -46,7 +46,7 @@
         <nav>
             <ul>
                 <li><a href="#"><i class="fa fa-fw fa-user-cog"></i>Panel de control</a></li>
-                <li><a href="../usuario"><i class="fa fa-fw fa-user"></i>Dashboard Usuario</a></li>
+                <li><a href="../usuario"><i class="fa fa-fw fa-user"></i>Campos Usuario</a></li>
             </ul>
         </nav>
     </div>
@@ -63,36 +63,56 @@
         <section id="seccionClientes">
             <header>
                 <h2>Clientes</h2>
+                <button id="nuevoClienteButton"><i class="fa fa-fw fa-plus"></i>Dar de alta cliente</button>
             </header>
 
             <ul id="listaClientes">
+                <li class="cliente-item item-header"><div class="cliente-info"><span class="cliente-id">#</span>NOMBRE</div></li>
                 <!-- Clientes -->
             </ul>
-
-            <form id="nuevoClienteForm">
-                <h3>Nuevo cliente</h3>
-                <div class="form-group">
-                    <input name="nombre" placeholder="Nombre" required>
-                    <label>Nombre</label>
-                </div>
-                <input class="button_primary" type="submit" value="Dar de alta">
-            </form>
-
-            <form id="modificarClienteForm" class="disabled">
-                <h3>Modificar Cliente</h3>
-                <input type="text" name="id" placeholder="ID" disabled>
-                <input type="text" name="nombre" placeholder="Nombre" required>
-                <input class="button_primary" type="submit" value="Modificar Cliente">
-                <input class="button_secondary" type="button" value="Cancelar" id="cancelarModificarClienteFormButton">
-            </form>
         </section>
 
     </div>
 
 
 
+
 </main>
 
+<div id="overlayModals" class="hide-modal">
+
+    <form class="modal hide-modal" id="nuevoClienteForm">
+        <h3>Dar de alta cliente</h3>
+        <div class="form-group">
+            <input name="nombre" placeholder="Nombre" required>
+            <label>Nombre</label>
+        </div>
+        <div class="botones-modal">
+            <input class="button_primary" type="submit" value="Dar de alta">
+            <input class="button_secondary" type="button" value="Cancelar" id="cancelarNuevoClienteFormButton">
+        </div>
+    </form>
+
+    <form class="modal hide-modal" id="modificarClienteForm" class="disabled">
+        <h3>Modificar Cliente</h3>
+        <input type="text" name="id" placeholder="ID" disabled>
+        <input type="text" name="nombre" placeholder="Nombre" required>
+        <div class="botones-modal">
+            <input class="button_primary" type="submit" value="Modificar Cliente">
+            <input class="button_secondary" type="button" value="Cancelar" id="cancelarModificarClienteFormButton">
+        </div>
+    </form>
+
+    <form class="modal hide-modal" id="eliminarClienteForm" class="disabled">
+        <h3>¿Dar de baja a <span>cliente</span>?</h3>
+        <!-- <input type="text" name="nombre" placeholder="Nombre" required> -->
+        <div class="botones-modal">
+            <input class="button_primary btn-red" type="submit" value="Dar de baja">
+            <input class="button_secondary" type="button" value="Cancelar" id="cancelarEliminarClienteFormButton">
+        </div>
+    </form>
+
+</div>
 
 <script src="../../scripts/navbar.js"></script>
 <script type="module">

@@ -32,7 +32,6 @@ a {
 .button_primary,
 .button_secondary {
     padding: .5rem 2rem;
-    *margin: .5rem;
     text-align: center;
     border-radius: 1.3rem;
     font-size: 1rem;
@@ -66,16 +65,10 @@ a {
     color: var(--primary);
 }
 
-/*.button_secondary {
-    background: rgb(243, 243, 243);
-    border: 3px rgb(243, 243, 243) solid;
-    color: rgb(196, 196, 196);
-}*/
-
 .button_secondary:hover {
     transform: translate(0, -1px);
     color: var(--primary_light);
-    border: 3px solid var(--primary_light);
+    border: 2px solid var(--primary_light);
 }
 
 .button_secondary:active {
@@ -128,7 +121,7 @@ input,
 textarea,
 select,
 option {
-    font-family: 'Poppins';
+    font-family: 'Poppins', sans-serif;
     width: 100%;
     border: none;
     margin-bottom: .8rem;
@@ -142,6 +135,11 @@ select::placeholder {
     color: rgb(196, 196, 196);
     transition: .2s;
     font-size: .7rem;
+}
+
+input,
+textarea {
+    border-bottom: 2px transparent solid;
 }
 
 input:focus,
