@@ -1,20 +1,20 @@
 
 //** Validacion
-/*const mail = document.getElementById("correo");
+const mail = document.getElementById("correo");
 const nombre = document.getElementById("nombre");
 const asunto = document.getElementById("asunto");
-const text = document.getElementById("mensaje");*/
+const text = document.getElementById("mensaje");
 
 const formContactanos = document.getElementById("formContactanos");
 const submitButtonContact = document.getElementById("submitButtonContact");
 formContactanos.addEventListener("input", function (event) {
-
+	/*
 	if (formContactanos.checkValidity()) {
 		submitButtonContact.removeAttribute("disabled");
 	} else {
 		submitButtonContact.setAttribute("disabled", true);
 	}
-
+	*/
 });
 
 //** Popup

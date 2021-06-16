@@ -58,6 +58,20 @@ body, html, main {
     margin: .2rem;
 }
 
+.info-window-ubicacion header {
+    text-align: center;
+    border-bottom: 1px gray solid;
+    padding-bottom: .8rem;
+}
+
+.info-window-ubicacion .info-sonda-id {
+    color: gray;
+    margin: 0 .8rem;
+}
+.info-window-ubicacion .info-sonda-id span {
+    font-weight: bold;
+}
+
 .info-window-ubicacion i.humedad {
     color: #0484d9;
 }
@@ -136,10 +150,9 @@ body, html, main {
 }
 
 #panelContainer.open .panel_toolbar button {
-    opacity: 0;
-    display: none;
+    opacity: 1;
     padding: .7rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 #panelContainer .panel_info {
@@ -227,7 +240,7 @@ span.alert-danger {
 
 }
 
-#panelGraficas h2 {
+#panelGraficas header {
     text-align: center;
     margin-bottom: .8rem;
 }
@@ -268,6 +281,7 @@ span.alert-danger {
     justify-content: center;
     display: flex;
     visibility: hidden;
+    z-index: 90;
 }
 
 #overlayPopup.active {
@@ -288,7 +302,7 @@ span.alert-danger {
     transition: .3s ease all;
     transform: scale(0.7);
     opacity: 0;
-    border-bottom: 4px var(--primary_light) solid;
+
 }
 
 .popup #btn-cerrar-popup {

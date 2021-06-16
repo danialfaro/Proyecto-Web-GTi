@@ -1,7 +1,6 @@
 import CamposService from "../services/campos-service.js";
 import UbicacionesService from "../services/ubicaciones-service.js";
 import SesionService from "../services/sesion-service.js";
-import ClientesService from "../services/clientes-service";
 
 let map;
 
@@ -126,6 +125,7 @@ function setupCamposMapa(campos) {
             }
         });
 
+        infowindowCampo.open(map, markerCampo); // Paneles abiertos por defecto
 
         markerCampo.addListener("click", () => {
             infowindowCampo.open(map, markerCampo);
@@ -149,10 +149,10 @@ function setupCamposMapa(campos) {
 
                 UbicacionesService.getSondaUbicacion(ubi.id).then(sonda => {
                     UbicacionesService.getMedicionesUbicacion(ubi.id, {last:true}).then(mediciones => {
-                        createinfowindowUbicacion(marker, ubi, sonda, mediciones);
+                        createInfoWindowUbicacion(marker, ubi, sonda, mediciones);
                     });
                 }).catch(err => {
-                    createinfowindowUbicacion(marker,  ubi);
+                    createInfoWindowUbicacion(marker,  ubi);
                 })
 
             })
@@ -168,12 +168,15 @@ function setupCamposMapa(campos) {
         })
         listaCampos.appendChild(li);
 
+
     });
 
     fitAllPolygonsBounds();
+    
+
 }
 
-function createinfowindowUbicacion(marker, ubicacion, sonda, mediciones){
+function createInfoWindowUbicacion(marker, ubicacion, sonda, mediciones){
 
     let info = sonda?.mac;
 
@@ -195,6 +198,10 @@ function createinfowindowUbicacion(marker, ubicacion, sonda, mediciones){
         let luminosidad = mediciones.filter(m => { return m.tipo === "luminosidad"})[0];
 
         contentInfoWindow = `<div class="info-window-ubicacion" data-idubi="${humedad.id_ubicacion}">
+                                <header>
+                                    <h3>Ubicacion ${ubicacion.id}</h3>
+                                    <div class="info-sonda-id">Sonda actual: <span>${sonda.id}</span></div>
+                                </header>                                
                                 <div class="medicion">
                                     <i class="fa fa-tint fa-fw humedad"></i><p>Humedad:</p><span>${humedad.valor} ${humedad.unidad}</span>
                                 </div>
@@ -378,7 +385,7 @@ infoBotonVer.addEventListener("click", () => {
 const overlay = document.getElementById('overlayPopup')
 const popup = document.getElementById('popup');
 
-// boton busqueda - abrir/cerrar form_contacto
+// boton busqueda - abrir/cerrar
 const busquedaBoton = document.getElementById("busquedaBoton");
 let busquedaActivo = false;
 busquedaBoton.addEventListener("click", () => {
@@ -394,7 +401,7 @@ busquedaBoton.addEventListener("click", () => {
     }
 });
 
-// x - cerrar form_contacto
+// x - cerrar
 const btnCerrarPopup = document.getElementById('btn-cerrar-popup');
 btnCerrarPopup.addEventListener('click', function (e) {
     e.preventDefault();
@@ -430,6 +437,7 @@ function abrirPanelGraficas(mediciones) {
     panelGraficas.classList.add("show");
 
     mediciones.map(m => {
+
         var medicion = m.timestamp;
         var newFormato = '';
         for(let i=0;i<10;i++){
@@ -445,6 +453,7 @@ function abrirPanelGraficas(mediciones) {
 
     rellenarGrafica(mediciones);
 
+    document.getElementById("displayUbicacionId").textContent = mediciones[0].id_ubicacion;
 
 
 }
@@ -554,8 +563,6 @@ let datos = {
 
     ]
 };
-
-
 let opciones = {
     responsive: true,
     maintainAspectRatio: false,
@@ -603,7 +610,6 @@ function CrearGrafica() {
 }
 
 
-
 // API Calls ====================== Cargar los datos //
 
 
@@ -642,7 +648,7 @@ modificarCampoModal.addEventListener('submit', (event) => {
 })
 function modificarCampo(id, formData) {
 
-    ClientesService.modificarCliente(id, formData).then( res => {
+    /*CamposService.modificarCampo(id, formData).then( res => {
         if(res) {
 
             listItem.childNodes[0].nodeValue = id + " - " + res.body.nombre;
@@ -656,7 +662,7 @@ function modificarCampo(id, formData) {
             showModal(modificarCampoModal, false);
 
         }
-    });
+    });*/
 }
 
 function rellenarModificarCampoForm(campo) {

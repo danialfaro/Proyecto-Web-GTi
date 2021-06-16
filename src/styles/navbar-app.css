@@ -82,7 +82,7 @@
 #login-form-wrapper ul li a {
     display: block;
     padding: 1rem;
-    color: var(--black);
+    color: #c3c3c3;
 }
 
 #login-form-wrapper ul li i {
@@ -93,6 +93,7 @@
     /*background: rgba(231, 231, 231, 0.25);*/
     color: #b83b3b;
 }
+
 
 
 #overlay {

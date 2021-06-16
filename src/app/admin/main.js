@@ -157,11 +157,11 @@ function modificarCliente(id, formData) {
     let listItem = document.querySelectorAll('#listaClientes li[data-id="'+ id + '"]')[0];
 
     listItem.classList.remove("focused");
-    
+
     ClientesService.modificarCliente(id, formData).then( res => {
         if(res) {
 
-            listItem.childNodes[0].nodeValue = id + " - " + res.body.nombre;
+            listItem.childNodes[0].innerHTML = `<span class="cliente-id">${id}</span>${res.body.nombre}`;
 
             let ClienteModificado = {
                 ...res.body
