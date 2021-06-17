@@ -619,7 +619,13 @@ function getCampos(userData) {
         if (userData && userData.rol !== "admin") {
             request = CamposService.getCamposUsuario(userData.id);
         } else {
-            request = CamposService.getCampos();
+            let loggedAsUserID = window.localStorage.getItem("loggedAsUserID");
+
+            if(loggedAsUserID) {
+                //TODO: Display "Logged as <usuario>" panel on map
+            }
+
+            request = loggedAsUserID ? CamposService.getCamposUsuario(loggedAsUserID) : CamposService.getCampos();
         }
         request.then(data => resolve(data)).catch(err => reject(err));
     });

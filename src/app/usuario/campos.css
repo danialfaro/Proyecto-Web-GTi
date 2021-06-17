@@ -15,6 +15,7 @@ body, html, main {
     /*height: calc(100vh - 3.625rem);*/
     height: 100%;
     overflow: hidden;
+    position: relative;
 }
 
 #map {
@@ -380,6 +381,22 @@ span.alert-danger {
         transform: translateY(0);
         opacity: 1;
     }
+}
+
+
+#loggedAsPanel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    background: rgba(0,0,0,.5);
+    color: white;
+    padding: 1rem;
+}
+
+#loggedAsPanel span {
+    font-weight: bold;
 }
 
 
