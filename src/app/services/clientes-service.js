@@ -13,7 +13,7 @@ const ClientesService = {
         }))
     },
     getUsuariosCliente(id) {
-        return ApiService.get("clientes/" + id + "/usuario");
+        return ApiService.get("clientes/" + id + "/usuarios");
     },
     crearCliente(data) {
         return ApiService.post("clientes", data);

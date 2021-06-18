@@ -383,6 +383,10 @@ span.alert-danger {
     }
 }
 
+.isadmin.d-none {
+    display: none;
+}
+
 
 #loggedAsPanel {
     position: absolute;

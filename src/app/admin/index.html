@@ -66,10 +66,28 @@
                 <button id="nuevoClienteButton"><i class="fa fa-fw fa-plus"></i>Dar de alta cliente</button>
             </header>
 
-            <ul id="listaClientes">
-                <li class="cliente-item item-header"><div class="cliente-info"><span class="cliente-id">#</span>NOMBRE</div></li>
-                <!-- Clientes -->
-            </ul>
+            <table id="tablaClientes">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Activo</th>
+                        <th>Nombre</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tableClientesBody">
+                    <!-- <tr>
+                        <td>1</td>
+                        <td style="color: forestgreen">Activo</td>
+                        <td>Maroto</td>
+                        <td style="display:flex; flex-direction: column">
+                            <button><i class="fa fa-fw fa-users"></i></button>
+                            <button><i class="fa fa-fw fa-edit"></i></button>
+                            <button><i class="fa fa-fw fa-trash"></i></button>
+                        </td>
+                    </tr>-->
+                </tbody>
+            </table>
         </section>
 
     </div>

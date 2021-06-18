@@ -27,6 +27,11 @@ switch (true) {
         // Query para devolver los campos de un usuario
         $sql = "SELECT id, nombre, geometria FROM campos WHERE id IN (SELECT campo_id FROM usuarios_campos WHERE usuario_id = '${id}')";
         break;
+    case $paramPath[0] === "cliente" && $paramPath[1]:
+        $id = $paramPath[1];
+        // Query para devolver los campos de un cliente
+        $sql = "SELECT * FROM campos WHERE id IN (SELECT campo_id FROM `usuarios_campos` WHERE usuario_id IN (SELECT id FROM usuarios WHERE id_cliente = '${id}'))";
+        break;
 
 }
 

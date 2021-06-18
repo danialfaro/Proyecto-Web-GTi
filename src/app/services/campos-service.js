@@ -36,6 +36,19 @@ const CamposService = {
                 });
         });
     },
+    getCamposCliente(id) {
+        return new Promise((resolve, reject) => {
+            ApiService.get("campos/cliente/" + id)
+                .then(data => {
+                    //let campos = formatCampos(data);
+                    resolve(data);
+
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    },
     crearCampo(data) {
         return ApiService.post("campos", data);
     },

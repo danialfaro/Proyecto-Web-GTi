@@ -11,14 +11,14 @@ $id = $paramPath[0];
 
 $paramsBody = json_decode(file_get_contents('php://input'), true);
 
-$campos = [];
+$parametros = [];
 foreach ($paramsBody as $key => $value) {
     $str = $key ." = '".$value."'";
-    array_push($campos, $str);
+    array_push($parametros, $str);
 }
-$strCampos = join(", ", $campos);
+$strParametros = join(", ", $parametros);
 
-$sql = "UPDATE clientes SET $strCampos WHERE id = $id";
+$sql = "UPDATE clientes SET $strParametros WHERE id = $id";
 
 $result = mysqli_query($conn, $sql);
 

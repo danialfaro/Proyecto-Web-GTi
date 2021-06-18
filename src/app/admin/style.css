@@ -24,7 +24,7 @@ button:hover {
     background: #d4d4d4;
 }
 
-#listaClientes {
+/*#listaClientes {
     list-style: none;
 }
 
@@ -89,10 +89,38 @@ button:hover {
     padding: 0 1rem;
 }
 
-
-
 .focused {
     animation: flash .5s forwards;
+}*/
+
+#tablaClientes {
+    width: 100%;
+}
+#tablaClientes td {
+    padding: 1rem;
+    text-align: center;
+}
+#tablaClientes th {
+    color: lightgray;
+    padding: .8rem;
+    border-bottom: 1px var(--primary_light) solid;
+}
+#tablaClientes th:nth-child(1), #tablaClientes th:nth-child(2) {
+    width: 1rem;
+}
+
+#tablaClientes tr:nth-child(2n) {
+    background: whitesmoke;
+}
+
+
+#tablaClientes .opciones {
+    display:flex;
+    flex-direction: column;
+}
+
+#tablaClientes .opciones button span {
+    display: none;
 }
 
 @keyframes flash {
@@ -185,6 +213,10 @@ button:hover {
         width: 100%;
     }
 
+    #tablaClientes .opciones button span {
+        display: inline-block;
+    }
+
 }
 
 
@@ -206,6 +238,12 @@ button:hover {
 
     #listaClientes .cliente-item, #listaClientes .cliente-buttons {
         width: auto;
+        flex-direction: row;
+    }
+
+    #tablaClientes .opciones {
+        display:flex;
+        justify-content: center;
         flex-direction: row;
     }
 

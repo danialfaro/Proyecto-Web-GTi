@@ -20,7 +20,7 @@ switch (true) {
     case is_numeric($paramPath[0]) && $paramPath[1] === "usuarios":
         $id = $paramPath[0];
         // Query para devolver los usuarios de un cliente
-        $sql = "";
+        $sql = "SELECT * FROM usuarios WHERE id_cliente = '${id}'";
         break;
 
 }

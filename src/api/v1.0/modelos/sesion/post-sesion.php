@@ -5,8 +5,8 @@ $usuarioContrasenya = $_POST['password'];
 
 // Query para buscar el usuario
 //$sql = "SELECT * FROM usuarios";
-$sql = "SELECT id, nombre, rol FROM usuarios WHERE nombre = '$usuarioNombre' AND contrasenya = '$usuarioContrasenya'";
-
+$sql = "SELECT id, nombre, rol FROM usuarios WHERE bloqueado = 0 AND nombre = '$usuarioNombre' AND contrasenya = '$usuarioContrasenya' 
+AND (rol = 'admin' OR id_cliente IN (SELECT id FROM clientes WHERE activo = 1))";
 // Ejecutar la consulta a la BD
 $result = mysqli_query($conn, $sql);
 
@@ -16,8 +16,6 @@ if(mysqli_num_rows($result) > 0) {
     session_start();
 
     while ($fila = mysqli_fetch_assoc($result)) {
-
-        //echo "<b>" . $fila['nombre'] . "</b> " .$fila['rol'] . "<br>";
 
         // Iniciar variables de respuesta
         $respuesta['id'] = $fila['id'];

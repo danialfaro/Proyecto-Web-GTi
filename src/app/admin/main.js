@@ -10,8 +10,8 @@ const eliminarClienteModal = document.getElementById("eliminarClienteForm");
 
 const overlayModals = document.getElementById("overlayModals");
 
-function showModal(modal, show){
-    if(show) {
+function showModal(modal, show) {
+    if (show) {
         overlayModals.classList.remove('hide-modal');
         modal.classList.remove('hide-modal');
     } else {
@@ -22,6 +22,7 @@ function showModal(modal, show){
     }
 }
 
+// Listeners botones cerrar modal
 document.getElementById("cancelarNuevoClienteFormButton").addEventListener("click", (e) => {
     showModal(nuevoClienteModal, false);
 })
@@ -34,92 +35,65 @@ document.getElementById("cancelarEliminarClienteFormButton").addEventListener("c
 })
 
 
+
 // ##### Lista clientes
+const tableClientesBody = document.getElementById("tableClientesBody");
 const listaClientes = document.getElementById("listaClientes");
 ClientesService.getClientes().then(clientes => {
     clientes.forEach(cliente => {
-        createClienteListItem(cliente);
+        //createClienteListItem(cliente);
+        const item = generateClienteTableItem(cliente)
+        tableClientesBody.appendChild(item);
     })
+
 })
 
-function createClienteListItem(cliente){
 
-    let item = document.createElement("li");
-    item.classList.add("cliente-item");
 
-    //
+function generateClienteTableItem(cliente) {
 
-    item.innerHTML = `<div class="cliente-info"><span class="cliente-id">${cliente.id}</span>${cliente.nombre}</div>`;
+    let activo = cliente.activo === "1";
+
+    let item = document.createElement("tr");
     item.dataset.id = cliente.id;
 
-    // Buttons Container
-    let buttonsContainer = document.createElement("div");
-    buttonsContainer.classList.add("cliente-buttons")
+    //language=HTML
+    item.innerHTML = `
+        <td>${cliente.id}</td>
+        <td style="color: ${activo ? "limegreen" : "red"}"><i class="fa-fw ${activo ? "fa fa-circle" : "far fa-circle"}"></i></td>
+        <td>${cliente.nombre}</td>
+        <td class="opciones">
+            <button data-boton="usuarios"><i class="fa fa-fw fa-users"></i><span>Usuarios</span></button>
+            <button data-boton="editar"><i class="fa fa-fw fa-edit"></i><span>Editar</span></button>
+            <button data-boton="activar">
+                <i class="fa fa-fw ${activo ? "fa-arrow-down" : "fa-arrow-up"}"></i>
+                <span style="width: 4.5rem;">${activo ? "Dar de baja" : "Activar"}</span>
+            </button>
+            <button data-boton="ver"><i class="fa fa-fw fa-eye"></i></button>
+        </td>`
 
-    // Delete Button
-    let deleteButton = document.createElement("button");
-    deleteButton.onclick = () => {
-        showModal(eliminarClienteModal, true);
-        lastItemClicked = item;
-    }
-    //deleteButton.classList.add("btn-red");
-    let iconDelete = document.createElement("i");
-    //iconDelete.className = "fa fa-trash-alt fa-fw";
-    iconDelete.className = "fa fa-user-slash fa-fw";
-    deleteButton.appendChild(iconDelete);
-    //deleteButton.innerHTML += "Eliminar";
-
-    // Edit Button
-    let editButton = document.createElement("button");
-    editButton.onclick = () => {
+    /*item.querySelector("button[data-boton='usuarios']").onclick = () => {
+        console.log("usuarios de " + item.dataset.id);
+    }*/
+    item.querySelector("button[data-boton='editar']").onclick = () => {
         showModal(modificarClienteModal, true);
         rellenarModificarClienteForm(item);
     }
-    let iconEdit = document.createElement("i");
-    iconEdit.className = "fa fa-edit fa-fw";
-    editButton.appendChild(iconEdit);
-    editButton.innerHTML += "Editar";
-
-    // Usuarios Button
-    let usersButton = document.createElement("button");
-    usersButton.classList.add("users-button")
-    usersButton.onclick = () => {
-        //TODO: Cambiar a la pantalla de usuarios del cliente seleccionado
+    item.querySelector("button[data-boton='activar']").onclick = () => {
+        activarCliente(item, !activo);
     }
-    let iconUsers = document.createElement("i");
-    iconUsers.className = "fa fa-users fa-fw";
-    usersButton.appendChild(iconUsers);
-    usersButton.innerHTML += "Gestionar usuarios";
-
-    // Campos Button
-    let camposButton = document.createElement("button");
-    camposButton.classList.add("campos-button")
-    camposButton.onclick = () => {
-        //TODO: Cambiar a la pantalla de campos del cliente seleccionado
+    item.querySelector("button[data-boton='ver']").onclick = () => {
+        window.sessionStorage.setItem("loggedAsUserID", cliente.id)
+        window.location.href = "../usuario";
     }
-    let iconCampos = document.createElement("i");
-    iconCampos.className = "fab fa-pagelines fa-fw";
-    camposButton.appendChild(iconCampos);
-    camposButton.innerHTML += "Gestionar campos";
 
 
-    //Add buttons to buttonsContainer
-    buttonsContainer.appendChild(usersButton);
-    buttonsContainer.appendChild(camposButton);
-    buttonsContainer.appendChild(editButton);
-    buttonsContainer.appendChild(deleteButton);
-
-    //Add buttonsContainer to item
-    item.appendChild(buttonsContainer);
-
-    //Add item to list
-    listaClientes.appendChild(item);
 
     return item;
+
 }
 
-// ##### Nuevo cliente
-
+// ### Nuevo cliente
 let nuevoClienteButton = document.getElementById("nuevoClienteButton");
 nuevoClienteButton.addEventListener('click', () => {
     showModal(nuevoClienteModal, true);
@@ -133,10 +107,12 @@ nuevoClienteModal.addEventListener('submit', (event) => {
 
 function nuevoCliente(formData) {
 
-    ClientesService.crearCliente(formData).then( res => {
-        if(res) {
+    ClientesService.crearCliente(formData).then(res => {
+        if (res) {
             ClientesService.getCliente(res.id).then(cliente => {
-                createClienteListItem(cliente);
+                //createClienteListItem(cliente);
+                const item = generateClienteTableItem(cliente)
+                tableClientesBody.appendChild(item);
                 nuevoClienteForm.reset();
                 showModal(nuevoClienteModal, false);
             })
@@ -145,31 +121,25 @@ function nuevoCliente(formData) {
 }
 
 
-// ##### Modificar cliente
+// ### Modificar cliente
 modificarClienteModal.addEventListener('submit', (event) => {
     event.preventDefault();
     let formData = new FormData(event.target);
     let displayId = document.querySelectorAll('#modificarClienteForm input[name="id"]')[0];
-    modificarCliente(displayId.value, formData); //App
+    modificarCliente(displayId.value, Object.fromEntries(formData)); //App
 })
-function modificarCliente(id, formData) {
 
-    let listItem = document.querySelectorAll('#listaClientes li[data-id="'+ id + '"]')[0];
+function modificarCliente(id, data) {
 
-    listItem.classList.remove("focused");
+    let item = document.querySelectorAll('tr[data-id="' + id + '"]')[0];
 
-    ClientesService.modificarCliente(id, formData).then( res => {
-        if(res) {
+    ClientesService.modificarCliente(id, data).then(res => {
+        if (res) {
 
-            listItem.childNodes[0].innerHTML = `<span class="cliente-id">${id}</span>${res.body.nombre}`;
-
-            let ClienteModificado = {
-                ...res.body
-            }
-
-            listItem.dataset.Cliente = JSON.stringify(ClienteModificado);
-
-            listItem.classList.add("focused");
+            ClientesService.getCliente(item.dataset.id).then(cliente => {
+                let newItem = generateClienteTableItem(cliente);
+                item.parentNode.replaceChild(newItem, item);
+            });
 
             resetModificarClienteForm();
             showModal(modificarClienteModal, false);
@@ -183,7 +153,7 @@ function rellenarModificarClienteForm(item) {
     let displayId = document.querySelectorAll('#modificarClienteForm input[name="id"]')[0];
     let inputNombre = document.querySelectorAll('#modificarClienteForm input[name="nombre"]')[0];
 
-    ClientesService.getCliente(item.dataset.id).then( cliente => {
+    ClientesService.getCliente(item.dataset.id).then(cliente => {
         displayId.value = cliente.id;
         inputNombre.value = cliente.nombre;
 
@@ -191,14 +161,12 @@ function rellenarModificarClienteForm(item) {
     })
 }
 
-
-function resetModificarClienteForm(){
+function resetModificarClienteForm() {
     document.activeElement.blur();
     modificarClienteForm.reset();
 }
 
-// #### Eliminar cliente
-
+// ## Eliminar cliente
 eliminarClienteModal.addEventListener('submit', (event) => {
     event.preventDefault();
     eliminarCliente(lastItemClicked);
@@ -208,9 +176,33 @@ eliminarClienteModal.addEventListener('submit', (event) => {
 function eliminarCliente(item) {
 
     let id = item.dataset.id;
-    ClientesService.eliminarCliente(id).then( res => {
-        if(res) {
+
+    ClientesService.eliminarCliente(id).then(res => {
+        if (res) {
             item.remove();
         }
     });
+}
+
+// ## Alta/Baja cliente
+function activarCliente(item, activar) {
+
+    ClientesService.modificarCliente(item.dataset.id, {
+        "activo": activar ? "1" : "0"
+    }).then(res => {
+
+        if (res) {
+
+            ClientesService.getCliente(item.dataset.id).then(cliente => {
+                let newItem = generateClienteTableItem(cliente);
+                item.parentNode.replaceChild(newItem, item);
+            });
+
+            resetModificarClienteForm();
+            showModal(modificarClienteModal, false);
+
+        }
+    });
+
+
 }

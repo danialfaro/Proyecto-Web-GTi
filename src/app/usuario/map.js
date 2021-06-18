@@ -1,6 +1,9 @@
 import CamposService from "../services/campos-service.js";
 import UbicacionesService from "../services/ubicaciones-service.js";
 import SesionService from "../services/sesion-service.js";
+import UsuariosService from "../services/usuarios-service.js";
+import ClientesService from "../services/clientes-service.js";
+
 
 let map;
 
@@ -12,7 +15,7 @@ let markersCampos = [];
 
 let infoWindowUbicaciones = [];
 
-let sondas = [];
+//let sondas = [];
 
 let grafica;
 
@@ -45,9 +48,48 @@ let initMap = function () {
 
     // Cargar los campos del usuario logeado
     SesionService.getSesion().then(user => {
-        getCampos(user).then((campos) => {
+
+        let request;
+        if (user && user.rol !== "admin") {
+            request = CamposService.getCamposUsuario(user.id);
+        } else {
+
+            let loggedAsUserID = window.sessionStorage.getItem("loggedAsUserID");
+
+            if(loggedAsUserID) {
+
+                // Ver los campos del usuario
+                /*UsuariosService.getUsuario(loggedAsUserID).then(loggedAsUser => {
+
+                    //Display "Logged as <usuario>" panel on map
+                    const loggedAsPanel = document.getElementById("loggedAsPanel");
+                    loggedAsPanel.getElementsByTagName("span")[0].textContent = loggedAsUser.nombre;
+
+                });*/
+
+                //Ver los campos del cliente
+                ClientesService.getCliente(loggedAsUserID).then(loggedAsUser => {
+                    const loggedAsPanel = document.getElementById("loggedAsPanel");
+                    loggedAsPanel.getElementsByTagName("span")[0].textContent = loggedAsUser.nombre;
+                });
+
+
+                request = CamposService.getCamposCliente(loggedAsUserID);
+
+            } else {
+                request = CamposService.getCampos();
+            }
+
+
+        }
+
+        request.then((campos) => {
             setupCamposMapa(campos);
+        }).catch(err => {
+            setupCamposMapa([]);
         });
+
+
     });
 
     // Zoom changed
@@ -66,9 +108,9 @@ let initMap = function () {
         }
     })
 }
-
 initMap();
 
+// Renderiza el mapa con los datos de los campos
 function setupCamposMapa(campos) {
     campos.forEach(campo => {
 
@@ -280,7 +322,10 @@ function fitAllPolygonsBounds() {
             bounds.extend(v);
         });
     })
-    map.fitBounds(bounds);
+    let boundsPadding = {
+        top: 120
+    }
+    map.fitBounds(bounds, boundsPadding);
 }
 
 // Devuelve las coordenadas del centro del poligono
@@ -610,27 +655,9 @@ function CrearGrafica() {
 }
 
 
-// API Calls ====================== Cargar los datos //
 
 
-function getCampos(userData) {
-    return new Promise((resolve, reject) => {
-        let request;
-        if (userData && userData.rol !== "admin") {
-            request = CamposService.getCamposUsuario(userData.id);
-        } else {
-            let loggedAsUserID = window.localStorage.getItem("loggedAsUserID");
-
-            if(loggedAsUserID) {
-                //TODO: Display "Logged as <usuario>" panel on map
-            }
-
-            request = loggedAsUserID ? CamposService.getCamposUsuario(loggedAsUserID) : CamposService.getCampos();
-        }
-        request.then(data => resolve(data)).catch(err => reject(err));
-    });
-}
-
+// Llamada a la API campos para cargar los datos de un campo
 function getUbicacionesCampo(campoId) {
     return new Promise((resolve, reject) => {
         let ubicaciones = [];
@@ -646,12 +673,12 @@ function getUbicacionesCampo(campoId) {
 
 // ##### Modificar campo
 
-modificarCampoModal.addEventListener('submit', (event) => {
+/*modificarCampoModal.addEventListener('submit', (event) => {
     event.preventDefault();
     let formData = new FormData(event.target);
     let displayId = document.querySelectorAll('#modificarCampoModal input[name="id"]')[0];
     modificarCampo(displayId.value, formData); //App
-})
+})*/
 function modificarCampo(id, formData) {
 
     /*CamposService.modificarCampo(id, formData).then( res => {

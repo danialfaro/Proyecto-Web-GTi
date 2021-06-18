@@ -56,7 +56,7 @@ const ApiService = {
             let url = this.path + resource;
             fetch(url, {
                 method: 'put',
-                body: JSON.stringify(Object.fromEntries(data))
+                body: JSON.stringify(data)
             })
                 .then((response) => {
                     if (response.ok) {
