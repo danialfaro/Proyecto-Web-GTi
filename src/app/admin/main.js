@@ -63,7 +63,7 @@ function generateClienteTableItem(cliente) {
         <td style="color: ${activo ? "limegreen" : "red"}"><i class="fa-fw ${activo ? "fa fa-circle" : "far fa-circle"}"></i></td>
         <td>${cliente.nombre}</td>
         <td class="opciones">
-            <button data-boton="usuarios"><i class="fa fa-fw fa-users"></i><span>Usuarios</span></button>
+            <!-- <button data-boton="usuarios"><i class="fa fa-fw fa-users"></i><span>Usuarios</span></button> -->
             <button data-boton="editar"><i class="fa fa-fw fa-edit"></i><span>Editar</span></button>
             <button data-boton="activar">
                 <i class="fa fa-fw ${activo ? "fa-arrow-down" : "fa-arrow-up"}"></i>
@@ -86,8 +86,6 @@ function generateClienteTableItem(cliente) {
         window.sessionStorage.setItem("loggedAsUserID", cliente.id)
         window.location.href = "../usuario";
     }
-
-
 
     return item;
 
@@ -113,7 +111,7 @@ function nuevoCliente(formData) {
                 //createClienteListItem(cliente);
                 const item = generateClienteTableItem(cliente)
                 tableClientesBody.appendChild(item);
-                nuevoClienteForm.reset();
+                nuevoClienteModal.reset();
                 showModal(nuevoClienteModal, false);
             })
         }

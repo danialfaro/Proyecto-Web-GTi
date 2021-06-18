@@ -20,6 +20,7 @@
 </head>
 <body>
 
+<!-- INICIO HEADER - Barra navegacion superior -->
 <header id="headerbar">
     <div class="navbar">
         <img src="../../images/logos/logoGTI.svg" alt="logoGTI" class="logo">
@@ -29,7 +30,7 @@
                     <li id="loginToggleButton">
                         <i class="fa fa-fw fa-user-circle"></i>
                         <span id="usernameDisplay"></span>
-                        <i class="fa fa-caret-down" id="flecha-login"></i>
+                        <!-- <i class="fa fa-caret-down" id="flecha-login"></i> -->
                     </li>
                     <li id="menuOpenButton">
                         <i class="fa fa-fw fa-bars"></i>
@@ -38,12 +39,14 @@
             </nav>
         </div>
     </div>
+    <!-- INICIO Info Log -->
     <div id="login-form-wrapper">
         <ul>
-            <li><a href="#"><i class="fa fa-fw fa-edit"></i>Editar perfil</a></li>
+            <li class="disabled"><a href="#"><i class="fa fa-fw fa-edit"></i>Editar perfil</a></li>
             <li class="logout_button"><a href="#"><i class="fas fa-fw fa-sign-out-alt"></i>Cerrar sesión</a></li>
         </ul>
     </div>
+    <!-- FIN Info Log -->
     <div id="menu-emergente">
         <i id="menuCloseButton" class="fa fa-fw fa-times close-button"></i>
         <h2>Menú</h2>
@@ -52,12 +55,17 @@
                 <li class="isadmin"><a href="../admin"><i class="fas fa-fw fa-user-shield"></i>Panel de control</a>
                 </li>
                 <li><a href="../usuario"><i class="fa fa-fw fa-user"></i>Campos Usuario</a></li>
+                <div class="sesion-options">
+                    <li class="disabled"><a href="#"><i class="fa fa-fw fa-edit"></i>Editar perfil</a></li>
+                    <li class="logout_button"><a href="#"><i class="fas fa-fw fa-sign-out-alt"></i>Cerrar sesión</a></li>
+                </div>
             </ul>
         </nav>
     </div>
     <div id="overlay">
     </div>
 </header>
+<!-- FIN HEADER - Barra navegacion superior -->
 
 <main>
 
@@ -108,7 +116,8 @@
         </div>
 
         <div id="loggedAsPanel" class="isadmin">
-            Viendo campos de <span>todos</span>
+            <div>Viendo campos de <span>todos</span></div>
+            <a href="../admin">Volver a la lista<i class="fa fa-sign-out-alt"></i></a>
         </div>
 
     </div>

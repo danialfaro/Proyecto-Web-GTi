@@ -89,11 +89,6 @@
     margin: 0 12px;
 }
 
-#login-form-wrapper ul li.logout_button a {
-    /*background: rgba(231, 231, 231, 0.25);*/
-    color: #b83b3b;
-}
-
 
 
 #overlay {
@@ -204,6 +199,24 @@
     top: 1rem;
     font-size: 1.5rem;
     color: var(--black);
+}
+
+#menu-emergente .sesion-options {
+    border-top: 1px lightgray solid;
+}
+
+#menu-emergente .sesion-options li.disabled * {
+    color: #d0d0d0;
+}
+
+#menu-emergente .sesion-options .logout_button a {
+    /*background: rgba(231, 231, 231, 0.25);*/
+    color: #b83b3b;
+}
+
+#menu-emergente .sesion-options .logout_button i {
+    /*background: rgba(231, 231, 231, 0.25);*/
+    color: #b83b3b;
 }
 
 /* Media queries */

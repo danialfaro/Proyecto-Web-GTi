@@ -678,10 +678,10 @@ function getUbicacionesCampo(campoId) {
     let formData = new FormData(event.target);
     let displayId = document.querySelectorAll('#modificarCampoModal input[name="id"]')[0];
     modificarCampo(displayId.value, formData); //App
-})*/
+})
 function modificarCampo(id, formData) {
 
-    /*CamposService.modificarCampo(id, formData).then( res => {
+    CamposService.modificarCampo(id, formData).then( res => {
         if(res) {
 
             listItem.childNodes[0].nodeValue = id + " - " + res.body.nombre;
@@ -695,7 +695,7 @@ function modificarCampo(id, formData) {
             showModal(modificarCampoModal, false);
 
         }
-    });*/
+    });
 }
 
 function rellenarModificarCampoForm(campo) {
@@ -709,4 +709,4 @@ function rellenarModificarCampoForm(campo) {
 
         inputNombre.focus();
     })
-}
+}*/
