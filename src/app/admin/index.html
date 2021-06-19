@@ -39,7 +39,6 @@
     <div id="login-form-wrapper">
         <ul>
             <li class="disabled"><a href="#"><i class="fa fa-fw fa-edit"></i>Editar perfil</a></li>
-            <li class="logout_button"><a href="#"><i class="fas fa-fw fa-sign-out-alt"></i>Cerrar sesión</a></li>
         </ul>
     </div>
     <!-- FIN Info Log -->
@@ -50,10 +49,10 @@
         <nav>
             <ul>
                 <li><a href="#"><i class="fa fa-fw fa-user-cog"></i>Panel de control</a></li>
-                <li><a onclick="verTodosLosCampos"><i class="fa fa-fw fa-user"></i>Ver todos los campos</a></li>
+                <li><a class="verCampos"><i class="fa fa-fw fa-user"></i>Ver todos los campos</a></li>
                 <div class="sesion-options">
                     <!-- <li class="disabled"><a href="#"><i class="fa fa-fw fa-edit"></i>Editar perfil</a></li> -->
-                    <li class="logout_button"><a onclick="cerrarS"><i class="fas fa-fw fa-sign-out-alt"></i>Cerrar sesión</a></li>
+                    <li><a class="logout_button"><i class="fas fa-fw fa-sign-out-alt"></i>Cerrar sesión</a></li>
                 </div>
             </ul>
         </nav>
@@ -146,7 +145,7 @@
     import Access from "../services/access.js";
 
     SesionService.getSesion().then(user => {
-        if (Access.checkAccess(user.rol, Access.pages.userPage)) {
+        if (Access.checkAccess(user.rol, Access.pages.adminPage)) {
 
             // Init view with user datas
             const username = document.getElementById("usernameDisplay");
@@ -156,7 +155,6 @@
             let redirects = {
                 admin: "admin", user: "usuario"
             }
-            console.log(redirects[user.rol]);
             window.location.href = '../' + redirects[user.rol];
         }
     });
@@ -165,11 +163,11 @@
     logoutButton.addEventListener('click', () => {
         SesionService.logout();
     });
-
-    function verTodosLosCampos() {
+    const verCampos = document.getElementsByClassName("verCampos")[0];
+    verCampos.addEventListener('click', () => {
         window.sessionStorage.removeItem('loggedAsUserID');
         window.location.href = '../usuario'
-    }
+    });
 
 </script>
 <script type="module" src="main.js"></script>

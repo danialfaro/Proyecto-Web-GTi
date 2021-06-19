@@ -138,6 +138,10 @@
 
 /* Menu emergente */
 
+#menuOpenButton:hover{
+    cursor: pointer;
+}
+
 #menu-emergente {
     position: absolute;
     top: 0;
@@ -169,13 +173,14 @@
     position: relative;
 }
 
+#menu-emergente ul li:hover a {
+    cursor: pointer;
+    background: #f8f8f8;
+}
+
 .hide-modal {
     display: none;
 }
-
-/*#menu-emergente ul li:nth-child(2n) {
-    background: rgba(231, 231, 231, 0.3);
-}*/
 
 #menu-emergente ul li {
     border-left: 1px var(--primary) solid;
@@ -209,7 +214,7 @@
     color: #d0d0d0;
 }
 
-#menu-emergente .sesion-options .logout_button a {
+#menu-emergente .sesion-options .logout_button {
     /*background: rgba(231, 231, 231, 0.25);*/
     color: #b83b3b;
 }

@@ -43,7 +43,7 @@ window.onload = () => {
 
     loginToggleButton.addEventListener('click', () => {
         isLoginOpen = !isLoginOpen;
-        //isLoginOpen ? openLoginMenu() : closeLoginMenu(); // !!
+        isLoginOpen ? openLoginMenu() : closeLoginMenu(); // !!
     });
 
     /* End Login Form Toggle Behaviour */

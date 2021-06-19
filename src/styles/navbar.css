@@ -41,6 +41,9 @@
     padding: .8rem;
 }
 
+#menuOpenButton:hover{
+    cursor: pointer;
+}
 
 /* Login panel  */
 
@@ -195,6 +198,7 @@
     font-size: 1.5rem;
     color: var(--black);
 }
+
 
 /* Media queries */
 
