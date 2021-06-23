@@ -25,7 +25,7 @@
                 <ul>
                     <li id="loginToggleButton">
                         <i class="fa fa-user-circle"></i>
-                        <span id="usernameDisplay"></span>
+                        <div>Bienvenido,</div> <span id="usernameDisplay"></span>
                         <!-- <i class="fa fa-caret-down" id="flecha-login"></i> -->
                     </li>
                     <li id="menuOpenButton">
@@ -48,7 +48,7 @@
         <h2>Menú</h2>
         <nav>
             <ul>
-                <li><a href="#"><i class="fa fa-fw fa-user-cog"></i>Panel de control</a></li>
+                <li><a href="#"><i class="fa fa-fw fa-user-cog"></i>Panel de Administracion</a></li>
                 <li><a class="verCampos"><i class="fa fa-fw fa-user"></i>Ver todos los campos</a></li>
                 <div class="sesion-options">
                     <!-- <li class="disabled"><a href="#"><i class="fa fa-fw fa-edit"></i>Editar perfil</a></li> -->
@@ -67,7 +67,7 @@
 
     <div class="container">
 
-        <h1>Panel de control</h1>
+        <!-- <h1>Panel de control</h1> -->
 
         <section id="seccionClientes">
             <header>
@@ -157,6 +157,8 @@
             }
             window.location.href = '../' + redirects[user.rol];
         }
+    }).catch(err => {
+        window.location.href = '../../';
     });
 
     const logoutButton = document.getElementsByClassName("logout_button")[0];

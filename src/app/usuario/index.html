@@ -28,8 +28,8 @@
             <nav class="nav-menu">
                 <ul>
                     <li id="loginToggleButton">
-                        <i class="fa fa-fw fa-user-circle"></i>
-                        <span id="usernameDisplay"></span>
+                        <i class="fa fa-user-circle"></i>
+                        <div>Bienvenido,</div> <span id="usernameDisplay"></span>
                         <!-- <i class="fa fa-caret-down" id="flecha-login"></i> -->
                     </li>
                     <li id="menuOpenButton">
@@ -145,6 +145,8 @@
                 }
             }
         }
+    }).catch(err => {
+        window.location.href = '../../';
     });
 
     const logoutButton = document.getElementsByClassName("logout_button")[0];

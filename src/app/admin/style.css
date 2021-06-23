@@ -24,74 +24,19 @@ button:hover {
     background: #d4d4d4;
 }
 
-/*#listaClientes {
-    list-style: none;
+#seccionClientes {
+    margin-top: 1rem;
 }
 
-#listaClientes .cliente-item {
-    padding: .5rem;
-    justify-content: space-between;
-    align-items: center;
-    border: 3px transparent solid;
-}
-
-#listaClientes .cliente-info {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 1rem;
-}
-
-#listaClientes .cliente-info .cliente-id {
-    width: 25px;
-    font-size: .6rem;
-    font-weight: bold;
-}
-
-#listaClientes .cliente-buttons {
+#seccionClientes header {
     display: flex;
     justify-content: space-between;
-    flex-direction: column;
+    margin-bottom: 1rem;
 }
 
-
-#listaClientes .users-button {
-    color: white;
-    background: var(--primary_light);
-}
-
-#listaClientes .campos-button {
-    color: white;
-    background: var(--primary);
-}
-
-#listaClientes .users-button:hover, #listaClientes .campos-button:hover {
-    filter: brightness(.9);
-}
-
-#listaClientes .users-button i, #listaClientes .campos-button i {
+#seccionClientes header button i {
     margin-right: .6rem;
 }
-
-#listaClientes .cliente-item:nth-child(2n-1):not(.item-header) {
-    background: #f8f8f8;
-}
-
-#listaClientes .item-header {
-    margin: 0;
-    padding: 0;
-    border-radius: .5rem .5rem 0 0;
-    text-transform: uppercase;
-    background: #e2e2e2;
-}
-
-#listaClientes .item-header .cliente-info {
-    padding: 0 1rem;
-}
-
-.focused {
-    animation: flash .5s forwards;
-}*/
 
 #tablaClientes {
     width: 100%;
@@ -123,6 +68,10 @@ button:hover {
     display: none;
 }
 
+.focused {
+    animation: flash .5s forwards;
+}
+
 @keyframes flash {
     from {
         border-color: rgb(0, 102, 255);
@@ -143,15 +92,7 @@ button:hover {
     color: #ff4242;
 }
 
-#seccionClientes header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-}
 
-#seccionClientes header button i {
-    margin-right: .6rem;
-}
 
 /* Modals */
 
@@ -206,7 +147,6 @@ button:hover {
 
     #listaClientes button {
         margin-right: 1rem;
-
     }
 
     #listaClientes .cliente-buttons {
@@ -215,6 +155,7 @@ button:hover {
 
     #tablaClientes .opciones button span {
         display: inline-block;
+        margin: 0 .5rem;
     }
 
 }

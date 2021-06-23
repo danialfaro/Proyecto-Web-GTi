@@ -1,9 +1,9 @@
 import CamposService from "../services/campos-service.js";
 import UbicacionesService from "../services/ubicaciones-service.js";
 import SesionService from "../services/sesion-service.js";
-import UsuariosService from "../services/usuarios-service.js";
 import ClientesService from "../services/clientes-service.js";
 
+let isAdmin;
 
 let map;
 
@@ -53,6 +53,8 @@ let initMap = function () {
         if (user && user.rol !== "admin") {
             request = CamposService.getCamposUsuario(user.id);
         } else {
+
+            isAdmin = true;
 
             let loggedAsUserID = window.sessionStorage.getItem("loggedAsUserID");
 
@@ -242,7 +244,7 @@ function createInfoWindowUbicacion(marker, ubicacion, sonda, mediciones){
         contentInfoWindow = `<div class="info-window-ubicacion" data-idubi="${humedad.id_ubicacion}">
                                 <header>
                                     <h3>Ubicacion ${ubicacion.id}</h3>
-                                    <div class="info-sonda-id">Sonda actual: <span>${sonda.id}</span></div>
+                                    ${isAdmin ? `<div class="info-sonda-id">Sonda actual: <span>${sonda.id}</span></div>` : ""}
                                 </header>                                
                                 <div class="medicion">
                                     <i class="fa fa-tint fa-fw humedad"></i><p>Humedad:</p><span>${humedad.valor} ${humedad.unidad}</span>

@@ -45,6 +45,23 @@
     cursor: pointer;
 }
 
+#loginToggleButton {
+    display: flex;
+    align-items: center;
+}
+
+#loginToggleButton:hover {
+    cursor: pointer;
+}
+
+#loginToggleButton span {
+    display: none;
+}
+
+#loginToggleButton:active, #menuOpenButton:active {
+    color: lightgray;
+}
+
 /* Login panel  */
 
 #login-form-wrapper {
@@ -201,6 +218,14 @@
 
 
 /* Media queries */
+@media(min-width: 720px) {
+
+    #loginToggleButton span {
+        display: inline-block;
+        margin: 0 .8rem;
+    }
+
+}
 
 @media(min-width: 1200px) {
     #menu-emergente {
@@ -211,4 +236,6 @@
         width: 40%;
         border-radius: 0 0 0 20px;
     }
+
+
 }

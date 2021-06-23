@@ -66,10 +66,10 @@ function generateClienteTableItem(cliente) {
             <!-- <button data-boton="usuarios"><i class="fa fa-fw fa-users"></i><span>Usuarios</span></button> -->
             <button data-boton="editar"><i class="fa fa-fw fa-edit"></i><span>Editar</span></button>
             <button data-boton="activar">
-                <i class="fa fa-fw ${activo ? "fa-arrow-down" : "fa-arrow-up"}"></i>
+                <i class="fa fa-fw ${activo ? "fa-user-times" : "fa-user-check"}"></i>
                 <span style="width: 4.5rem;">${activo ? "Dar de baja" : "Activar"}</span>
             </button>
-            <button data-boton="ver"><i class="fa fa-fw fa-eye"></i></button>
+            <button data-boton="ver"><i class="fa fa-fw fa-map"></i><span>Ver campos</span></button>
         </td>`
 
     /*item.querySelector("button[data-boton='usuarios']").onclick = () => {
