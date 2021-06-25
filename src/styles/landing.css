@@ -371,14 +371,14 @@ footer section {
     padding: 2em;
 }
 
-.volver_arriba {
+#volverArriba {
     display: block;
     background: rgb(245, 245, 245);
     padding: 24px;
     color: gray;
 }
 
-.volver_arriba i {
+#volverArriba i {
     margin-right: 12px;
 }
 
@@ -550,9 +550,65 @@ footer section {
     .faq_content {
         width: 50vw;
     }
-    
-    
 
-    
+    .social_icons {
+        padding: 1rem 18rem 0;
+    }
+
+    .footer-links ul {
+        margin-bottom: 2rem;
+    }
+
+    .footer-links ul li a {
+        display: inline-block;
+        padding: .5rem;
+        color: #8c8c8c;
+    }
+
+    footer {
+        position: relative;
+    }
+
+    #volverArriba {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+
+        margin: 2rem;
+        padding: 1rem 1.5rem;
+        background: var(--main_gradient);
+        color: white;
+        border-radius: 25px;
+
+        display: flex;
+        align-items: center;
+
+    }
+
+    #volverArriba i {
+        margin: 0;
+    }
+
+    #volverArriba div {
+        max-width: 0;
+        overflow: hidden;
+        transition: .5s ease;
+    }
+
+    #volverArriba:hover div {
+        max-width: 200px;
+    }
+
+    #volverArriba div p {
+        width: 120px;
+        margin-left: 1rem;
+    }
+
+
+
+
+
+
+
 
 }
