@@ -477,7 +477,7 @@ footer section {
 
 
 /* Media queries ======================= */
-@media(min-width:600px){
+@media(min-width: 720px){
     .botones{
         display: flex;
         flex-direction:row; 
@@ -489,7 +489,10 @@ footer section {
         margin: .6rem;
     }
 
-    
+    #submitButtonContact {
+        width: 60%;
+        margin: 1rem auto;
+    }
     
 
 }
@@ -521,22 +524,22 @@ footer section {
 
     .containerContacto {
         display: flex;
-        flex-direction:row-reverse;
-        margin-bottom: 2rem;
-    
+        margin-bottom: 5rem;
     }
 
-    .containerContacto #seccionContactanos{
-        width:500px;
+    .containerContacto .ImgContactanos {
+        width: 500px;
+        background: url("../images/Campos1.jpg") no-repeat;
+        background-size: cover;
+    }
+
+    .containerContacto #seccionContactanos {
         margin: 0 5rem;
-
     }
 
-    .containerContacto img{
-        display: inline;
-        width: 21.875rem;
-        height: 31.25rem;
-        margin-top: 5rem;
+    #submitButtonContact {
+        width: 100%;
+        margin: 1rem auto;
     }
 
     .questions{

@@ -44,7 +44,7 @@
                 <input type="submit" value="Entrar" class="button_primary">
             </form>
             <p><a href="#">¿Has olvidado tu contraseña?</a></p>
-            <!-- <p>Necesitas ayuda? <a href="#seccion_contactanos"></a>.</p> -->
+            <!-- <p>Necesitas ayuda? <a href="#contactanos"></a>.</p> -->
         </div>
 
     </div>
@@ -53,9 +53,9 @@
         <h2>Menú</h2>
         <nav>
             <ul>
-                <li><a href="#seccion_quienessomos"><i class="fa fa-users"></i>Quiénes somos</a></li>
-                <li><a href="#seccion_contactanos"><i class="fa fa-hands-helping"></i>Contáctanos</a></li>
-                <li><a href="#seccion_faq"><i class="fa fa-question-circle"></i>Preguntas frecuentes</a></li>
+                <li><a href="#quienessomos"><i class="fa fa-users"></i>Quiénes somos</a></li>
+                <li><a href="#contactanos"><i class="fa fa-hands-helping"></i>Contáctanos</a></li>
+                <li><a href="#faq"><i class="fa fa-question-circle"></i>Preguntas frecuentes</a></li>
             </ul>
         </nav>
     </div>
@@ -77,8 +77,8 @@
 
                 <!-- Botones principales -->
                 <div class="botones">
-                    <a type="button" href="#seccion_quienessomos" class="button_primary">Quiénes somos</a>
-                    <a type="button" href="#seccion_contactanos" class="button_secondary">Contáctanos</a>
+                    <a type="button" href="#quienessomos" class="button_primary">Quiénes somos</a>
+                    <a type="button" href="#contactanos" class="button_secondary">Contáctanos</a>
                 </div>
             </div>
         </div>
@@ -90,7 +90,7 @@
 
         <div class="fondo_reclamo"></div>
 
-        <a href="#seccion_quienessomos" class="flecha_ver_mas fa fa-chevron-down">
+        <a href="#quienessomos" class="flecha_ver_mas fa fa-chevron-down">
         </a>
 
     </section>
@@ -98,7 +98,7 @@
     <div class="container">
 
         <section id="seccionQuienesSomos" class="anchor">
-            <a name="seccion_quienessomos"></a>
+            <a name="quienessomos"></a>
 
             <h2 class="text-center padding-container">¿Quiénes somos?</h2>
             <div class="background-grey">
@@ -109,7 +109,8 @@
 
             <div class="video">
                 <!-- <img id="videoGTI" src="images/video.png"> -->
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/-o-niQnnQAk" title="YouTube video player" frameborder="0"allowfullscreen></iframe>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/-o-niQnnQAk"
+                        title="YouTube video player" frameborder="0" allowfullscreen></iframe>
             </div>
 
             <div class="padding-container">
@@ -159,7 +160,8 @@
                     <div class="ofertaV padding-container">
                         <i class="fa fa-users"></i>
                         <h3 class="ofertas">GESTION DE CUENTAS</h3>
-                        <p>La cuenta principal puede gestionar los permisos de las cuentas de usuario subcontratadas.</p>
+                        <p>La cuenta principal puede gestionar los permisos de las cuentas de usuario
+                            subcontratadas.</p>
                     </div>
                 </div>
             </div>
@@ -242,104 +244,109 @@
         </section>
 
         <div class="containerContacto">
-        <section id="seccionContactanos" class="anchor Padding-container">
-            <a name="seccion_contactanos"></a>
-            <h2>Contáctanos</h2>
-            <p>¿Ya te has decidido o aún tienes dudas? ¡Dejanos ayudarte!</p>
-            <form action="enviar-form.php" method="post" id="formContactanos">
-                <div class="form-group">
-                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
-                    <label>Nombre</label>
-                </div>
 
-                <div class="form-group">
-                    <input type="email" id="mail" name="correo" placeholder="Correo electrónico" required>
-                    <label>Correo electrónico</label>
-                </div>
-                <div class="form-group">
-                    <input type="text" placeholder="Asunto" id="asunto" name="asunto" list="asuntos_datlist" required>
-                    <datalist id="asuntos_datlist">
-                        <option>MÁS INFORMACIÓN</option>
-                        <option>CONTRATAR SERVICIO</option>
-                        <option>OTRO</option>
-                    </datalist>
-                    <label>Asunto</label>
-                </div>
+            <div class="ImgContactanos"></div>
 
-                <div class="form-group">
-                    <textarea name="mensaje" id="mensaje" cols="30" rows="10" placeholder="Mensaje" required></textarea>
-                    <label>Mensaje</label>
-                </div>
+            <section id="seccionContactanos" class="anchor Padding-container">
+                <a name="contactanos"></a>
+                <h2>Contáctanos</h2>
+                <p>¿Ya te has decidido o aún tienes dudas? ¡Dejanos ayudarte!</p>
+                <form action="enviar-form.php" method="post" id="formContactanos">
+                    <div class="form-group">
+                        <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+                        <label>Nombre</label>
+                    </div>
 
-                <div class="form-group">
-                    <div class="privacidad">
-                        <input type="checkbox" name="condiciones" id="condiciones" required>
-                        <label for="condiciones">Aceptar <a href="terminos-y-condiciones.html">términos y condiciones de
-                            privacidad</a></label>
+                    <div class="form-group">
+                        <input type="email" id="mail" name="correo" placeholder="Correo electrónico" required>
+                        <label>Correo electrónico</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Asunto" id="asunto" name="asunto" list="asuntos_datlist"
+                               required>
+                        <datalist id="asuntos_datlist">
+                            <option>MÁS INFORMACIÓN</option>
+                            <option>CONTRATAR SERVICIO</option>
+                            <option>OTRO</option>
+                        </datalist>
+                        <label>Asunto</label>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea name="mensaje" id="mensaje" cols="30" rows="10" placeholder="Mensaje"
+                                  required></textarea>
+                        <label>Mensaje</label>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="privacidad">
+                            <input type="checkbox" name="condiciones" id="condiciones" required>
+                            <label for="condiciones">Aceptar <a href="terminos-y-condiciones.html">términos y
+                                condiciones de
+                                privacidad</a></label>
+                        </div>
+                    </div>
+
+                    <input type="submit" value="Enviar consulta" class="button_primary" id="submitButtonContact">
+                </form>
+
+                <div class="overlay" id="overlayID">
+                    <div class="popup" id="popupID">
+                        <a href="#" id="btn-cerrar-popup"><i class="fas fa-times"></i></a>
+                        <h3>¡Gracias!</h3>
+                        <p>Su consulta ha sido enviada correctamente, te enviaremos un correo a: <b></b></p>
                     </div>
                 </div>
-
-                <input type="submit" value="Enviar consulta" class="button_primary" id="submitButtonContact">
-            </form>
-
-            <div class="overlay" id="overlayID">
-                <div class="popup" id="popupID">
-                    <a href="#" id="btn-cerrar-popup"><i class="fas fa-times"></i></a>
-                    <h3>¡Gracias!</h3>
-                    <p>Su consulta ha sido enviada correctamente, te enviaremos un correo a: <b></b></p>
-                </div>
-            </div>
-        </section>
-
-     <img src="images/Campos1.jpg" alt="Alimentos orgánicos" class="ImgContactanos">
+            </section>
         </div>
 
         <section id="sectionFaq" class="anchor padding-container">
-            <a name="seccion_faq"></a>
+            <a name="faq"></a>
 
             <h2>Preguntas frecuentes</h2>
 
             <div class="questions">
 
-            <ul>
-                <li class="faq_title">Contratar</li>
-                <li class="faq_item">
-                    <div class="faq_trigger">
-                        <strong>¿Qué tengo que hacer para contratar el servicio?</strong>
-                        <i class="fa fa-caret-down"></i>
-                    </div>
-                    <div class="faq_content">
-                        <p>Para contratar el servicio puedes contactar con nosotros mediante el <a
-                                href="#seccion_contactanos">formulario de contacto</a> y hablaremos personalmente.</p>
-                    </div>
-                </li>
+                <ul>
+                    <li class="faq_title">Contratar</li>
+                    <li class="faq_item">
+                        <div class="faq_trigger">
+                            <strong>¿Qué tengo que hacer para contratar el servicio?</strong>
+                            <i class="fa fa-caret-down"></i>
+                        </div>
+                        <div class="faq_content">
+                            <p>Para contratar el servicio puedes contactar con nosotros mediante el <a
+                                    href="#contactanos">formulario de contacto</a> y hablaremos personalmente.
+                            </p>
+                        </div>
+                    </li>
 
-                <li class="faq_title">Instalación y Mantenimiento</li>
+                    <li class="faq_title">Instalación y Mantenimiento</li>
 
-                <li class="faq_item">
-                    <div class="faq_trigger">
-                        <strong>¿Os encargais de la instalación del sistema?</strong>
-                        <i class="fa fa-caret-down"></i>
-                    </div>
-                    <div class="faq_content">
-                        <p>Si, nosotros realizamos la instalacion completa del sistema en tu campo, ajustandolo a tus
-                            necesidades.</p>
-                    </div>
-                </li>
+                    <li class="faq_item">
+                        <div class="faq_trigger">
+                            <strong>¿Os encargais de la instalación del sistema?</strong>
+                            <i class="fa fa-caret-down"></i>
+                        </div>
+                        <div class="faq_content">
+                            <p>Si, nosotros realizamos la instalacion completa del sistema en tu campo, ajustandolo a
+                                tus
+                                necesidades.</p>
+                        </div>
+                    </li>
 
-                <li class="faq_item">
-                    <div class="faq_trigger">
-                        <strong>¿Ofreceis mantenimiento?</strong>
-                        <i class="fa fa-caret-down"></i>
-                    </div>
-                    <div class="faq_content">
-                        <p>El mantenimiento es continuo.</p>
-                    </div>
-                </li>
-            </ul>
+                    <li class="faq_item">
+                        <div class="faq_trigger">
+                            <strong>¿Ofreceis mantenimiento?</strong>
+                            <i class="fa fa-caret-down"></i>
+                        </div>
+                        <div class="faq_content">
+                            <p>El mantenimiento es continuo.</p>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </section>
-
 
 
     </div>
