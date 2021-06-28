@@ -7,6 +7,7 @@ let lastItemClicked;
 const nuevoClienteModal = document.getElementById("nuevoClienteForm");
 const modificarClienteModal = document.getElementById("modificarClienteForm");
 const eliminarClienteModal = document.getElementById("eliminarClienteForm");
+const eliminarClientesInactivosModal = document.getElementById("eliminarClientesInactivosForm");
 const infoModal = document.getElementById("infoModal");
 
 const overlayModals = document.getElementById("overlayModals");
@@ -19,6 +20,7 @@ function showModal(modal, show) {
         nuevoClienteModal.classList.add('hide-modal');
         modificarClienteModal.classList.add('hide-modal');
         eliminarClienteModal.classList.add('hide-modal');
+        eliminarClientesInactivosModal.classList.add('hide-modal');
         infoModal.classList.add('hide-modal');
         overlayModals.classList.add('hide-modal');
         modal.classList.add('hide-modal');
@@ -36,6 +38,9 @@ document.getElementById("cancelarModificarClienteFormButton").addEventListener("
 document.getElementById("cancelarEliminarClienteFormButton").addEventListener("click", () => {
     showModal(eliminarClienteModal, false);
 })
+document.getElementById("cancelarEliminarClientesInactivosFormButton").addEventListener("click", () => {
+    showModal(eliminarClientesInactivosModal, false);
+})
 
 infoModal.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -47,21 +52,20 @@ function showInfoModal(text) {
     showModal(infoModal, true);
 }
 
-// ##### Lista clientes
+// ##### Tabla clientesç
 const tableClientesBody = document.getElementById("tableClientesBody");
-const listaClientes = document.getElementById("listaClientes");
-ClientesService.getClientes().then(clientes => {
-    clientes.forEach(cliente => {
-        //createClienteListItem(cliente);
-        const item = generateClienteTableItem(cliente)
-        tableClientesBody.appendChild(item);
+function generateTablaClientes() {
+    ClientesService.getClientes().then(clientes => {
+        tableClientesBody.innerHTML = "";
+        clientes.forEach(cliente => {
+            const item = generateClientesTableItem(cliente)
+            tableClientesBody.appendChild(item);
+        })
     })
+}
+generateTablaClientes();
 
-})
-
-
-
-function generateClienteTableItem(cliente) {
+function generateClientesTableItem(cliente) {
 
     let activo = cliente.activo === "1";
 
@@ -70,18 +74,32 @@ function generateClienteTableItem(cliente) {
 
     //language=HTML
     item.innerHTML = `
-        <td>${cliente.id}</td>
-        <td style="color: ${activo ? "limegreen" : "red"}"><i class="fa-fw ${activo ? "fa fa-circle" : "far fa-circle"}"></i></td>
+        <td>${cliente.id}</td>       
         <td>${cliente.nombre}</td>
+        <td>${cliente.telefono ? cliente.telefono : "-"}</td>
+        <td>${cliente.fecha_fin ? cliente.fecha_fin : "Indefinido"}</td>
         <td class="opciones">
-            <!-- <button data-boton="usuarios"><i class="fa fa-fw fa-users"></i><span>Usuarios</span></button> -->
-            <button data-boton="editar"><i class="fa fa-fw fa-edit"></i><span>Editar</span></button>
-            <button data-boton="activar">
-                <i class="fa fa-fw ${activo ? "fa-user-times" : "fa-user-check"}"></i>
-                <span style="width: 4.5rem;">${activo ? "Dar de baja" : "Activar"}</span>
-            </button>
-            <button data-boton="ver"><i class="fa fa-fw fa-map"></i><span>Ver campos</span></button>
-        </td>`
+            <div>
+                <!-- <button data-boton="usuarios"><i class="fa fa-fw fa-users"></i><span>Usuarios</span></button> -->
+                <button type="button" data-boton="editar">
+                    <i class="fa fa-fw fa-edit"></i><span class="btn-text">Editar</span>
+                </button>
+                <button type="button" data-boton="ver">
+                    <i class="fa fa-fw fa-map"></i><span class="btn-text">Ver campos</span>
+                </button>
+                <button type="button" data-boton="eliminar" class="btn-red" ${activo ? "disabled" : ""}>
+                    <i class="fa fa-fw fa-trash-alt"></i><span class="btn-text">Eliminar</span>
+                </button>
+            </div>            
+        </td>        
+        <td style="color: ${activo ? "limegreen" : "red"}">
+                <!-- <i class="fa-fw ${activo ? "fa fa-circle" : "far fa-circle"}"></i> -->
+            <label class="switch">
+                <input type="checkbox" name="active" ${activo ? "checked" : ""}>
+                <div class="slider round"></div>
+            </label>
+        </td>
+    `
 
     /*item.querySelector("button[data-boton='usuarios']").onclick = () => {
         console.log("usuarios de " + item.dataset.id);
@@ -90,12 +108,17 @@ function generateClienteTableItem(cliente) {
         showModal(modificarClienteModal, true);
         rellenarModificarClienteForm(item);
     }
-    item.querySelector("button[data-boton='activar']").onclick = () => {
-        activarCliente(item, !activo);
+    item.querySelector("button[data-boton='eliminar']").onclick = () => {
+        lastItemClicked = item;
+        showModal(eliminarClienteModal, true);
     }
     item.querySelector("button[data-boton='ver']").onclick = () => {
         window.sessionStorage.setItem("loggedAsUserID", cliente.id)
         window.location.href = "../usuario";
+    }
+    item.querySelector("input[name='active']").onclick = (e) => {
+        let checked = e.target.checked;
+        activarCliente(item, checked);
     }
 
     return item;
@@ -120,7 +143,7 @@ function nuevoCliente(formData) {
         if (res) {
             ClientesService.getCliente(res.id).then(cliente => {
                 //createClienteListItem(cliente);
-                const item = generateClienteTableItem(cliente)
+                const item = generateClientesTableItem(cliente)
                 tableClientesBody.appendChild(item);
                 nuevoClienteModal.reset();
                 showInfoModal(`Se ha creado el cliente <b>${cliente.nombre}</b>`);
@@ -146,14 +169,13 @@ function modificarCliente(id, data) {
         if (res) {
 
             ClientesService.getCliente(item.dataset.id).then(cliente => {
-                let newItem = generateClienteTableItem(cliente);
+                let newItem = generateClientesTableItem(cliente);
                 item.parentNode.replaceChild(newItem, item);
             });
 
             resetModificarClienteForm();
             //showModal(modificarClienteModal, false);
-
-            showInfoModal(`El cliente <b>${id}</b> se ha modificado a <b>${data.nombre}</b>.`);
+            showInfoModal(`El cliente <b>${id}</b> modificado correctamente.`);
 
         }
     });
@@ -163,10 +185,14 @@ function rellenarModificarClienteForm(item) {
 
     let displayId = document.querySelectorAll('#modificarClienteForm input[name="id"]')[0];
     let inputNombre = document.querySelectorAll('#modificarClienteForm input[name="nombre"]')[0];
+    let inputTelefono = document.querySelectorAll('#modificarClienteForm input[name="telefono"]')[0];
+    let inputFechaFin = document.querySelectorAll('#modificarClienteForm input[name="fecha_fin"]')[0];
 
     ClientesService.getCliente(item.dataset.id).then(cliente => {
         displayId.value = cliente.id;
         inputNombre.value = cliente.nombre;
+        inputTelefono.value = cliente.telefono;
+        inputFechaFin.value = cliente.fecha_fin;
 
         inputNombre.focus();
     })
@@ -175,6 +201,27 @@ function rellenarModificarClienteForm(item) {
 function resetModificarClienteForm() {
     document.activeElement.blur();
     modificarClienteForm.reset();
+}
+
+
+// ## Eliminar clientes inactivos
+let eliminarClientesInactivosButton = document.getElementById("eliminarClientesInactivosButton");
+eliminarClientesInactivosButton.addEventListener('click', () => {
+    showModal(eliminarClientesInactivosModal, true);
+})
+
+eliminarClientesInactivosModal.addEventListener('submit', (e) => {
+    e.preventDefault();
+    eliminarClientesInactivos();
+    showInfoModal(`Se han eliminado todos los clientes inactivos.`);
+})
+
+function eliminarClientesInactivos() {
+    ClientesService.eliminarCliente("inactivos").then(res => {
+        if (res) {
+            generateTablaClientes();
+        }
+    });
 }
 
 // ## Eliminar cliente
@@ -196,6 +243,8 @@ function eliminarCliente(item) {
     });
 }
 
+
+
 // ## Alta/Baja cliente
 function activarCliente(item, activar) {
 
@@ -206,7 +255,7 @@ function activarCliente(item, activar) {
         if (res) {
 
             ClientesService.getCliente(item.dataset.id).then(cliente => {
-                let newItem = generateClienteTableItem(cliente);
+                let newItem = generateClientesTableItem(cliente);
                 item.parentNode.replaceChild(newItem, item);
             });
 
@@ -215,6 +264,7 @@ function activarCliente(item, activar) {
 
         }
     });
+
 
 
 }

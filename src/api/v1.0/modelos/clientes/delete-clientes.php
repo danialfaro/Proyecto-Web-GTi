@@ -8,8 +8,12 @@ if(!isset($paramPath[0])) {
 }
 
 $id = $paramPath[0];
+$sql = "DELETE FROM clientes WHERE id = '${id}' AND activo = 0";
 
-$sql = "DELETE FROM clientes WHERE id = '${id}'";
+if(!is_numeric($paramPath[0]) && $paramPath[0] === "inactivos") {
+    $sql = "DELETE FROM clientes WHERE activo = 0";
+}
+
 
 $result = mysqli_query($conn, $sql);
 

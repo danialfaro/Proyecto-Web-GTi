@@ -171,9 +171,16 @@ input[type=submit] {
     *margin: .8rem 0;
 }
 
-input[disabled]{
-    background: lightgray;
-    opacity: .8;
+input:disabled, button:disabled {
+    background: #f6f6f6;
+    color: #e3e3e3;
+}
+
+input:disabled:hover, button:disabled:hover {
+    background: #f6f6f6;
+    color: #e3e3e3;
+    cursor: auto;
+    
 }
 
 textarea {
@@ -184,6 +191,68 @@ input:focus:invalid,
 textarea:focus:invalid,
 select:focus:invalid, option:focus:invalid {
     border-bottom: 2px red solid;
+}
+
+
+
+/* Custom switch */
+
+.switch {
+    display: inline-block;
+    height: 24px;
+    position: relative;
+    width: 50px;
+}
+
+.switch input {
+    display:none;
+}
+
+.switch .slider {
+    background-color: #ff7878;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+}
+
+.switch .slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 16px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 16px;
+}
+
+.switch input:checked + .slider {
+    background-color: #66bb6a;
+}
+
+.switch input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.switch .slider.round {
+    border-radius: 34px;
+}
+
+.switch .slider.round:before {
+    border-radius: 50%;
+}
+
+.d-none {
+    display: none;
+    visibility: hidden;
+}
+
+.v-hidden {
+    visibility: hidden;
 }
 
 /* Media queries */

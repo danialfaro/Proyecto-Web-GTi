@@ -383,11 +383,6 @@ span.alert-danger {
     }
 }
 
-.isadmin.d-none {
-    display: none;
-    visibility: hidden;
-}
-
 
 #loggedAsPanel {
     position: absolute;
@@ -405,7 +400,7 @@ span.alert-danger {
     justify-content: space-between;
 }
 
-#loggedAsPanel span {
+#loggedAsPanel div span {
     font-weight: bold;
 }
 #loggedAsPanel a {
@@ -416,7 +411,9 @@ span.alert-danger {
     padding: 0 .5rem;
 }
 
-
+#loggedAsPanel a span {
+    display: none;
+}
 
 /* Media Queries */
 @media(min-width: 1200px) {
@@ -425,5 +422,8 @@ span.alert-danger {
     }
     #panelGraficas {
         width: 40vw;
+    }
+    #loggedAsPanel a span {
+        display: initial;
     }
 }

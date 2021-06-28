@@ -34,23 +34,20 @@ button:hover {
     margin-bottom: 1rem;
 }
 
-#seccionClientes header button i {
-    margin-right: .6rem;
-}
-
 #tablaClientes {
     width: 100%;
 }
 #tablaClientes td {
-    padding: 1rem;
+    padding: .6rem;
     text-align: center;
 }
 #tablaClientes th {
+    font-weight: 100;
     color: lightgray;
     padding: .8rem;
     border-bottom: 1px var(--primary_light) solid;
 }
-#tablaClientes th:nth-child(1), #tablaClientes th:nth-child(2) {
+#tablaClientes .small {
     width: 1rem;
 }
 
@@ -59,13 +56,9 @@ button:hover {
 }
 
 
-#tablaClientes .opciones {
-    display:flex;
+#tablaClientes .opciones div {
+    display: flex;
     flex-direction: column;
-}
-
-#tablaClientes .opciones button span {
-    display: none;
 }
 
 .focused {
@@ -81,9 +74,13 @@ button:hover {
     }
 }
 
-.btn-red {
+.btn-red:not([disabled]) {
     background: #fde5e5;
     color: #ff4242;
+}
+
+.btn-red:not([disabled]):hover {
+    background: #eecece;
 }
 
 .button_primary.btn-red:hover {
@@ -92,7 +89,9 @@ button:hover {
     color: #ff4242;
 }
 
-
+span.btn-text {
+    display: none;
+}
 
 /* Modals */
 
@@ -126,13 +125,18 @@ button:hover {
     flex-direction: column;
 }
 
-
 .hide-modal {
     opacity: 0;
 }
+
 #infoModal {
     max-width: 400px;
     box-shadow: 0 0 12px 920px rgba(0, 0, 0, 0.4);
+}
+
+.table-container {
+    width: 100vw;
+    overflow: scroll;
 }
 
 /* Media queries */
@@ -166,6 +170,7 @@ button:hover {
 
 
 @media(min-width: 720px) {
+
     .modal {
         width: 70%;
     }
@@ -186,10 +191,17 @@ button:hover {
         flex-direction: row;
     }
 
-    #tablaClientes .opciones {
-        display:flex;
-        justify-content: center;
-        flex-direction: row;
+    #seccionClientes header button i {
+        margin-right: .6rem;
+    }
+
+    span.btn-text {
+        display: initial;
+    }
+
+    .table-container {
+        width: auto;
+        overflow: auto;
     }
 
 }
@@ -197,5 +209,11 @@ button:hover {
 @media(min-width: 860px) {
     .modal {
         width: 45%;
+    }
+
+    #tablaClientes .opciones div {
+        display:flex;
+        justify-content: center;
+        flex-direction: row;
     }
 }
