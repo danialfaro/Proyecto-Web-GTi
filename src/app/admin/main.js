@@ -7,6 +7,7 @@ let lastItemClicked;
 const nuevoClienteModal = document.getElementById("nuevoClienteForm");
 const modificarClienteModal = document.getElementById("modificarClienteForm");
 const eliminarClienteModal = document.getElementById("eliminarClienteForm");
+const infoModal = document.getElementById("infoModal");
 
 const overlayModals = document.getElementById("overlayModals");
 
@@ -17,6 +18,8 @@ function showModal(modal, show) {
     } else {
         nuevoClienteModal.classList.add('hide-modal');
         modificarClienteModal.classList.add('hide-modal');
+        eliminarClienteModal.classList.add('hide-modal');
+        infoModal.classList.add('hide-modal');
         overlayModals.classList.add('hide-modal');
         modal.classList.add('hide-modal');
     }
@@ -34,7 +37,15 @@ document.getElementById("cancelarEliminarClienteFormButton").addEventListener("c
     showModal(eliminarClienteModal, false);
 })
 
+infoModal.addEventListener('submit', (e) => {
+    e.preventDefault();
+    showModal(infoModal, false);
+})
 
+function showInfoModal(text) {
+    infoModal.getElementsByTagName("p")[0].innerHTML = text;
+    showModal(infoModal, true);
+}
 
 // ##### Lista clientes
 const tableClientesBody = document.getElementById("tableClientesBody");
@@ -112,7 +123,7 @@ function nuevoCliente(formData) {
                 const item = generateClienteTableItem(cliente)
                 tableClientesBody.appendChild(item);
                 nuevoClienteModal.reset();
-                showModal(nuevoClienteModal, false);
+                showInfoModal(`Se ha creado el cliente <b>${cliente.nombre}</b>`);
             })
         }
     });
@@ -140,7 +151,9 @@ function modificarCliente(id, data) {
             });
 
             resetModificarClienteForm();
-            showModal(modificarClienteModal, false);
+            //showModal(modificarClienteModal, false);
+
+            showInfoModal(`El cliente <b>${id}</b> se ha modificado a <b>${data.nombre}</b>.`);
 
         }
     });
@@ -168,7 +181,8 @@ function resetModificarClienteForm() {
 eliminarClienteModal.addEventListener('submit', (event) => {
     event.preventDefault();
     eliminarCliente(lastItemClicked);
-    showModal(eliminarClienteModal, false);
+    //showModal(eliminarClienteModal, false);
+    showInfoModal(`El cliente ${lastItemClicked.dataset.id} se ha eliminado.`);
 })
 
 function eliminarCliente(item) {
