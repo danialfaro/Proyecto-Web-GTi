@@ -9,10 +9,14 @@ if(empty($_POST["nombre"])) {
 }
 
 $nombre = $_POST["nombre"];
+$telefono = "";
+if(isset($_POST["telefono"])) { $telefono = $_POST["telefono"]; }
+$fecha_fin = "";
+if(isset($_POST["fecha_fin"])) { $fecha_fin = $_POST["fecha_fin"]; }
 
 // Crear la consulta con los datos
-$sql = "INSERT INTO `clientes`(`nombre`) 
-        VALUES ('$nombre')";
+$sql = "INSERT INTO `clientes`(`nombre`, `telefono`, `fecha_fin`) 
+        VALUES ('$nombre', '$telefono', '$fecha_fin')";
 
 // Ejecutar la consulta a la BD
 $result = mysqli_query($conn, $sql);

@@ -77,7 +77,7 @@ function generateClientesTableItem(cliente) {
         <td>${cliente.id}</td>       
         <td>${cliente.nombre}</td>
         <td>${cliente.telefono ? cliente.telefono : "-"}</td>
-        <td>${cliente.fecha_fin ? cliente.fecha_fin : "Indefinido"}</td>
+        <td>${cliente.fecha_fin !== "0000-00-00"? cliente.fecha_fin : "Indefinido"}</td>
         <td class="opciones">
             <div>
                 <!-- <button data-boton="usuarios"><i class="fa fa-fw fa-users"></i><span>Usuarios</span></button> -->
