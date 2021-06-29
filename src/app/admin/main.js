@@ -23,7 +23,6 @@ function showModal(modal, show) {
         eliminarClientesInactivosModal.classList.add('hide-modal');
         infoModal.classList.add('hide-modal');
         overlayModals.classList.add('hide-modal');
-        modal.classList.add('hide-modal');
     }
 }
 
@@ -49,6 +48,7 @@ infoModal.addEventListener('submit', (e) => {
 
 function showInfoModal(text) {
     infoModal.getElementsByTagName("p")[0].innerHTML = text;
+    showModal(null, false)
     showModal(infoModal, true);
 }
 
