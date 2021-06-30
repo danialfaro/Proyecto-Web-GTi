@@ -183,10 +183,6 @@
     background: #f8f8f8;
 }
 
-.hide-modal {
-    display: none;
-}
-
 #menu-emergente ul li {
     border-left: 1px var(--primary) solid;
 }

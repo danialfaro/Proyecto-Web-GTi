@@ -1,7 +1,7 @@
 import CamposService from "../services/campos-service.js";
 import UbicacionesService from "../services/ubicaciones-service.js";
 import SesionService from "../services/sesion-service.js";
-import ClientesService from "../services/clientes-service.js";
+import UsuariosService from "../services/usuarios-service.js";
 
 let isAdmin;
 
@@ -61,22 +61,23 @@ let initMap = function () {
             if(loggedAsUserID) {
 
                 // Ver los campos del usuario
-                /*UsuariosService.getUsuario(loggedAsUserID).then(loggedAsUser => {
+                UsuariosService.getUsuario(loggedAsUserID).then(loggedAsUser => {
 
                     //Display "Logged as <usuario>" panel on map
                     const loggedAsPanel = document.getElementById("loggedAsPanel");
                     loggedAsPanel.getElementsByTagName("span")[0].textContent = loggedAsUser.nombre;
 
-                });*/
+                });
+
+                request = CamposService.getCamposUsuario(loggedAsUserID);
 
                 //Ver los campos del cliente
-                ClientesService.getCliente(loggedAsUserID).then(loggedAsUser => {
+                /*ClientesService.getCliente(loggedAsUserID).then(loggedAsUser => {
                     const loggedAsPanel = document.getElementById("loggedAsPanel");
                     loggedAsPanel.getElementsByTagName("span")[0].textContent = loggedAsUser.nombre;
                 });
 
-
-                request = CamposService.getCamposCliente(loggedAsUserID);
+                request = CamposService.getCamposCliente(loggedAsUserID);*/
 
             } else {
                 request = CamposService.getCampos();
@@ -422,12 +423,12 @@ function togglePanelHide(hide) {
 
 // Click events
 
-const infoBotonVer = document.getElementById("infoBotonVer");
+/*const infoBotonVer = document.getElementById("infoBotonVer");
 infoBotonVer.addEventListener("click", () => {
     alert(currentPolygon.data.title + "\n"
         + currentPolygon.data.descripcion + "\n"
         + (currentPolygon.data.alerts ? currentPolygon.data.alerts.length : 0) + " alertas");
-})
+})*/
 
 const overlay = document.getElementById('overlayPopup')
 const popup = document.getElementById('popup');
@@ -448,7 +449,7 @@ busquedaBoton.addEventListener("click", () => {
     }
 });
 
-// x - cerrar
+// x - cerrar busqueda
 const btnCerrarPopup = document.getElementById('btn-cerrar-popup');
 btnCerrarPopup.addEventListener('click', function (e) {
     e.preventDefault();
@@ -656,9 +657,6 @@ function CrearGrafica() {
     });
 }
 
-
-
-
 // Llamada a la API campos para cargar los datos de un campo
 function getUbicacionesCampo(campoId) {
     return new Promise((resolve, reject) => {
@@ -672,43 +670,3 @@ function getUbicacionesCampo(campoId) {
     })
 
 }
-
-// ##### Modificar campo
-
-/*modificarCampoModal.addEventListener('submit', (event) => {
-    event.preventDefault();
-    let formData = new FormData(event.target);
-    let displayId = document.querySelectorAll('#modificarCampoModal input[name="id"]')[0];
-    modificarCampo(displayId.value, formData); //App
-})
-function modificarCampo(id, formData) {
-
-    CamposService.modificarCampo(id, formData).then( res => {
-        if(res) {
-
-            listItem.childNodes[0].nodeValue = id + " - " + res.body.nombre;
-
-            let CampoModificado = {
-                ...res.body
-            }
-
-            listItem.dataset.Cliente = JSON.stringify(CampoModificado);
-
-            showModal(modificarCampoModal, false);
-
-        }
-    });
-}
-
-function rellenarModificarCampoForm(campo) {
-
-    let displayId = document.querySelectorAll('#modificarCampoForm input[name="id"]')[0];
-    let inputNombre = document.querySelectorAll('#modificarCampoForm input[name="nombre"]')[0];
-
-    CamposService.getCampo(campo.id).then( campo => {
-        displayId.value = cliente.id;
-        inputNombre.value = cliente.nombre;
-
-        inputNombre.focus();
-    })
-}*/

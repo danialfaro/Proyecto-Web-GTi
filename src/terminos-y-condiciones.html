@@ -6,13 +6,69 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GTi \ Politica de privacidad</title>
+    <link rel="icon" type="image/svg+xml" href="images/logos/logoGTI.svg" sizes="any">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+          integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/themes/original-theme.css">
     <link rel="stylesheet" href="styles/estilos.css">
+    <link rel="stylesheet" href="styles/landing.css">
+    <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/terminosycondiciones.css">
 </head>
 <body>
+<header id="headerbar">
+    <div class="navbar">
+        <a href="./index.html" class="logo">
+            <img src="images/logos/logoGTI.svg" alt="logoGTI">
+        </a>
+        <div class="nav-container">
+            <nav class="nav-menu">
+                <ul>
+                    <li>
+                        <a id="loginToggleButton"><i class="fa fa-user-circle"></i><span>Iniciar sesión</span></a>
+                    </li>
+                    <li>
+                        <a id="menuOpenButton"><i class="fa fa-bars"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div id="login-form-wrapper">
+        <div class="login-form">
+            <h2>Iniciar sesión</h2>
+
+            <form action="#" id="formLogin">
+                <label for="username">Nombre de usuario</label>
+                <input name="username" id="username" type="text" placeholder="Nombre de usuario" required>
+                <label for="password" id="password">Contraseña</label>
+                <input name="password" type="password" placeholder="Contraseña" required>
+                <p id="login-form-output"></p>
+                <input type="submit" value="Entrar" class="button_primary">
+            </form>
+            <p><a href="#">¿Has olvidado tu contraseña?</a></p>
+            <!-- <p>Necesitas ayuda? <a href="#contactanos"></a>.</p> -->
+        </div>
+
+    </div>
+    <div id="menu-emergente">
+        <i id="menuCloseButton" class="fa fa-times close-button"></i>
+        <h2>Menú</h2>
+        <nav>
+            <ul>
+                <li><a href="./index.html#quienessomos"><i class="fa fa-users"></i>Quiénes somos</a></li>
+                <li><a href="./index.html#contactanos"><i class="fa fa-hands-helping"></i>Contáctanos</a></li>
+                <li><a href="./index.html#faq"><i class="fa fa-question-circle"></i>Preguntas frecuentes</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div id="overlay">
+    </div>
+</header>
+
 <main>
 
-    <div class="logo">
+    <div class="logo-tyc">
         <img src="images/logos/logoGTI.svg" alt="">
     </div>
     
@@ -71,5 +127,9 @@
 
     <a href="index.html#seccion_contactanos" class="volver">Volver</a>
 </main>
+
+
+<script src="scripts/navbar.js"></script>
+<script type="module" src="scripts/login.js"></script>
 </body>
 </html>

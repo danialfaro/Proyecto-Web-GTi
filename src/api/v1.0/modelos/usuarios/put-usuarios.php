@@ -18,7 +18,7 @@ foreach ($paramsBody as $key => $value) {
 }
 $strParametros = join(", ", $parametros);
 
-$sql = "UPDATE sondas SET $strParametros WHERE id = $id";
+$sql = "UPDATE usuarios SET $strParametros WHERE id = $id";
 
 $result = mysqli_query($conn, $sql);
 

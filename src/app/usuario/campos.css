@@ -116,7 +116,7 @@ body, html, main {
 }
 
 #panelContainer.open.hide {
-    transform: translateY(-50%);
+    transform: translateY(-70%);
 }
 
 #panelContainer.open {
@@ -416,6 +416,30 @@ span.alert-danger {
 }
 
 /* Media Queries */
+@media(min-width: 720px) {
+
+    .modal {
+        width: 70%;
+    }
+
+    .botones-modal {
+        width: 100%;
+        justify-content: flex-start;
+        flex-direction: row-reverse;
+    }
+
+    .botones-modal input {
+        width: auto;
+        margin: 0 .4rem;
+    }
+}
+
+@media(min-width: 860px) {
+    .modal {
+        width: 45%;
+    }
+}
+
 @media(min-width: 1200px) {
     #panelContainer {
         width: 40vw;

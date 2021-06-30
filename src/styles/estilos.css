@@ -1,5 +1,5 @@
 /* Ajustes generales (reseteo de formatos, fuentes...) */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@400;500;700;900&display=swap');
 
 
 * {
@@ -219,6 +219,18 @@ select:focus:invalid, option:focus:invalid {
     transition: .4s;
 }
 
+.switch input:checked + .slider {
+    background-color: #66bb6a;
+}
+
+.switch.switch-red .slider {
+    background-color: #d2d2d2;
+}
+
+.switch.switch-red input:checked + .slider {
+    background-color: #ff7878;
+}
+
 .switch .slider:before {
     background-color: #fff;
     bottom: 4px;
@@ -230,9 +242,7 @@ select:focus:invalid, option:focus:invalid {
     width: 16px;
 }
 
-.switch input:checked + .slider {
-    background-color: #66bb6a;
-}
+
 
 .switch input:checked + .slider:before {
     transform: translateX(26px);
@@ -245,6 +255,47 @@ select:focus:invalid, option:focus:invalid {
 .switch .slider.round:before {
     border-radius: 50%;
 }
+
+/* Modals */
+
+#overlayModals {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.3);
+    z-index: 99;
+}
+
+.modal {
+    box-shadow: 0 0 12px -4px #dbdbdb;
+    padding: 2rem;
+    width: 90%;
+    background: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
+}
+
+.botones-modal {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.hide-modal {
+    display: none;
+}
+
+#infoModal {
+    max-width: 400px;
+    box-shadow: 0 0 12px 920px rgba(0, 0, 0, 0.4);
+}
+
+/* - */
 
 .d-none {
     display: none;

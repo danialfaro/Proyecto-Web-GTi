@@ -41,6 +41,7 @@ window.onload = () => {
         abrirFlecha(false);
     }
 
+
     loginToggleButton.addEventListener('click', () => {
         isLoginOpen = !isLoginOpen;
         isLoginOpen ? openLoginMenu() : closeLoginMenu(); // !!

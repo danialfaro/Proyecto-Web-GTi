@@ -1,6 +1,10 @@
 import ClientesService from "../services/clientes-service.js";
 
-let lastItemClicked;
+import GestionUsuarios from "./gestion-usuarios.js";
+
+let GestionClientes = {
+    lastItemClicked: ""
+};
 
 // #### Modals
 
@@ -55,8 +59,8 @@ function showInfoModal(text) {
 // ##### Tabla clientesç
 const tableClientesBody = document.getElementById("tableClientesBody");
 function generateTablaClientes() {
+    tableClientesBody.innerHTML = "";
     ClientesService.getClientes().then(clientes => {
-        tableClientesBody.innerHTML = "";
         clientes.forEach(cliente => {
             const item = generateClientesTableItem(cliente)
             tableClientesBody.appendChild(item);
@@ -71,29 +75,29 @@ function generateClientesTableItem(cliente) {
 
     let item = document.createElement("tr");
     item.dataset.id = cliente.id;
+    item.dataset.nombre = cliente.nombre;
 
     //language=HTML
     item.innerHTML = `
-        <td>${cliente.id}</td>       
+        <td class="small">${cliente.id}</td>       
         <td>${cliente.nombre}</td>
         <td>${cliente.telefono ? cliente.telefono : "-"}</td>
         <td>${cliente.fecha_fin !== "0000-00-00"? cliente.fecha_fin : "Indefinido"}</td>
         <td class="opciones">
-            <div>
-                <!-- <button data-boton="usuarios"><i class="fa fa-fw fa-users"></i><span>Usuarios</span></button> -->
+            <div>                
                 <button type="button" data-boton="editar">
                     <i class="fa fa-fw fa-edit"></i><span class="btn-text">Editar</span>
                 </button>
-                <button type="button" data-boton="ver">
+                <button data-boton="usuarios" class="primary"> <i class="fa fa-fw fa-users"></i><span class="btn-text">Usuarios</span></button>
+                <!-- <button type="button" data-boton="ver">
                     <i class="fa fa-fw fa-map"></i><span class="btn-text">Ver campos</span>
-                </button>
+                </button> -->
                 <button type="button" data-boton="eliminar" class="btn-red" ${activo ? "disabled" : ""}>
                     <i class="fa fa-fw fa-trash-alt"></i><span class="btn-text">Eliminar</span>
                 </button>
             </div>            
         </td>        
-        <td style="color: ${activo ? "limegreen" : "red"}">
-                <!-- <i class="fa-fw ${activo ? "fa fa-circle" : "far fa-circle"}"></i> -->
+        <td class="small">
             <label class="switch">
                 <input type="checkbox" name="active" ${activo ? "checked" : ""}>
                 <div class="slider round"></div>
@@ -101,21 +105,22 @@ function generateClientesTableItem(cliente) {
         </td>
     `
 
-    /*item.querySelector("button[data-boton='usuarios']").onclick = () => {
-        console.log("usuarios de " + item.dataset.id);
-    }*/
+    item.querySelector("button[data-boton='usuarios']").onclick = () => {
+        //GestionClientes.lastItemClicked = item;
+        GestionUsuarios.abrirPanel(item)
+    }
     item.querySelector("button[data-boton='editar']").onclick = () => {
         showModal(modificarClienteModal, true);
         rellenarModificarClienteForm(item);
     }
     item.querySelector("button[data-boton='eliminar']").onclick = () => {
-        lastItemClicked = item;
+        GestionClientes.lastItemClicked = item;
         showModal(eliminarClienteModal, true);
     }
-    item.querySelector("button[data-boton='ver']").onclick = () => {
+    /*item.querySelector("button[data-boton='ver']").onclick = () => {
         window.sessionStorage.setItem("loggedAsUserID", cliente.id)
         window.location.href = "../usuario";
-    }
+    }*/
     item.querySelector("input[name='active']").onclick = (e) => {
         let checked = e.target.checked;
         activarCliente(item, checked);
@@ -227,9 +232,9 @@ function eliminarClientesInactivos() {
 // ## Eliminar cliente
 eliminarClienteModal.addEventListener('submit', (event) => {
     event.preventDefault();
-    eliminarCliente(lastItemClicked);
+    eliminarCliente(GestionClientes.lastItemClicked);
     //showModal(eliminarClienteModal, false);
-    showInfoModal(`El cliente ${lastItemClicked.dataset.id} se ha eliminado.`);
+    showInfoModal(`El cliente ${GestionClientes.lastItemClicked.dataset.id} se ha eliminado.`);
 })
 
 function eliminarCliente(item) {
@@ -258,9 +263,6 @@ function activarCliente(item, activar) {
                 let newItem = generateClientesTableItem(cliente);
                 item.parentNode.replaceChild(newItem, item);
             });
-
-            resetModificarClienteForm();
-            showModal(modificarClienteModal, false);
 
         }
     });

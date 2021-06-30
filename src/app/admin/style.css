@@ -1,12 +1,18 @@
+main {
+    min-height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
 .container {
     padding: 1.2rem;
 }
 
-h1 {
+#seccionClientes h1 {
     margin-bottom: 2rem;
 }
 
-h3 {
+#seccionClientes h3 {
     margin-bottom: 1rem;
 }
 
@@ -21,7 +27,7 @@ button {
 
 button:hover {
     cursor: pointer;
-    background: #d4d4d4;
+    background: #e9e9e9;
 }
 
 #seccionClientes {
@@ -34,31 +40,53 @@ button:hover {
     margin-bottom: 1rem;
 }
 
-#tablaClientes {
+table {
     width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-family: Arial, serif;
 }
-#tablaClientes td {
+
+table td {
     padding: .6rem;
-    text-align: center;
+    min-width: 8rem;
 }
-#tablaClientes th {
+
+table th {
+    text-align: left;
     font-weight: 100;
     color: lightgray;
     padding: .8rem;
     border-bottom: 1px var(--primary_light) solid;
 }
-#tablaClientes .small {
-    width: 1rem;
+
+table td.small {
+    width: 5rem;
+    min-width: auto;
 }
 
-#tablaClientes tr:nth-child(2n) {
-    background: whitesmoke;
+
+table tbody tr {
+    border-bottom: 2px #f8f8f8 solid;
 }
 
+table tbody tr:hover {
+    background: #f8faff;
+}
 
-#tablaClientes .opciones div {
+table .opciones div {
     display: flex;
+    justify-content: flex-start;
     flex-direction: column;
+}
+
+table .opciones button.primary {
+    background: var(--primary_light);
+    color: white;
+}
+
+table .opciones button.primary:hover {
+    filter: brightness(1.1);
 }
 
 .focused {
@@ -93,50 +121,54 @@ span.btn-text {
     display: none;
 }
 
-/* Modals */
-
-#overlayModals {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,.3);
-    z-index: 99;
-}
-
-.modal {
-    box-shadow: 0 0 12px -4px #dbdbdb;
-    padding: 2rem;
-    width: 90%;
-    background: white;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 4px;
-    opacity: 1;
-    transition: 1s;
-}
-
-.botones-modal {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.hide-modal {
-    opacity: 0;
-}
-
-#infoModal {
-    max-width: 400px;
-    box-shadow: 0 0 12px 920px rgba(0, 0, 0, 0.4);
-}
-
 .table-container {
-    width: 100vw;
     overflow: scroll;
+}
+
+#gestionUsuarios .container {
+    position: relative;
+}
+
+#gestionUsuarios {
+    position: fixed;
+    top: 100%;
+    right: 0;
+    transform: translateY(0%);
+    width: 100%;
+    transition: .5s;
+
+    height: 100%;
+    padding: 1rem;
+    padding-top: 1.2rem;
+    background: white;
+
+    z-index: 2;
+}
+
+#gestionUsuarios.show {
+    *transform: translateY(-50%);
+    top: 3.65rem;
+}
+
+#btn-cerrar-gestionUsuarios {
+    position: absolute;
+    top: 1.3rem;
+    right: 1.2rem;
+    font-size: 1.3rem;
+    color: var(--black);
+    padding: .5rem;
+}
+
+#btn-cerrar-gestionUsuarios:hover {
+    cursor: pointer;
+}
+
+#gestionUsuarios h2, #gestionUsuarios header {
+    margin-bottom: 1rem;
+}
+
+#gestionUsuarios header h2 span {
+    font-weight: 900;
 }
 
 /* Media queries */
@@ -144,27 +176,24 @@ span.btn-text {
 @media(min-width: 420px) {
 
 
-    #listaClientes .cliente-item {
-        padding: .5rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border: 3px transparent solid;
-        flex-direction: column;
+    table td {
+        padding: .8rem;
+        min-width: 8rem;
     }
 
-    #listaClientes button {
+    table button {
         margin-right: 1rem;
     }
 
-    #listaClientes .cliente-buttons {
+    table .item-buttons {
         width: 100%;
     }
 
-    #tablaClientes .opciones button span {
+    table .opciones button span {
         display: inline-block;
         margin: 0 .5rem;
     }
+
 
 }
 
@@ -186,12 +215,7 @@ span.btn-text {
         margin: 0 .4rem;
     }
 
-    #listaClientes .cliente-item, #listaClientes .cliente-buttons {
-        width: auto;
-        flex-direction: row;
-    }
-
-    #seccionClientes header button i {
+    #seccionClientes header button i, #gestionUsuarios header button i {
         margin-right: .6rem;
     }
 
@@ -204,6 +228,10 @@ span.btn-text {
         overflow: auto;
     }
 
+    table td {
+        padding: .8rem;
+    }
+
 }
 
 @media(min-width: 860px) {
@@ -211,9 +239,8 @@ span.btn-text {
         width: 45%;
     }
 
-    #tablaClientes .opciones div {
-        display:flex;
-        justify-content: center;
+    table .opciones div {
+        display: flex;
         flex-direction: row;
     }
 }

@@ -1,0 +1,24 @@
+<?php
+
+if(!isset($conn)) { die(); }
+
+if(!isset($paramPath[0])) {
+    http_response_code(400);
+    die();
+}
+
+$id = $paramPath[0];
+$sql = "DELETE FROM usuarios WHERE id = '${id}' AND bloqueado = 1";
+
+if(!is_numeric($paramPath[0]) && $paramPath[0] === "bloqueados") {
+    $sql = "DELETE FROM usuarios WHERE bloqueado = 1";
+}
+
+
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_affected_rows($conn) <= 0) {
+    // No se ha eliminado nada
+    http_response_code(404);
+    die();
+}
